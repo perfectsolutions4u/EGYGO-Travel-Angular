@@ -19,6 +19,7 @@ export class FooterComponent implements OnInit {
   userAddress: any;
   userLocation: any;
   projectTitle: any;
+  logo: any;
 
   ngOnInit(): void {
     this.getSettings();
@@ -53,6 +54,13 @@ export class FooterComponent implements OnInit {
           (item: any) => item.option_key === 'site_title'
         );
         this.projectTitle = title?.option_value[0];
+
+        const contactLogo = res.data.find(
+          (item: any) => item.option_key === 'logo'
+        );
+        const logoPath = contactLogo?.option_value[0];
+        // Ensure logo URL is complete (add base URL if needed)
+        this.logo = logoPath ? this._DataService.getImageUrl(logoPath) : null;
         // console.log(this.userLocation);
       },
       error: (err) => {

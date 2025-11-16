@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { DataService } from '../../core/services/data.service';
+import { SeoService } from '../../core/services/seo.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   FormControl,
@@ -82,6 +83,7 @@ export class HomeComponent implements OnInit {
     private _Router: Router,
     private _MaketripService: MaketripService,
     private sanitizer: DomSanitizer,
+    private _SeoService: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.sanitizedVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -107,10 +109,10 @@ export class HomeComponent implements OnInit {
   allReviews: any[] = [];
 
   mainSecSlider: any[] = [
-    { src: '../../../assets/image/new/9.png' },
-    { src: '../../../assets/image/new/13.png' },
-    { src: '../../../assets/image/new/7.png' },
-    { src: '../../../assets/image/new/4.png' },
+    { src: '../../../assets/image/new/9.webp' },
+    { src: '../../../assets/image/new/13.webp' },
+    { src: '../../../assets/image/new/7.webp' },
+    { src: '../../../assets/image/new/4.webp' },
     // { src: '../../../assets/image/new/14.png' },
     // { src: '../../../assets/image/new/10.png' },
     // { src: '../../../assets/image/new/4.png' },
@@ -119,7 +121,7 @@ export class HomeComponent implements OnInit {
 
   // video
   rawVideoUrl = 'https://www.youtube.com/embed/k3KqP69xuPc?si=jlt_SSYpm0STHo7I';
-  posterSrc = '../../../assets/images/blog2.jpg';
+  posterSrc = '../../../assets/image/blog2.webp';
   sanitizedVideoUrl: SafeResourceUrl | null = null;
   isVideoPlaying = false;
   isBrowser = false;
@@ -141,6 +143,7 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.setupSEO();
     this.getDestination();
     this.getCategory();
     this.getDurations();
@@ -151,6 +154,46 @@ export class HomeComponent implements OnInit {
       location: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
       duration: new FormControl(''),
+    });
+  }
+
+  setupSEO(): void {
+    this._DataService.getSetting().subscribe({
+      next: (res) => {
+        const siteTitle = res.data.find(
+          (item: any) => item.option_key === 'site_title'
+        )?.option_value[0] || 'EGYGO Travel';
+        const siteDescription = res.data.find(
+          (item: any) => item.option_key === 'site_description'
+        )?.option_value[0] || 'Discover amazing tours and destinations with EGYGO Travel. Book your perfect trip to Egypt and explore the world\'s most beautiful places.';
+        const logoPath = res.data.find(
+          (item: any) => item.option_key === 'logo'
+        )?.option_value[0] || '';
+        const logo = logoPath ? this._DataService.getImageUrl(logoPath) : '';
+
+        this._SeoService.updateSEO({
+          title: `${siteTitle} - Your Trusted Travel Partner`,
+          description: siteDescription,
+          keywords: 'travel, tours, Egypt, destinations, vacation, booking, travel agency, Nile cruises, pyramids, Luxor, Aswan',
+          image: logo,
+          url: 'https://egygo-travel.com',
+          type: 'website',
+        });
+
+        // Add organization structured data
+        const orgData = this._SeoService.generateOrganizationStructuredData(
+          {
+            site_title: siteTitle,
+            site_description: siteDescription,
+            logo: logo,
+            phone: res.data.find((item: any) => item.option_key === 'CONTACT_PHONE_NUMBER')?.option_value[0] || '',
+            email: res.data.find((item: any) => item.option_key === 'email_address')?.option_value[0] || '',
+            address: res.data.find((item: any) => item.option_key === 'address')?.option_value[0] || '',
+          },
+          'https://egygo-travel.com'
+        );
+        this._SeoService.updateSEO({ structuredData: orgData });
+      },
     });
   }
 

@@ -52,7 +52,9 @@ export class ForgetPasswordComponent implements OnInit {
         const contactLogo = res.data.find(
           (item: any) => item.option_key === 'logo'
         );
-        this.logo = contactLogo?.option_value[0];
+        const logoPath = contactLogo?.option_value[0];
+        // Ensure logo URL is complete (add base URL if needed)
+        this.logo = logoPath ? this._DataService.getImageUrl(logoPath) : null;
 
         const title = res.data.find(
           (item: any) => item.option_key === 'site_title'

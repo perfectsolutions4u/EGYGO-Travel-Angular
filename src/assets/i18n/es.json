@@ -159,7 +159,7 @@
     "refundGuarantee": "Garantía de Reembolso",
     "bestPriceGuarantee": "Garantía de Mejor Precio",
     "weProvideBestTourFacilities": "Ofrecemos Las Mejores Instalaciones Para Tours.",
-    "description": "Tricia Travel Agency probablemente ofrece una gama de actividades turísticas dependiendo de su ubicación y especialidades. Aquí hay algunas actividades turísticas comunes que las agencias de viajes podrían",
+    "description": "Egygo Travel Agency probablemente ofrece una gama de actividades turísticas dependiendo de su ubicación y especialidades. Aquí hay algunas actividades turísticas comunes que las agencias de viajes podrían",
     "yearsOfExperience": "Años de Experiencia"
   },
   "blog": {
@@ -208,7 +208,7 @@
   },
   "signup": {
     "signUp": "Registrarse",
-    "createAccount": "Crea tu cuenta de tourEgya",
+    "createAccount": "Crea tu cuenta de Egygo",
     "fullName": "Nombre Completo",
     "emailAddress": "Correo Electrónico",
     "password": "Contraseña",
@@ -289,7 +289,7 @@
     "selectMonth": "Seleccionar Mes"
   },
   "forgetPassword": {
-    "loginByAccount": "Inicia sesión con tu cuenta de tourEgya",
+    "loginByAccount": "Inicia sesión con tu cuenta de Egygo",
     "emailAddress": "Correo Electrónico",
     "otpCode": "Código OTP",
     "yourOtpCode": "Tu Código OTP",

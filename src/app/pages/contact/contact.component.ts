@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../core/services/data.service';
+import { SeoService } from '../../core/services/seo.service';
 import { SafeUrlPipe } from '../../core/pipes/safe-url.pipe';
 import { PartnerSliderComponent } from '../../components/partner-slider/partner-slider.component';
 import { BannerComponent } from '../../components/banner/banner.component';
@@ -27,7 +28,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ContactComponent implements OnInit {
   constructor(
     private _DataService: DataService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private _SeoService: SeoService
   ) {}
 
   bannerTitle: string = 'contact';
@@ -39,6 +41,13 @@ export class ContactComponent implements OnInit {
   userLocation: any;
 
   ngOnInit(): void {
+    this._SeoService.updateSEO({
+      title: 'Contact Us - EGYGO Travel',
+      description: 'Get in touch with EGYGO Travel. Contact us for bookings, inquiries, or travel assistance. We\'re here to help you plan your perfect trip.',
+      keywords: 'contact, contact us, travel booking, customer service, EGYGO Travel',
+      url: 'https://egygo-travel.com/contact',
+      type: 'website',
+    });
     this.getCountries();
     this.getSettings();
   }

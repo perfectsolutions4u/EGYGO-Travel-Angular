@@ -4,9 +4,10 @@
       <!-- Logo Section -->
       <div class="footer-logo mb-5">
         <img
-          src="../../../assets/image/Touregya/Touregya for print-10.png"
+          [src]="logo || '../../../assets/image/logo-egygo.webp'"
           [alt]="projectTitle"
           class="logo-img"
+          (error)="($any($event.target)).src='../../../assets/image/logo-egygo.webp'"
         />
       </div>
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { DataService } from '../../core/services/data.service';
+import { SeoService } from '../../core/services/seo.service';
 import { Itour } from '../../core/interfaces/itour';
 import {
   FormControl,
@@ -51,7 +52,8 @@ export class TourDetailsComponent implements OnInit {
     private _Router: Router,
     private toaster: ToastrService,
     private _BookingService: BookingService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _SeoService: SeoService
   ) {}
 
   getSanitizedHtml(content: string): SafeHtml {
@@ -124,7 +126,19 @@ export class TourDetailsComponent implements OnInit {
       next: (response) => {
         // console.log(response.data);
         this.tourData = response.data;
-        this.tourItenary = response.data?.days;
+        // Keep itinerary in the same order as from dashboard
+        this.tourItenary = response.data?.days ? [...response.data.days] : [];
+        // Sort by display_order if it exists in reverse order, otherwise keep original order
+        if (this.tourItenary.length > 0 && this.tourItenary[0].display_order !== undefined) {
+          this.tourItenary.sort((a: any, b: any) => {
+            const orderA = a.display_order ?? 0;
+            const orderB = b.display_order ?? 0;
+            return orderB - orderA; // Reverse order
+          });
+        } else {
+          // Reverse the array if no display_order
+          this.tourItenary.reverse();
+        }
         this.tourGallery = response.data?.gallery;
         console.log(this.tourData);
 
@@ -154,11 +168,35 @@ export class TourDetailsComponent implements OnInit {
         this.bookingFormData.patchValue({ tour_id: response.data.id });
         this.getTourPricing(1);
         this.getReview(); // Fetch reviews for this specific tour
+        
+        // Update SEO
+        this.updateTourSEO(response.data);
       },
       error: (err) => {
         this.toaster.error(err.error.message);
       },
     });
+  }
+
+  updateTourSEO(tour: any): void {
+    const baseUrl = 'https://egygo-travel.com';
+    const tourImage = tour.image || tour.gallery?.[0]?.image || '';
+    const tourDescription = tour.short_description || tour.description || `Book ${tour.title} tour with EGYGO Travel. Experience amazing destinations and create unforgettable memories.`;
+    const destinations = tour.destinations?.map((d: any) => d.title).join(', ') || '';
+    const keywords = `${tour.title}, tour, travel, ${destinations}, Egypt tours, booking`.toLowerCase();
+
+    this._SeoService.updateSEO({
+      title: `${tour.title} - Book Now | EGYGO Travel`,
+      description: tourDescription.substring(0, 160),
+      keywords: keywords,
+      image: tourImage,
+      url: `${baseUrl}/tour/${tour.slug}`,
+      type: 'website',
+    });
+
+    // Add structured data
+    const structuredData = this._SeoService.generateTourStructuredData(tour, baseUrl);
+    this._SeoService.updateSEO({ structuredData });
   }
 
   // check pricing

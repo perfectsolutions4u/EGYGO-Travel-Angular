@@ -152,7 +152,9 @@ export class NavComponent implements OnInit {
         const contactLogo = res.data.find(
           (item: any) => item.option_key === 'logo'
         );
-        this.logo = contactLogo?.option_value[0];
+        const logoPath = contactLogo?.option_value[0];
+        // Ensure logo URL is complete (add base URL if needed)
+        this.logo = logoPath ? this._DataService.getImageUrl(logoPath) : null;
 
         const contactPhone = res.data.find(
           (item: any) => item.option_key === 'CONTACT_PHONE_NUMBER'

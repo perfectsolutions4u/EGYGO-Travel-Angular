@@ -61,6 +61,7 @@ export interface Day {
   tour_id: number;
   title: string;
   description: string;
+  display_order?: number;
   translations?: any[]; // You can define a detailed Translation interface if needed
 }
 

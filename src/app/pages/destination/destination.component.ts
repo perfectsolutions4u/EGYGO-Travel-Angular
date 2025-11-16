@@ -4,6 +4,7 @@ import { DestinationCartComponent } from '../../components/destination-cart/dest
 import { CommonModule } from '@angular/common';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { DataService } from '../../core/services/data.service';
+import { SeoService } from '../../core/services/seo.service';
 import { PartnerSliderComponent } from '../../components/partner-slider/partner-slider.component';
 import { BannerComponent } from '../../components/banner/banner.component';
 import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip-form.component';
@@ -23,12 +24,22 @@ import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip
   styleUrl: './destination.component.scss',
 })
 export class DestinationComponent implements OnInit {
-  constructor(private _DataService: DataService) {}
+  constructor(
+    private _DataService: DataService,
+    private _SeoService: SeoService
+  ) {}
   allDestinations: any[] = [];
 
   bannerTitle: string = 'destination';
 
   ngOnInit(): void {
+    this._SeoService.updateSEO({
+      title: 'Destinations - Explore Amazing Places | EGYGO Travel',
+      description: 'Discover amazing travel destinations with EGYGO Travel. Explore Egypt and other beautiful places around the world. Find tours and travel guides.',
+      keywords: 'destinations, travel destinations, Egypt destinations, places to visit, travel locations, tourist destinations',
+      url: 'https://egygo-travel.com/destination',
+      type: 'website',
+    });
     this.getDestination();
   }
 

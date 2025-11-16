@@ -8,23 +8,13 @@
     <div class="container-fluid">
       <!-- Logo Section -->
       <div routerLink="/" class="navbar-brand cPointer">
-        @if (scrolled) {
-
         <img
-          src="../../../assets/image/Touregya/Touregya for print-02.png"
+          [src]="logo || '../../../assets/image/logo-egygo.webp'"
           [alt]="siteTitle"
           [title]="siteTitle"
           class="me-2 w-100 h-100"
+          (error)="($any($event.target)).src='../../../assets/image/logo-egygo.webp'"
         />
-        }@else {
-
-        <img
-          src="../../../assets/image/Touregya/Touregya for print-02.png"
-          [alt]="siteTitle"
-          [title]="siteTitle"
-          class="me-2 w-100 h-100"
-        />
-        }
       </div>
 
       <!-- Navigation Links (Desktop) -->
@@ -231,12 +221,14 @@
   >
     <div class="offcanvas-header border-bottom flexBetween">
       <div class="d-flex align-items-center">
+     
         <img
-          src="../../../assets/image/Touregya/Touregya for print-02.png"
+          [src]="logo || '../../../assets/image/logo-egygo.webp'"
           [alt]="siteTitle"
           [title]="siteTitle"
           class="me-2"
           style="width: 140px; height: 40px; object-fit: contain"
+          (error)="($any($event.target)).src='../../../assets/image/logo-egygo.webp'"
         />
       </div>
       <button

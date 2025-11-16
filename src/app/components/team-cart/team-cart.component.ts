@@ -12,17 +12,17 @@ export class TeamCartComponent {
     {
       name: 'Hisham',
       jobTitle: 'CEO',
-      src: '../../../assets/image/man1.jpg',
+      src: '../../../assets/image/man1.webp',
     },
     {
       name: 'Manar',
       jobTitle: 'Operation Manager',
-      src: '../../../assets/image/woman.jpg',
+      src: '../../../assets/image/woman.webp',
     },
     {
       name: 'ossama',
       jobTitle: 'CEO',
-      src: '../../../assets/image/man2.jpg',
+      src: '../../../assets/image/man2.webp',
     },
   ];
 }

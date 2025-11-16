@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SocialComponent } from '../../components/social/social.component';
 import { DataService } from '../../core/services/data.service';
+import { SeoService } from '../../core/services/seo.service';
 import {
   FormControl,
   FormGroup,
@@ -36,7 +37,8 @@ export class BlogDetailsComponent implements OnInit {
     private _DataService: DataService,
     private _ActivatedRoute: ActivatedRoute,
     private toaster: ToastrService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _SeoService: SeoService
   ) {}
 
   getSanitizedHtml(content: string): SafeHtml {
@@ -91,6 +93,9 @@ export class BlogDetailsComponent implements OnInit {
                 .map((name: any) => name.trim());
 
               // this.writeReview.patchValue({ tour_id: response.data.id });
+              
+              // Update SEO
+              this.updateBlogSEO(response.data);
             },
           });
         }
@@ -161,5 +166,29 @@ export class BlogDetailsComponent implements OnInit {
         // console.log(err);
       },
     });
+  }
+
+  updateBlogSEO(blog: any): void {
+    const baseUrl = 'https://egygo-travel.com';
+    const blogImage = blog.image || '';
+    const blogDescription = blog.short_description || blog.description || `Read ${blog.title} on EGYGO Travel blog. Travel tips, guides, and insights.`;
+    const tags = blog.tags ? blog.tags.split(',').map((t: string) => t.trim()).join(', ') : '';
+    const keywords = `${blog.title}, travel blog, ${tags}, travel tips, Egypt travel`.toLowerCase();
+
+    this._SeoService.updateSEO({
+      title: `${blog.title} | EGYGO Travel Blog`,
+      description: blogDescription.substring(0, 160),
+      keywords: keywords,
+      image: blogImage,
+      url: `${baseUrl}/blog/${blog.slug}`,
+      type: 'article',
+      author: 'EGYGO Travel',
+      publishedTime: blog.created_at || new Date().toISOString(),
+      modifiedTime: blog.updated_at || blog.created_at || new Date().toISOString(),
+    });
+
+    // Add structured data
+    const structuredData = this._SeoService.generateBlogStructuredData(blog, baseUrl);
+    this._SeoService.updateSEO({ structuredData });
   }
 }

@@ -9,6 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSliderModule } from '@angular/material/slider';
 import { DataService } from '../../core/services/data.service';
+import { SeoService } from '../../core/services/seo.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TourCartComponent } from '../../components/tour-cart/tour-cart.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
@@ -41,7 +42,8 @@ type FilterKey = 'selectedTripType' | 'selectedDestination';
 export class TourComponent implements OnInit {
   constructor(
     private _DataService: DataService,
-    private _ActivatedRoute: ActivatedRoute
+    private _ActivatedRoute: ActivatedRoute,
+    private _SeoService: SeoService
   ) {}
 
   bannerTitle: string = 'tour search';
@@ -71,6 +73,13 @@ export class TourComponent implements OnInit {
   allToursRaw: any[] = []; // النسخة الخام من API بدون فلاتر
 
   ngOnInit(): void {
+    this._SeoService.updateSEO({
+      title: 'Tours - Browse All Travel Tours | EGYGO Travel',
+      description: 'Browse our extensive collection of travel tours. Find the perfect tour for your next adventure. Filter by destination, category, duration, and price.',
+      keywords: 'tours, travel tours, Egypt tours, tour packages, vacation tours, travel booking',
+      url: 'https://egygo-travel.com/tour',
+      type: 'website',
+    });
     this.getDestination();
     this.getCategories(); // This now includes tours data
     this.getDurations();

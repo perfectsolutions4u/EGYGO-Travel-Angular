@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { DataService } from '../../core/services/data.service';
+import { SeoService } from '../../core/services/seo.service';
 import { CommonModule } from '@angular/common';
 import { SocialComponent } from '../../components/social/social.component';
 import { TourCartComponent } from '../../components/tour-cart/tour-cart.component';
@@ -32,7 +33,8 @@ export class DestinationDetailsComponent implements OnInit {
   constructor(
     private _DataService: DataService,
     private _ActivatedRoute: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _SeoService: SeoService
   ) {}
 
   getSanitizedHtml(content: string): SafeHtml {
@@ -65,6 +67,9 @@ export class DestinationDetailsComponent implements OnInit {
               this.destinationDetails.title
             );
             console.log('destination Details:', this.destinationDetails);
+            
+            // Update SEO
+            this.updateDestinationSEO(response.data);
           },
           error: (err) => {
             console.error('Error fetching destination details:', err);
@@ -108,6 +113,26 @@ export class DestinationDetailsComponent implements OnInit {
         console.error('Error fetching tours:', err);
       },
     });
+  }
+
+  updateDestinationSEO(destination: any): void {
+    const baseUrl = 'https://egygo-travel.com';
+    const destImage = destination.image || '';
+    const destDescription = destination.description || destination.short_description || `Explore ${destination.title} with EGYGO Travel. Discover amazing tours and experiences.`;
+    const keywords = `${destination.title}, destination, travel, tours, ${destination.title} tours, Egypt travel`.toLowerCase();
+
+    this._SeoService.updateSEO({
+      title: `${destination.title} - Tours & Travel Guide | EGYGO Travel`,
+      description: destDescription.substring(0, 160),
+      keywords: keywords,
+      image: destImage,
+      url: `${baseUrl}/destination/${destination.slug}`,
+      type: 'website',
+    });
+
+    // Add structured data
+    const structuredData = this._SeoService.generateDestinationStructuredData(destination, baseUrl);
+    this._SeoService.updateSEO({ structuredData });
   }
 
   galleryOptions: OwlOptions = {
