@@ -7,6 +7,7 @@ import {
   ChangeDetectorRef,
   CUSTOM_ELEMENTS_SCHEMA,
   ViewChild,
+  afterNextRender,
 } from '@angular/core';
 import {
   SlickCarouselModule,
@@ -96,7 +97,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   private $destory = new Subject<void>();
   toursLoaded = false; // Flag to track when tours are loaded
-
+  isBrowser = false;
   // Navigation methods
   prevTourCarousel() {
     if (this.tourCarousel) {
@@ -134,13 +135,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.sanitizedVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.rawVideoUrl
     );
-    this.isBrowser = isPlatformBrowser(platformId);
+    // this.isBrowser = isPlatformBrowser(platformId);
+    afterNextRender(() => {
+      this.isBrowser = true;
+
+      // We may need to manually trigger change detection
+      this.cdr.detectChanges();
+    });
   }
 
   ngAfterViewInit(): void {
     // Force change detection after view init to prevent flickering
-    if (this.isBrowser) {
-      // this.cdr.detectChanges();
+    if (isPlatformBrowser(this.platformId)) {
+      this.isBrowser = true;
     }
   }
 
@@ -176,7 +183,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   posterSrc = '../../../assets/image/blog2.webp';
   sanitizedVideoUrl: SafeResourceUrl | null = null;
   isVideoPlaying = false;
-  isBrowser = false;
 
   MarkTime: string = 'exact';
   monthList = [
@@ -207,6 +213,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       type: new FormControl('', Validators.required),
       duration: new FormControl(''),
     });
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.isBrowser = true;
+    }
   }
 
   setupSEO(): void {
