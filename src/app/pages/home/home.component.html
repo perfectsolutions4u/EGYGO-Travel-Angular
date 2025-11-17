@@ -352,7 +352,7 @@
         <span class="textSecondColor fw-bold fs-5">Tour Experience</span>
         <h2 class="text-black fw-bold">Ultimate Travel Experience</h2>
       </div>
-      @if (isBrowser && toursLoaded && allToursFromCategories.length > 0) {
+      @if (isBrowser && toursLoaded && tourstest.length > 0) {
       <div class="carousel-nav-buttons title-nav-buttons">
         <button
           type="button"
@@ -372,7 +372,7 @@
       }
     </div>
 
-    @if (isBrowser && toursLoaded && allToursFromCategories.length > 0) {
+    @if (isBrowser && toursLoaded && tourstest.length > 0) {
     <div class="my-slider">
       <ngx-slick-carousel
         #tourCarousel="slick-carousel"
@@ -405,7 +405,7 @@
         <span class="textSecondColor fw-bold fs-5">Tour Experience</span>
         <h2 class="text-black fw-bold">Our Most Popular Tours</h2>
       </div>
-      @if (isBrowser && toursLoaded && allToursFromCategories.length > 0) {
+      @if (isBrowser && toursLoaded && tourstest.length > 0) {
       <div class="carousel-nav-buttons title-nav-buttons">
         <button
           type="button"
@@ -426,7 +426,7 @@
     </div>
 
     <div class="">
-      @if (isBrowser && toursLoaded && allToursFromCategories.length > 0) {
+      @if (isBrowser && toursLoaded && tourstest.length > 0) {
       <ngx-slick-carousel
         #popularTourCarousel="slick-carousel"
         [config]="tourOptions"
