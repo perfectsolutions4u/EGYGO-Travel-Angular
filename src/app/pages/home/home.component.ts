@@ -8,6 +8,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   ViewChild,
   afterNextRender,
+  ElementRef,
 } from '@angular/core';
 import {
   SlickCarouselModule,
@@ -53,6 +54,8 @@ import { AboutCategoryComponent } from '../../components/about-category/about-ca
 interface DestinationPriceMap {
   [title: string]: number;
 }
+
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -130,7 +133,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private sanitizer: DomSanitizer,
     private _SeoService: SeoService,
     private cdr: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private el: ElementRef
   ) {
     this.sanitizedVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.rawVideoUrl
@@ -141,6 +145,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
       // We may need to manually trigger change detection
       this.cdr.detectChanges();
+      console.log(this.el.nativeElement);
+      if (typeof $ !== 'undefined' && $.fn.slick) {
+        console.log($(this.el.nativeElement).find('.my-slider'));
+
+        // Initialize Slick on this component's element
+        $(this.el.nativeElement).find('.my-slider').slick({
+          dots: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          // ... all your other slick options
+        });
+      } else {
+        console.warn('jQuery or Slick Slider not found.');
+      }
     });
   }
 
@@ -612,6 +631,196 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const safeRate = Math.max(0, Math.min(5, Math.floor(rate || 0)));
     return Array.from({ length: 5 }, (_, i) => i < safeRate);
   }
+
+  tourstest: any[] = [
+    {
+      id: 8,
+      slug: 'hurghada',
+      tours_count: 2,
+      parent_id: 1,
+      display_order: 0,
+      global: false,
+      enabled: true,
+      featured: true,
+      banner:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Destinations/snorkling hurghada (1).jpeg',
+      featured_image:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/hurghada.webp',
+      gallery: [
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Hurghada/Giftun2.jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Hurghada/Giftun1.webp',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Hurghada/snorkling hurghada (2).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Hurghada/snorkling hurghada (8).jpg',
+      ],
+      title: 'Hurghada',
+      description:
+        "<p>Hurghada is one of Egypt&rsquo;s most beloved Red Sea destinations, famous for its crystal-clear waters, colorful coral reefs, and vibrant marine life. Stretching along a beautiful coastline, the city offers a perfect blend of relaxation and adventure, with golden beaches, luxury resorts, and a wide range of water activities including snorkeling, diving, and windsurfing. Beyond the sea, Hurghada also provides opportunities for desert safaris, Bedouin experiences, and lively nightlife. Whether you're seeking serene moments by the water or exciting excursions, Hurghada is an ideal getaway for travelers looking to enjoy Egypt&rsquo;s natural beauty and warm hospitality.</p>",
+    },
+    {
+      id: 6,
+      slug: 'aswan',
+      tours_count: 2,
+      parent_id: 1,
+      display_order: 0,
+      global: false,
+      enabled: true,
+      featured: true,
+      banner:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Destinations/edfu (29).jpg',
+      featured_image:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/aswan.jpg',
+      gallery: [
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Aswan/معبد فيلة (7).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Aswan/معبد فيلة (16).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Aswan/معبد فيلة (6).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Aswan/السد العالي (1).png',
+      ],
+      title: 'Aswan',
+      description:
+        '<article class="text-token-text-primary w-full focus:outline-none [--shadow-height:45px] has-data-writing-block:pointer-events-none has-data-writing-block:-mt-(--shadow-height) has-data-writing-block:pt-(--shadow-height) [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto [content-visibility:auto] supports-[content-visibility:auto]:[contain-intrinsic-size:auto_100lvh] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]" dir="auto" tabindex="-1" data-turn-id="request-WEB:324b96c2-7040-431c-a280-af845399405e-8" data-testid="conversation-turn-18" data-scroll-anchor="true" data-turn="assistant">\r\n<div class="text-base my-auto mx-auto pb-10 [--thread-content-margin:--spacing(4)] thread-sm:[--thread-content-margin:--spacing(6)] thread-lg:[--thread-content-margin:--spacing(16)] px-(--thread-content-margin)">\r\n<div class="[--thread-content-max-width:40rem] thread-lg:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col agent-turn" tabindex="-1">\r\n<div class="flex max-w-full flex-col grow">\r\n<div class="min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal [.text-message+&amp;]:mt-1" dir="auto" data-message-author-role="assistant" data-message-id="ee1f05c8-54d3-444b-9761-b2af9d4532b6" data-message-model-slug="gpt-5-1">\r\n<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">\r\n<div class="markdown prose dark:prose-invert w-full break-words light markdown-new-styling">\r\n<p data-start="83" data-end="744" data-is-last-node="" data-is-only-node="">Aswan is a serene and picturesque city in southern Egypt, known for its peaceful Nile scenery, warm climate, and rich Nubian heritage. Once a strategic gateway to Africa, Aswan is home to some of Egypt&rsquo;s most captivating sites, including the beautiful Philae Temple, the impressive High Dam, and the colorful Nubian villages that line the river. Its granite quarries supplied stone for ancient monuments throughout Egypt, while its tranquil Nile views make it a favorite retreat for travelers. With a perfect blend of history, culture, and natural beauty, Aswan offers a relaxing yet culturally enriching experience along the banks of the world&rsquo;s longest river.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</article>',
+    },
+    {
+      id: 5,
+      slug: 'luxor',
+      tours_count: 4,
+      parent_id: 1,
+      display_order: 0,
+      global: false,
+      enabled: true,
+      featured: true,
+      banner:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Destinations/Ballon (29).jpg',
+      featured_image:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/luxor.webp',
+      gallery: [
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Luxor/معبد الاقصر (1).png',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Luxor/معبد الاقصر (15).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Luxor/معبد الكرنك (3).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Luxor/معبد الاقصر (22).jpg',
+      ],
+      title: 'Luxor',
+      description:
+        '<article class="text-token-text-primary w-full focus:outline-none [--shadow-height:45px] has-data-writing-block:pointer-events-none has-data-writing-block:-mt-(--shadow-height) has-data-writing-block:pt-(--shadow-height) [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto [content-visibility:auto] supports-[content-visibility:auto]:[contain-intrinsic-size:auto_100lvh] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]" dir="auto" tabindex="-1" data-turn-id="request-WEB:324b96c2-7040-431c-a280-af845399405e-10" data-testid="conversation-turn-22" data-scroll-anchor="true" data-turn="assistant">\r\n<div class="text-base my-auto mx-auto pb-10 [--thread-content-margin:--spacing(4)] thread-sm:[--thread-content-margin:--spacing(6)] thread-lg:[--thread-content-margin:--spacing(16)] px-(--thread-content-margin)">\r\n<div class="[--thread-content-max-width:40rem] thread-lg:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col agent-turn" tabindex="-1">\r\n<div class="flex max-w-full flex-col grow">\r\n<div class="min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal [.text-message+&amp;]:mt-1" dir="auto" data-message-author-role="assistant" data-message-id="a7994bdd-2cf5-4881-ac87-2bdd469b5d73" data-message-model-slug="gpt-5-1">\r\n<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">\r\n<div class="markdown prose dark:prose-invert w-full break-words light markdown-new-styling">\r\n<p data-start="84" data-end="704" data-is-last-node="" data-is-only-node="">Luxor is often described as the world&rsquo;s greatest open-air museum, home to an extraordinary collection of ancient Egyptian monuments that reflect thousands of years of history. Divided by the Nile into the East and West Banks, Luxor showcases iconic temples such as Karnak and Luxor Temple on the East Bank, while the West Bank holds the legendary Valley of the Kings, Queen Hatshepsut&rsquo;s Mortuary Temple, and the Colossi of Memnon. With its rich archaeological treasures, vibrant local culture, and breathtaking Nile landscapes, Luxor offers an unforgettable journey into the heart of ancient Egypt&rsquo;s grandeur and legacy.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</article>',
+    },
+    {
+      id: 2,
+      slug: 'cairo',
+      tours_count: 4,
+      parent_id: 1,
+      display_order: 0,
+      global: false,
+      enabled: true,
+      featured: true,
+      banner:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/images.jpeg',
+      featured_image:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/new.jpg',
+      gallery: [
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/haram (121).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/gem4.webp',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/haram (19).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/GEM3.jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/haram (192).jpg',
+      ],
+      title: 'Cairo',
+      description:
+        '<article class="text-token-text-primary w-full focus:outline-none [--shadow-height:45px] has-data-writing-block:pointer-events-none has-data-writing-block:-mt-(--shadow-height) has-data-writing-block:pt-(--shadow-height) [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto [content-visibility:auto] supports-[content-visibility:auto]:[contain-intrinsic-size:auto_100lvh] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]" dir="auto" tabindex="-1" data-turn-id="request-WEB:324b96c2-7040-431c-a280-af845399405e-11" data-testid="conversation-turn-24" data-scroll-anchor="true" data-turn="assistant">\r\n<div class="text-base my-auto mx-auto pb-10 [--thread-content-margin:--spacing(4)] thread-sm:[--thread-content-margin:--spacing(6)] thread-lg:[--thread-content-margin:--spacing(16)] px-(--thread-content-margin)">\r\n<div class="[--thread-content-max-width:40rem] thread-lg:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col agent-turn" tabindex="-1">\r\n<div class="flex max-w-full flex-col grow">\r\n<div class="min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal [.text-message+&amp;]:mt-1" dir="auto" data-message-author-role="assistant" data-message-id="1b2d8802-59c0-4235-8b88-f2649cdd60b2" data-message-model-slug="gpt-5-1">\r\n<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">\r\n<div class="markdown prose dark:prose-invert w-full break-words light markdown-new-styling">\r\n<p data-start="113" data-end="736" data-is-last-node="" data-is-only-node="">Cairo, Egypt&rsquo;s bustling capital, is a vibrant blend of ancient wonders and modern energy, offering an unforgettable journey through history and culture. Just outside the city lies the legendary Giza Plateau, home to the iconic Pyramids of Giza and the Great Sphinx&mdash;timeless symbols of ancient Egyptian civilization. Within Cairo itself, grand museums, lively markets, historic mosques, and Nile-side views create a rich and immersive experience. From the awe-inspiring pyramids to the cultural treasures displayed in world-class museums, Cairo stands as a gateway to Egypt&rsquo;s past and a thriving center of contemporary life.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</article>',
+    },
+
+    {
+      id: 8,
+      slug: 'hurghada',
+      tours_count: 2,
+      parent_id: 1,
+      display_order: 0,
+      global: false,
+      enabled: true,
+      featured: true,
+      banner:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Destinations/snorkling hurghada (1).jpeg',
+      featured_image:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/hurghada.webp',
+      gallery: [
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Hurghada/Giftun2.jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Hurghada/Giftun1.webp',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Hurghada/snorkling hurghada (2).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Hurghada/snorkling hurghada (8).jpg',
+      ],
+      title: 'Hurghada',
+      description:
+        "<p>Hurghada is one of Egypt&rsquo;s most beloved Red Sea destinations, famous for its crystal-clear waters, colorful coral reefs, and vibrant marine life. Stretching along a beautiful coastline, the city offers a perfect blend of relaxation and adventure, with golden beaches, luxury resorts, and a wide range of water activities including snorkeling, diving, and windsurfing. Beyond the sea, Hurghada also provides opportunities for desert safaris, Bedouin experiences, and lively nightlife. Whether you're seeking serene moments by the water or exciting excursions, Hurghada is an ideal getaway for travelers looking to enjoy Egypt&rsquo;s natural beauty and warm hospitality.</p>",
+    },
+    {
+      id: 6,
+      slug: 'aswan',
+      tours_count: 2,
+      parent_id: 1,
+      display_order: 0,
+      global: false,
+      enabled: true,
+      featured: true,
+      banner:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Destinations/edfu (29).jpg',
+      featured_image:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/aswan.jpg',
+      gallery: [
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Aswan/معبد فيلة (7).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Aswan/معبد فيلة (16).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Aswan/معبد فيلة (6).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Aswan/السد العالي (1).png',
+      ],
+      title: 'Aswan',
+      description:
+        '<article class="text-token-text-primary w-full focus:outline-none [--shadow-height:45px] has-data-writing-block:pointer-events-none has-data-writing-block:-mt-(--shadow-height) has-data-writing-block:pt-(--shadow-height) [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto [content-visibility:auto] supports-[content-visibility:auto]:[contain-intrinsic-size:auto_100lvh] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]" dir="auto" tabindex="-1" data-turn-id="request-WEB:324b96c2-7040-431c-a280-af845399405e-8" data-testid="conversation-turn-18" data-scroll-anchor="true" data-turn="assistant">\r\n<div class="text-base my-auto mx-auto pb-10 [--thread-content-margin:--spacing(4)] thread-sm:[--thread-content-margin:--spacing(6)] thread-lg:[--thread-content-margin:--spacing(16)] px-(--thread-content-margin)">\r\n<div class="[--thread-content-max-width:40rem] thread-lg:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col agent-turn" tabindex="-1">\r\n<div class="flex max-w-full flex-col grow">\r\n<div class="min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal [.text-message+&amp;]:mt-1" dir="auto" data-message-author-role="assistant" data-message-id="ee1f05c8-54d3-444b-9761-b2af9d4532b6" data-message-model-slug="gpt-5-1">\r\n<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">\r\n<div class="markdown prose dark:prose-invert w-full break-words light markdown-new-styling">\r\n<p data-start="83" data-end="744" data-is-last-node="" data-is-only-node="">Aswan is a serene and picturesque city in southern Egypt, known for its peaceful Nile scenery, warm climate, and rich Nubian heritage. Once a strategic gateway to Africa, Aswan is home to some of Egypt&rsquo;s most captivating sites, including the beautiful Philae Temple, the impressive High Dam, and the colorful Nubian villages that line the river. Its granite quarries supplied stone for ancient monuments throughout Egypt, while its tranquil Nile views make it a favorite retreat for travelers. With a perfect blend of history, culture, and natural beauty, Aswan offers a relaxing yet culturally enriching experience along the banks of the world&rsquo;s longest river.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</article>',
+    },
+    {
+      id: 5,
+      slug: 'luxor',
+      tours_count: 4,
+      parent_id: 1,
+      display_order: 0,
+      global: false,
+      enabled: true,
+      featured: true,
+      banner:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Destinations/Ballon (29).jpg',
+      featured_image:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/luxor.webp',
+      gallery: [
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Luxor/معبد الاقصر (1).png',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Luxor/معبد الاقصر (15).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Luxor/معبد الكرنك (3).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Luxor/معبد الاقصر (22).jpg',
+      ],
+      title: 'Luxor',
+      description:
+        '<article class="text-token-text-primary w-full focus:outline-none [--shadow-height:45px] has-data-writing-block:pointer-events-none has-data-writing-block:-mt-(--shadow-height) has-data-writing-block:pt-(--shadow-height) [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto [content-visibility:auto] supports-[content-visibility:auto]:[contain-intrinsic-size:auto_100lvh] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]" dir="auto" tabindex="-1" data-turn-id="request-WEB:324b96c2-7040-431c-a280-af845399405e-10" data-testid="conversation-turn-22" data-scroll-anchor="true" data-turn="assistant">\r\n<div class="text-base my-auto mx-auto pb-10 [--thread-content-margin:--spacing(4)] thread-sm:[--thread-content-margin:--spacing(6)] thread-lg:[--thread-content-margin:--spacing(16)] px-(--thread-content-margin)">\r\n<div class="[--thread-content-max-width:40rem] thread-lg:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col agent-turn" tabindex="-1">\r\n<div class="flex max-w-full flex-col grow">\r\n<div class="min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal [.text-message+&amp;]:mt-1" dir="auto" data-message-author-role="assistant" data-message-id="a7994bdd-2cf5-4881-ac87-2bdd469b5d73" data-message-model-slug="gpt-5-1">\r\n<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">\r\n<div class="markdown prose dark:prose-invert w-full break-words light markdown-new-styling">\r\n<p data-start="84" data-end="704" data-is-last-node="" data-is-only-node="">Luxor is often described as the world&rsquo;s greatest open-air museum, home to an extraordinary collection of ancient Egyptian monuments that reflect thousands of years of history. Divided by the Nile into the East and West Banks, Luxor showcases iconic temples such as Karnak and Luxor Temple on the East Bank, while the West Bank holds the legendary Valley of the Kings, Queen Hatshepsut&rsquo;s Mortuary Temple, and the Colossi of Memnon. With its rich archaeological treasures, vibrant local culture, and breathtaking Nile landscapes, Luxor offers an unforgettable journey into the heart of ancient Egypt&rsquo;s grandeur and legacy.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</article>',
+    },
+    {
+      id: 2,
+      slug: 'cairo',
+      tours_count: 4,
+      parent_id: 1,
+      display_order: 0,
+      global: false,
+      enabled: true,
+      featured: true,
+      banner:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/images.jpeg',
+      featured_image:
+        'https://tourism-api.perfectsolutions4u.com/storage/media/new.jpg',
+      gallery: [
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/haram (121).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/gem4.webp',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/haram (19).jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/GEM3.jpg',
+        'https://tourism-api.perfectsolutions4u.com/storage/media/Cairo/haram (192).jpg',
+      ],
+      title: 'Cairo',
+      description:
+        '<article class="text-token-text-primary w-full focus:outline-none [--shadow-height:45px] has-data-writing-block:pointer-events-none has-data-writing-block:-mt-(--shadow-height) has-data-writing-block:pt-(--shadow-height) [&amp;:has([data-writing-block])&gt;*]:pointer-events-auto [content-visibility:auto] supports-[content-visibility:auto]:[contain-intrinsic-size:auto_100lvh] scroll-mt-[calc(var(--header-height)+min(200px,max(70px,20svh)))]" dir="auto" tabindex="-1" data-turn-id="request-WEB:324b96c2-7040-431c-a280-af845399405e-11" data-testid="conversation-turn-24" data-scroll-anchor="true" data-turn="assistant">\r\n<div class="text-base my-auto mx-auto pb-10 [--thread-content-margin:--spacing(4)] thread-sm:[--thread-content-margin:--spacing(6)] thread-lg:[--thread-content-margin:--spacing(16)] px-(--thread-content-margin)">\r\n<div class="[--thread-content-max-width:40rem] thread-lg:[--thread-content-max-width:48rem] mx-auto max-w-(--thread-content-max-width) flex-1 group/turn-messages focus-visible:outline-hidden relative flex w-full min-w-0 flex-col agent-turn" tabindex="-1">\r\n<div class="flex max-w-full flex-col grow">\r\n<div class="min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal [.text-message+&amp;]:mt-1" dir="auto" data-message-author-role="assistant" data-message-id="1b2d8802-59c0-4235-8b88-f2649cdd60b2" data-message-model-slug="gpt-5-1">\r\n<div class="flex w-full flex-col gap-1 empty:hidden first:pt-[1px]">\r\n<div class="markdown prose dark:prose-invert w-full break-words light markdown-new-styling">\r\n<p data-start="113" data-end="736" data-is-last-node="" data-is-only-node="">Cairo, Egypt&rsquo;s bustling capital, is a vibrant blend of ancient wonders and modern energy, offering an unforgettable journey through history and culture. Just outside the city lies the legendary Giza Plateau, home to the iconic Pyramids of Giza and the Great Sphinx&mdash;timeless symbols of ancient Egyptian civilization. Within Cairo itself, grand museums, lively markets, historic mosques, and Nile-side views create a rich and immersive experience. From the awe-inspiring pyramids to the cultural treasures displayed in world-class museums, Cairo stands as a gateway to Egypt&rsquo;s past and a thriving center of contemporary life.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</article>',
+    },
+  ];
 
   // slick carousel options
 

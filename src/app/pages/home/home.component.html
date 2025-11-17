@@ -373,13 +373,18 @@
     </div>
 
     @if (isBrowser && toursLoaded && allToursFromCategories.length > 0) {
-    <ngx-slick-carousel #tourCarousel="slick-carousel" [config]="tourOptions">
-      @for (tour of allToursFromCategories; track $index) {
-      <div ngxSlickItem>
-        <app-tour-cart [tour]="tour"></app-tour-cart>
-      </div>
-      }
-    </ngx-slick-carousel>
+    <div class="my-slider">
+      <ngx-slick-carousel
+        #tourCarousel="slick-carousel"
+        [config]="destinationOptions"
+      >
+        @for (tour of tourstest; track $index) {
+        <div ngxSlickItem>
+          <app-tour-cart [tour]="tour"></app-tour-cart>
+        </div>
+        }
+      </ngx-slick-carousel>
+    </div>
     }
 
     <app-counter></app-counter>
