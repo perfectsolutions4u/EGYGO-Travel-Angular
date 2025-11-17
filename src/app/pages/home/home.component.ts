@@ -1,5 +1,17 @@
-import { Component, Inject, OnInit, PLATFORM_ID, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import {
+  Component,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  AfterViewInit,
+  ChangeDetectorRef,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ViewChild,
+} from '@angular/core';
+import {
+  SlickCarouselModule,
+  SlickCarouselComponent,
+} from 'ngx-slick-carousel';
 import { DataService } from '../../core/services/data.service';
 import { SeoService } from '../../core/services/seo.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -44,9 +56,10 @@ interface DestinationPriceMap {
 @Component({
   selector: 'app-home',
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     FormsModule,
-    CarouselModule,
+    SlickCarouselModule,
     CommonModule,
     ReactiveFormsModule,
     // RouterLink,
@@ -77,9 +90,38 @@ interface DestinationPriceMap {
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  @ViewChild('tourCarousel') tourCarousel!: SlickCarouselComponent;
+  @ViewChild('popularTourCarousel')
+  popularTourCarousel!: SlickCarouselComponent;
+
   private $destory = new Subject<void>();
   toursLoaded = false; // Flag to track when tours are loaded
-  
+
+  // Navigation methods
+  prevTourCarousel() {
+    if (this.tourCarousel) {
+      this.tourCarousel.slickPrev();
+    }
+  }
+
+  nextTourCarousel() {
+    if (this.tourCarousel) {
+      this.tourCarousel.slickNext();
+    }
+  }
+
+  prevPopularTourCarousel() {
+    if (this.popularTourCarousel) {
+      this.popularTourCarousel.slickPrev();
+    }
+  }
+
+  nextPopularTourCarousel() {
+    if (this.popularTourCarousel) {
+      this.popularTourCarousel.slickNext();
+    }
+  }
+
   constructor(
     private _DataService: DataService,
     private _Router: Router,
@@ -94,11 +136,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     );
     this.isBrowser = isPlatformBrowser(platformId);
   }
-  
+
   ngAfterViewInit(): void {
     // Force change detection after view init to prevent flickering
     if (this.isBrowser) {
-      this.cdr.detectChanges();
+      // this.cdr.detectChanges();
     }
   }
 
@@ -170,21 +212,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
   setupSEO(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        const siteTitle = res.data.find(
-          (item: any) => item.option_key === 'site_title'
-        )?.option_value[0] || 'EGYGO Travel';
-        const siteDescription = res.data.find(
-          (item: any) => item.option_key === 'site_description'
-        )?.option_value[0] || 'Discover amazing tours and destinations with EGYGO Travel. Book your perfect trip to Egypt and explore the world\'s most beautiful places.';
-        const logoPath = res.data.find(
-          (item: any) => item.option_key === 'logo'
-        )?.option_value[0] || '';
+        const siteTitle =
+          res.data.find((item: any) => item.option_key === 'site_title')
+            ?.option_value[0] || 'EGYGO Travel';
+        const siteDescription =
+          res.data.find((item: any) => item.option_key === 'site_description')
+            ?.option_value[0] ||
+          "Discover amazing tours and destinations with EGYGO Travel. Book your perfect trip to Egypt and explore the world's most beautiful places.";
+        const logoPath =
+          res.data.find((item: any) => item.option_key === 'logo')
+            ?.option_value[0] || '';
         const logo = logoPath ? this._DataService.getImageUrl(logoPath) : '';
 
         this._SeoService.updateSEO({
           title: `${siteTitle} - Your Trusted Travel Partner`,
           description: siteDescription,
-          keywords: 'travel, tours, Egypt, destinations, vacation, booking, travel agency, Nile cruises, pyramids, Luxor, Aswan',
+          keywords:
+            'travel, tours, Egypt, destinations, vacation, booking, travel agency, Nile cruises, pyramids, Luxor, Aswan',
           image: logo,
           url: 'https://egygo-travel.com',
           type: 'website',
@@ -196,9 +240,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
             site_title: siteTitle,
             site_description: siteDescription,
             logo: logo,
-            phone: res.data.find((item: any) => item.option_key === 'CONTACT_PHONE_NUMBER')?.option_value[0] || '',
-            email: res.data.find((item: any) => item.option_key === 'email_address')?.option_value[0] || '',
-            address: res.data.find((item: any) => item.option_key === 'address')?.option_value[0] || '',
+            phone:
+              res.data.find(
+                (item: any) => item.option_key === 'CONTACT_PHONE_NUMBER'
+              )?.option_value[0] || '',
+            email:
+              res.data.find((item: any) => item.option_key === 'email_address')
+                ?.option_value[0] || '',
+            address:
+              res.data.find((item: any) => item.option_key === 'address')
+                ?.option_value[0] || '',
           },
           'https://egygo-travel.com'
         );
@@ -462,7 +513,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           this.toursLoaded = true;
           if (this.isBrowser) {
             setTimeout(() => {
-              this.cdr.detectChanges();
+              // this.cdr.detectChanges();
             }, 100);
           }
         } else {
@@ -488,7 +539,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.toursLoaded = true;
         if (this.isBrowser) {
           setTimeout(() => {
-            this.cdr.detectChanges();
+            // this.cdr.detectChanges();
           }, 100);
         }
         console.log('Fallback: All tours loaded:', this.allToursFromCategories);
@@ -552,29 +603,37 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return Array.from({ length: 5 }, (_, i) => i < safeRate);
   }
 
-  // owl carousel options
+  // slick carousel options
 
-  destinationOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  destinationOptions = {
+    infinite: true,
+    slidesToShow: 3.5,
+    slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 2500,
     dots: true,
-    smartSpeed: 2500,
-    margin: 10,
-    responsive: {
-      0: { items: 1.5 },
-      586: { items: 2.5 },
-      767: { items: 3 },
-      992: { items: 3.5 },
-      // 1200: { items: 4 },
-    },
-    nav: false,
-    // navText: [
-    //   '<i class="fa fa-angle-double-left"></i>',
-    //   '<i class="fa fa-angle-double-right"></i>',
-    // ],
+    arrows: false,
+    speed: 500,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2.5,
+        },
+      },
+      {
+        breakpoint: 586,
+        settings: {
+          slidesToShow: 1.5,
+        },
+      },
+    ],
   };
   // testimonialOptions: OwlOptions = {
   //   loop: true,
@@ -595,54 +654,42 @@ export class HomeComponent implements OnInit, AfterViewInit {
   //     '<i class="fa fa-angle-double-right"></i>',
   //   ],
   // };
-  tourOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  tourOptions = {
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
     autoplay: true,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
     dots: false,
-    smartSpeed: 2500,
-    margin: 5,
-    lazyLoad: true,
-    startPosition: 0,
-    responsive: {
-      0: { items: 1.5 },
-      586: { items: 2.5 },
-      767: { items: 3 },
-      992: { items: 3.5 },
-      1200: { items: 4 },
-    },
-    nav: true,
-    navText: [
-      '<i class="fa fa-arrow-left"></i>',
-      '<i class="fa fa-arrow-right"></i>',
-    ],
-  };
-
-  controlOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    autoplay: true,
-    dots: false,
-    smartSpeed: 1500,
-    margin: 10,
-    responsive: {
-      0: { items: 1.5 },
-      400: { items: 2.5 },
-      586: { items: 4 },
-      767: { items: 5 },
-      992: { items: 7 },
-      // 1200: { items: 4 },
-    },
-    nav: false,
-    navText: [
-      '<i class="fa fa-angle-double-left"></i>',
-      '<i class="fa fa-angle-double-right"></i>',
+    arrows: false,
+    speed: 500,
+    cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3.5,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2.5,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 586,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
     ],
   };
 }

@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-partner-slider',
   standalone: true,
-  imports: [CarouselModule, CommonModule],
+  imports: [SlickCarouselModule, CommonModule],
   templateUrl: './partner-slider.component.html',
   styleUrl: './partner-slider.component.scss',
 })
@@ -28,26 +28,42 @@ export class PartnerSliderComponent {
     { src: '../../../assets/image/partner/viator.webp' },
   ];
 
-  partnersOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  partnersOptions = {
+    infinite: true,
+    slidesToShow: 6,
+    slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 1500,
+    centerMode: true,
+    centerPadding: '20px',
     dots: false,
-    smartSpeed: 1500,
-    margin: 30,
-    responsive: {
-      0: { items: 2 },
-      // 586: { items:  },
-      767: { items: 3 },
-      992: { items: 4 },
-      1200: { items: 6 },
-    },
-    nav: false,
-    navText: [
-      '<i class="fa fa-angle-double-left"></i>',
-      '<i class="fa fa-angle-double-right"></i>',
+    arrows: false,
+    speed: 500,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4.5,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
     ],
   };
 }

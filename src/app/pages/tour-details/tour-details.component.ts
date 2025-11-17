@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { DataService } from '../../core/services/data.service';
 import { SeoService } from '../../core/services/seo.service';
 import { Itour } from '../../core/interfaces/itour';
@@ -28,7 +28,7 @@ import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip
   selector: 'app-tour-details',
   standalone: true,
   imports: [
-    CarouselModule,
+    SlickCarouselModule,
     CommonModule,
     MatTabsModule,
     MatExpansionModule,
@@ -409,26 +409,16 @@ export class TourDetailsComponent implements OnInit {
     return totalRating / this.tourReviews.length;
   }
 
-  galleryOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  galleryOptions = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 1500,
     dots: false,
-    smartSpeed: 1500,
-    margin: 20,
-    items: 1,
-    // responsive: {
-    //   0: { },
-    //   400: { items: 2 },
-    //   740: { items: 3 },
-    //   940: { items: 4 },
-    // },
-    nav: true,
-    navText: [
-      '<i class="fa fa-angle-double-left"></i>',
-      '<i class="fa fa-angle-double-right"></i>',
-    ],
+    arrows: true,
+    speed: 500,
+    prevArrow: '<button type="button" class="slick-prev custom-arrow"><i class="fa fa-arrow-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next custom-arrow"><i class="fa fa-arrow-right"></i></button>',
   };
 }

@@ -21,16 +21,17 @@
     </div>
 
     <div class="mt-5">
-      <owl-carousel-o
+      <ngx-slick-carousel
         *ngIf="allDestinations.length > 0"
-        [options]="destinationOptions"
+        #destinationCarousel="slick-carousel"
+        [config]="destinationOptions"
       >
         @for (des of allDestinations; track $index) {
-        <ng-template carouselSlide>
+        <div ngxSlickItem>
           <app-destination-cart [destination]="des"></app-destination-cart>
-        </ng-template>
+        </div>
         }
-      </owl-carousel-o>
+      </ngx-slick-carousel>
     </div>
   </div>
 </section>

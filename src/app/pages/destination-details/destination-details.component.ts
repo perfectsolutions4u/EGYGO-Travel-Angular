@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { DataService } from '../../core/services/data.service';
 import { SeoService } from '../../core/services/seo.service';
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   standalone: true,
   imports: [
     RouterLink,
-    CarouselModule,
+    SlickCarouselModule,
     CommonModule,
     SocialComponent,
     TourCartComponent,
@@ -135,21 +135,34 @@ export class DestinationDetailsComponent implements OnInit {
     this._SeoService.updateSEO({ structuredData });
   }
 
-  galleryOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  galleryOptions = {
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 1500,
     dots: true,
-    smartSpeed: 1500,
-    margin: 20,
-    responsive: {
-      0: { items: 1 },
-      400: { items: 2 },
-      740: { items: 3 },
-      940: { items: 4 },
-    },
-    nav: false,
+    arrows: false,
+    speed: 500,
+    responsive: [
+      {
+        breakpoint: 940,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 740,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
   };
 }

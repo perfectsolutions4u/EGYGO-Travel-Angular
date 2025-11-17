@@ -16,7 +16,7 @@ import { BookingService } from '../../core/services/booking.service';
 import { ProfileService } from '../../core/services/profile.service';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../../core/services/data.service';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { TourCartComponent } from '../../components/tour-cart/tour-cart.component';
 import { BannerComponent } from '../../components/banner/banner.component';
 import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip-form.component';
@@ -31,7 +31,7 @@ import { AuthService } from '../../core/services/auth.service';
     NgxDropzoneImagePreviewComponent,
     CommonModule,
     ReactiveFormsModule,
-    CarouselModule,
+    SlickCarouselModule,
     TourCartComponent,
     BannerComponent,
     MakeTripFormComponent,
@@ -228,24 +228,23 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  bookingOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  bookingOptions = {
+    infinite: true,
+    slidesToShow: 2,
+    slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 1500,
     dots: true,
-    smartSpeed: 1500,
-    margin: 50,
-    responsive: {
-      0: { items: 1 },
-      586: { items: 2 },
-    },
-    nav: false,
-    // navText: [
-    //   '<i class="fa fa-angle-double-left"></i>',
-    //   '<i class="fa fa-angle-double-right"></i>',
-    // ],
+    arrows: false,
+    speed: 500,
+    responsive: [
+      {
+        breakpoint: 586,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
   };
 
   getFav(): void {

@@ -1,11 +1,12 @@
 <section class="testimonial position-relative my-5 py-5 bgPrimaryWhiteColor">
-  <div class="container-fluid pt-5">
-    <owl-carousel-o
+  <div class="container pt-5">
+    <ngx-slick-carousel
       *ngIf="allReviews.length > 0"
-      [options]="testimonialOptions"
+      #testimonialCarousel="slick-carousel"
+      [config]="testimonialOptions"
     >
       @for (testimonial of allReviews; track $index) {
-      <ng-template carouselSlide>
+      <div ngxSlickItem>
         <div class="row g-3 item">
           <div class="col-md-4 border-end">
             <figure class="mb-0 position-relative p-xl-2 p-md-4 mx-auto">
@@ -17,7 +18,7 @@
             </figure>
           </div>
           <div class="col-md-8">
-            <figcaption class="text-center ps-5">
+            <figcaption class="text-center ps-md-5">
               <div class="text-capitalize flexBetween align-items-start">
                 <div>
                   <h4 class="textSecondColor mb-1 fw-bold">
@@ -42,9 +43,28 @@
             </figcaption>
           </div>
         </div>
-      </ng-template>
+      </div>
       }
-    </owl-carousel-o>
+    </ngx-slick-carousel>
+
+    @if (allReviews.length > 0) {
+    <div class="carousel-nav-buttons testimonial-nav-buttons">
+      <button
+        type="button"
+        class="nav-btn prev-btn"
+        (click)="prevTestimonial()"
+      >
+        <i class="fa fa-angle-double-left"></i>
+      </button>
+      <button
+        type="button"
+        class="nav-btn next-btn"
+        (click)="nextTestimonial()"
+      >
+        <i class="fa fa-angle-double-right"></i>
+      </button>
+    </div>
+    }
   </div>
 
   <img

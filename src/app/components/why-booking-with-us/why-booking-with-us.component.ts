@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-why-booking-with-us',
   standalone: true,
-  imports: [TranslateModule, CarouselModule],
+  imports: [TranslateModule, SlickCarouselModule],
   templateUrl: './why-booking-with-us.component.html',
   styleUrl: './why-booking-with-us.component.scss',
 })
@@ -57,23 +57,41 @@ export class WhyBookingWithUsComponent {
     },
   ];
 
-  bookingOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  bookingOptions = {
+    infinite: true,
+    slidesToShow: 6,
+    slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 2500,
     dots: false,
-    nav: false,
-    smartSpeed: 2500,
-    margin: 20,
-    responsive: {
-      0: { items: 1.5 },
-      400: { items: 2.5 },
-      576: { items: 3.5 },
-      768: { items: 4.5 },
-      // 992: { items: 4.5 },
-      1200: { items: 6 },
-    },
+    arrows: false,
+    speed: 500,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4.5,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3.5,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2.5,
+        },
+      },
+
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 1.5,
+        },
+      },
+    ],
   };
 }

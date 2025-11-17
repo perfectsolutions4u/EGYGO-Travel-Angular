@@ -1,22 +1,41 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import {
+  SlickCarouselModule,
+  SlickCarouselComponent,
+} from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-testimonial-cart',
   standalone: true,
-  imports: [CommonModule, CarouselModule],
+  imports: [CommonModule, SlickCarouselModule],
   templateUrl: './testimonial-cart.component.html',
   styleUrl: './testimonial-cart.component.scss',
 })
 export class TestimonialCartComponent {
+  @ViewChild('testimonialCarousel')
+  testimonialCarousel!: SlickCarouselComponent;
+
   constructor(private _DataService: DataService) {}
 
   allReviews: any[] = [];
 
   ngOnInit(): void {
     this.getTestimonials();
+  }
+
+  // Navigation methods
+  prevTestimonial() {
+    if (this.testimonialCarousel) {
+      this.testimonialCarousel.slickPrev();
+    }
+  }
+
+  nextTestimonial() {
+    if (this.testimonialCarousel) {
+      this.testimonialCarousel.slickNext();
+    }
   }
 
   // testimonial
@@ -32,23 +51,17 @@ export class TestimonialCartComponent {
     });
   }
 
-  testimonialOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  testimonialOptions = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 1500,
     dots: false,
-    smartSpeed: 1500,
-    margin: 30,
-    items: 1,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    nav: true,
-    navText: [
-      '<i class="fa fa-angle-double-left"></i>',
-      '<i class="fa fa-angle-double-right"></i>',
-    ],
+    arrows: false,
+    speed: 500,
+    fade: true,
+    cssEase: 'linear',
   };
 
   getStars(rate: number): boolean[] {

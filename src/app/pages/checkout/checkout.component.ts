@@ -8,7 +8,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { CommonModule } from '@angular/common';
 import { BookingService } from '../../core/services/booking.service';
 import { ToastrService } from 'ngx-toastr';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { BannerComponent } from '../../components/banner/banner.component';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -23,7 +23,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSelectModule,
     MatRadioModule,
     ReactiveFormsModule,
-    CarouselModule,
+    SlickCarouselModule,
     BannerComponent,
     TranslateModule,
   ],
@@ -183,16 +183,14 @@ export class CheckoutComponent implements OnInit {
     return this.tourCart.reduce((sum, cart) => sum + cart.totalPrice, 0);
   }
 
-  ordersOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  ordersOptions = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 1500,
     dots: true,
-    margin: 20,
-    items: 1,
-    nav: false,
-    smartSpeed: 1500,
+    arrows: false,
+    speed: 500,
   };
 }

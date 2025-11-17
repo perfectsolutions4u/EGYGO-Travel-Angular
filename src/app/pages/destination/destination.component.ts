@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DestinationCartComponent } from '../../components/destination-cart/destination-cart.component';
 import { CommonModule } from '@angular/common';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { DataService } from '../../core/services/data.service';
 import { SeoService } from '../../core/services/seo.service';
 import { PartnerSliderComponent } from '../../components/partner-slider/partner-slider.component';
@@ -15,7 +15,7 @@ import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip
   imports: [
     DestinationCartComponent,
     CommonModule,
-    CarouselModule,
+    SlickCarouselModule,
     PartnerSliderComponent,
     BannerComponent,
     MakeTripFormComponent,
@@ -56,25 +56,36 @@ export class DestinationComponent implements OnInit {
     });
   }
 
-  destinationOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
+  destinationOptions = {
+    infinite: true,
+    slidesToShow: 4.5,
+    slidesToScroll: 1,
     autoplay: true,
+    autoplaySpeed: 1500,
     dots: true,
-    smartSpeed: 1500,
-    margin: 10,
-    responsive: {
-      0: { items: 1.5 },
-      767: { items: 2.5 },
-      992: { items: 3.5 },
-      1200: { items: 4.5 },
-    },
-    nav: true,
-    navText: [
-      '<i class="fa fa-angle-double-left"></i>',
-      '<i class="fa fa-angle-double-right"></i>',
-    ],
+    arrows: true,
+    speed: 500,
+    prevArrow: '<button type="button" class="slick-prev custom-arrow"><i class="fa fa-arrow-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next custom-arrow"><i class="fa fa-arrow-right"></i></button>',
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3.5,
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2.5,
+        }
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1.5,
+        }
+      }
+    ]
   };
 }

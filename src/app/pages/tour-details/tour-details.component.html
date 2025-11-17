@@ -7,9 +7,12 @@
     <div class="row g-3 justify-content-between">
       <div class="col-lg-8">
         <div class="gallery">
-          <owl-carousel-o [options]="galleryOptions">
+          <ngx-slick-carousel
+            #tourGalleryCarousel="slick-carousel"
+            [config]="galleryOptions"
+          >
             <ng-container *ngFor="let slide of tourGallery">
-              <ng-template carouselSlide>
+              <div ngxSlickItem>
                 <figure class="rounded-4 overflow-hidden imgHover">
                   <img
                     loading="lazy"
@@ -19,9 +22,9 @@
                     [title]="tourData?.title"
                   />
                 </figure>
-              </ng-template>
+              </div>
             </ng-container>
-          </owl-carousel-o>
+          </ngx-slick-carousel>
 
           <div class="textSecondColor mb-4">
             <h4 class="h3 text-capitalize mb-2">{{ tourData?.title }}</h4>

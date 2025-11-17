@@ -7,10 +7,13 @@
     </div>
 
     <div class="mt-4">
-      <owl-carousel-o [options]="bookingOptions">
+      <ngx-slick-carousel
+        #bookingCarousel="slick-carousel"
+        [config]="bookingOptions"
+      >
         @for (item of bookingItems; track $index) {
-        <ng-template carouselSlide>
-          <div class="item p-3 py-4 transition">
+        <div ngxSlickItem>
+          <div class="item p-3 py-4 transition mx-2">
             <i class="fa {{ item.icon }} fs-1 textMainColor"></i>
             <h3 class="text-capitalize fw-bold my-3 h4">
               @if (item.titleIsTranslation) {
@@ -27,9 +30,9 @@
               }
             </p>
           </div>
-        </ng-template>
+        </div>
         }
-      </owl-carousel-o>
+      </ngx-slick-carousel>
     </div>
   </div>
 </section>

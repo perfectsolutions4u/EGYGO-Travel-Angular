@@ -63,18 +63,16 @@
     }
 }
 
+// Navigation buttons use shared styles from styles.scss
+
 ::ng-deep{
-    owl-carousel-o {
+    ngx-slick-carousel {
       position: relative;
     }
 
-    .owl-nav{
-        transform: none !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        transform: translateY(0px) !important;
-  }
+    .slick-arrow {
+        display: none !important;
+    }
 }
 
 
