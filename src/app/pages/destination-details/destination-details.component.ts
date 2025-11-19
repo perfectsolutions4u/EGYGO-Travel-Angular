@@ -1,4 +1,13 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, PLATFORM_ID, Inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  PLATFORM_ID,
+  Inject,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DataService } from '../../core/services/data.service';
 import { SeoService } from '../../core/services/seo.service';
@@ -50,7 +59,10 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
   }
 
   initializeSwiper() {
-    if (this.galleryCarousel?.nativeElement && this.destinationDetails?.gallery?.length > 0) {
+    if (
+      this.galleryCarousel?.nativeElement &&
+      this.destinationDetails?.gallery?.length > 0
+    ) {
       const el = this.galleryCarousel.nativeElement;
       el.slidesPerView = 4;
       el.spaceBetween = 20;
@@ -59,7 +71,9 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
       el.pagination = { clickable: true };
       el.speed = 500;
       el.breakpoints = {
+        0: { slidesPerView: 1 },
         400: { slidesPerView: 1 },
+        586: { slidesPerView: 1 },
         740: { slidesPerView: 2 },
         940: { slidesPerView: 3 },
         1200: { slidesPerView: 4 },
@@ -98,10 +112,10 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
               this.destinationDetails.title
             );
             console.log('destination Details:', this.destinationDetails);
-            
+
             // Update SEO
             this.updateDestinationSEO(response.data);
-            
+
             // Initialize swiper after data loads
             if (isPlatformBrowser(this.platformId)) {
               setTimeout(() => {
@@ -156,8 +170,12 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
   updateDestinationSEO(destination: any): void {
     const baseUrl = 'https://egygo-travel.com';
     const destImage = destination.image || '';
-    const destDescription = destination.description || destination.short_description || `Explore ${destination.title} with EGYGO Travel. Discover amazing tours and experiences.`;
-    const keywords = `${destination.title}, destination, travel, tours, ${destination.title} tours, Egypt travel`.toLowerCase();
+    const destDescription =
+      destination.description ||
+      destination.short_description ||
+      `Explore ${destination.title} with EGYGO Travel. Discover amazing tours and experiences.`;
+    const keywords =
+      `${destination.title}, destination, travel, tours, ${destination.title} tours, Egypt travel`.toLowerCase();
 
     this._SeoService.updateSEO({
       title: `${destination.title} - Tours & Travel Guide | EGYGO Travel`,
@@ -169,8 +187,10 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
     });
 
     // Add structured data
-    const structuredData = this._SeoService.generateDestinationStructuredData(destination, baseUrl);
+    const structuredData = this._SeoService.generateDestinationStructuredData(
+      destination,
+      baseUrl
+    );
     this._SeoService.updateSEO({ structuredData });
   }
-
 }

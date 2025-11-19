@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, ViewChild, ElementRef, PLATFORM_ID, Inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  PLATFORM_ID,
+  Inject,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { register } from 'swiper/element/bundle';
 register();
@@ -53,8 +61,9 @@ export class PartnerSliderComponent implements AfterViewInit {
       el.autoplay = { delay: 1500, disableOnInteraction: false };
       el.speed = 500;
       el.breakpoints = {
-        500: { slidesPerView: 2 },
-        767: { slidesPerView: 3 },
+        0: { slidesPerView: 2 },
+        500: { slidesPerView: 2.5 },
+        767: { slidesPerView: 3.5 },
         992: { slidesPerView: 4 },
         1200: { slidesPerView: 4.5 },
         1400: { slidesPerView: 6 },
