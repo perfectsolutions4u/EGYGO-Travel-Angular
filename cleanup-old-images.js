@@ -43,3 +43,4 @@ console.log(`✓ Deleted ${deletedCount} old image files`);
 console.log('All images are now in WebP format!');
 
 
+

@@ -288,17 +288,22 @@
 <section>
   <div class="container-fluid">
     <div>
-      <ngx-slick-carousel
+      <swiper-container
         *ngIf="allDestinations.length > 0"
-        #destinationCarousel="slick-carousel"
-        [config]="destinationOptions"
+        #destinationCarousel
+        [slidesPerView]="3.5"
+        [spaceBetween]="20"
+        [loop]="true"
+        [autoplay]="{ delay: 2500, disableOnInteraction: false }"
+        [pagination]="{ clickable: true }"
+        init="false"
       >
         @for (des of allDestinations; track $index) {
-        <div ngxSlickItem>
+        <swiper-slide>
           <app-destination-cart [destination]="des"></app-destination-cart>
-        </div>
+        </swiper-slide>
         }
-      </ngx-slick-carousel>
+      </swiper-container>
     </div>
   </div>
 </section>
@@ -374,13 +379,21 @@
 
     @if (isBrowser && toursLoaded && tourstest.length > 0) {
     <div class="my-slider">
-      <ngx-slick-carousel #tourCarousel="slick-carousel" [config]="tourOptions">
+      <swiper-container
+        #tourCarousel
+        [slidesPerView]="4"
+        [spaceBetween]="20"
+        [loop]="true"
+        [autoplay]="{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }"
+        [speed]="500"
+        init="false"
+      >
         @for (tour of tourstest; track $index) {
-        <div ngxSlickItem>
+        <swiper-slide>
           <app-tour-cart [tour]="tour"></app-tour-cart>
-        </div>
+        </swiper-slide>
         }
-      </ngx-slick-carousel>
+      </swiper-container>
     </div>
     }
 
@@ -395,7 +408,7 @@
 <!-- life time section -->
 <app-aboutsection></app-aboutsection>
 
-<section class="popTours py-5 my-5 bgPrimaryWhiteColor">
+<!-- <section class="popTours py-5 my-5 bgPrimaryWhiteColor">
   <div class="container position-relative pt-5">
     <div class="title-box position-relative flexBetween flex-wrap mb-4">
       <div class="secTitle text-capitalize">
@@ -437,7 +450,7 @@
       }
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="blogs my-5 py-5">
   <div class="container">

@@ -211,12 +211,12 @@
           </h2>
 
           @if (tourCart.length>0) {
-          <ngx-slick-carousel
-            #ordersCarousel="slick-carousel"
-            [config]="ordersOptions"
+          <swiper-container
+            #ordersCarousel
+            init="false"
           >
             @for (cart of tourCart; track $index) {
-            <div ngxSlickItem>
+            <swiper-slide>
               <div class="p-2 order rounded-3">
                 <figure class="specialBorder overflow-hidden mb-2">
                   <img
@@ -264,10 +264,10 @@
                   </h4>
                 </div>
               </div>
-            </div>
+            </swiper-slide>
 
             }
-          </ngx-slick-carousel>
+          </swiper-container>
           }@else {
           <h5 class="text-capitalize text-danger">{{ 'checkout.cartIsEmpty' | translate }}</h5>
           }

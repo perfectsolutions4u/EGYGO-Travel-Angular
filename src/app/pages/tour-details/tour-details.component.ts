@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, PLATFORM_ID, Inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { register } from 'swiper/element/bundle';
+register();
 import { DataService } from '../../core/services/data.service';
 import { SeoService } from '../../core/services/seo.service';
 import { Itour } from '../../core/interfaces/itour';
@@ -28,7 +29,6 @@ import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip
   selector: 'app-tour-details',
   standalone: true,
   imports: [
-    SlickCarouselModule,
     CommonModule,
     MatTabsModule,
     MatExpansionModule,
@@ -42,10 +42,13 @@ import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip
     MakeTripFormComponent,
     RouterLink,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './tour-details.component.html',
   styleUrl: './tour-details.component.scss',
 })
-export class TourDetailsComponent implements OnInit {
+export class TourDetailsComponent implements OnInit, AfterViewInit {
+  @ViewChild('tourGalleryCarousel') tourGalleryCarousel!: ElementRef;
+
   constructor(
     private _DataService: DataService,
     private _ActivatedRoute: ActivatedRoute,
@@ -53,8 +56,30 @@ export class TourDetailsComponent implements OnInit {
     private toaster: ToastrService,
     private _BookingService: BookingService,
     private sanitizer: DomSanitizer,
-    private _SeoService: SeoService
+    private _SeoService: SeoService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
+
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.initializeSwiper();
+      }, 100);
+    }
+  }
+
+  initializeSwiper() {
+    if (this.tourGalleryCarousel?.nativeElement && this.tourGallery.length > 0) {
+      const el = this.tourGalleryCarousel.nativeElement;
+      el.slidesPerView = 1;
+      el.spaceBetween = 0;
+      el.loop = true;
+      el.autoplay = { delay: 1500, disableOnInteraction: false };
+      el.speed = 500;
+      el.navigation = true;
+      el.initialize();
+    }
+  }
 
   getSanitizedHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
@@ -140,6 +165,11 @@ export class TourDetailsComponent implements OnInit {
           this.tourItenary.reverse();
         }
         this.tourGallery = response.data?.gallery;
+        if (isPlatformBrowser(this.platformId)) {
+          setTimeout(() => {
+            this.initializeSwiper();
+          }, 100);
+        }
         console.log(this.tourData);
 
         this.bannerTitle = this.tourData?.title || '?';
@@ -409,16 +439,4 @@ export class TourDetailsComponent implements OnInit {
     return totalRating / this.tourReviews.length;
   }
 
-  galleryOptions = {
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    dots: false,
-    arrows: true,
-    speed: 500,
-    prevArrow: '<button type="button" class="slick-prev custom-arrow"><i class="fa fa-arrow-left"></i></button>',
-    nextArrow: '<button type="button" class="slick-next custom-arrow"><i class="fa fa-arrow-right"></i></button>',
-  };
 }
