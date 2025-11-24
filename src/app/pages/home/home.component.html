@@ -408,7 +408,7 @@
 <!-- life time section -->
 <app-aboutsection></app-aboutsection>
 
-<!-- <section class="popTours py-5 my-5 bgPrimaryWhiteColor">
+<section class="popTours py-5 my-5 bgPrimaryWhiteColor">
   <div class="container position-relative pt-5">
     <div class="title-box position-relative flexBetween flex-wrap mb-4">
       <div class="secTitle text-capitalize">
@@ -437,20 +437,20 @@
 
     <div class="">
       @if (isBrowser && toursLoaded && tourstest.length > 0) {
-      <ngx-slick-carousel
-        #popularTourCarousel="slick-carousel"
-        [config]="tourOptions"
+      <swiper-container
+        #popularTourCarousel
+        init="false"
       >
-        @for (tour of tourstest.reverse(); track $index) {
-        <div ngxSlickItem>
+        @for (tour of tourstest.slice().reverse(); track $index) {
+        <swiper-slide>
           <app-tour-cart [tour]="tour"></app-tour-cart>
-        </div>
+        </swiper-slide>
         }
-      </ngx-slick-carousel>
+      </swiper-container>
       }
     </div>
   </div>
-</section> -->
+</section>
 
 <section class="blogs my-5 py-5">
   <div class="container">

@@ -93,6 +93,7 @@ declare var $: any;
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('tourCarousel') tourCarousel!: ElementRef;
   @ViewChild('destinationCarousel') destinationCarousel!: ElementRef;
+  @ViewChild('popularTourCarousel') popularTourCarousel!: ElementRef;
 
   private $destory = new Subject<void>();
   toursLoaded = false; // Flag to track when tours are loaded
@@ -107,6 +108,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
   nextTourCarousel() {
     if (this.tourCarousel?.nativeElement) {
       this.tourCarousel.nativeElement.swiper.slideNext();
+    }
+  }
+
+  prevPopularTourCarousel() {
+    if (this.popularTourCarousel?.nativeElement) {
+      this.popularTourCarousel.nativeElement.swiper.slidePrev();
+    }
+  }
+
+  nextPopularTourCarousel() {
+    if (this.popularTourCarousel?.nativeElement) {
+      this.popularTourCarousel.nativeElement.swiper.slideNext();
     }
   }
 
@@ -164,6 +177,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
       if (this.tourCarousel?.nativeElement && this.toursLoaded) {
         const el = this.tourCarousel.nativeElement;
+        el.slidesPerView = 4;
+        el.spaceBetween = 20;
+        el.loop = true;
+        el.autoplay = { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true };
+        el.speed = 500;
+        el.breakpoints = {
+          586: { slidesPerView: 1 },
+          767: { slidesPerView: 2 },
+          992: { slidesPerView: 2.5 },
+          1200: { slidesPerView: 3.5 },
+          1400: { slidesPerView: 4 },
+        };
+        el.initialize();
+      }
+      if (this.popularTourCarousel?.nativeElement && this.toursLoaded) {
+        const el = this.popularTourCarousel.nativeElement;
         el.slidesPerView = 4;
         el.spaceBetween = 20;
         el.loop = true;
