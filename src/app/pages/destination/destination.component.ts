@@ -1,4 +1,13 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, PLATFORM_ID, Inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  PLATFORM_ID,
+  Inject,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DestinationCartComponent } from '../../components/destination-cart/destination-cart.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -39,8 +48,10 @@ export class DestinationComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this._SeoService.updateSEO({
       title: 'Destinations - Explore Amazing Places | EGYGO Travel',
-      description: 'Discover amazing travel destinations with EGYGO Travel. Explore Egypt and other beautiful places around the world. Find tours and travel guides.',
-      keywords: 'destinations, travel destinations, Egypt destinations, places to visit, travel locations, tourist destinations',
+      description:
+        'Discover amazing travel destinations with EGYGO Travel. Explore Egypt and other beautiful places around the world. Find tours and travel guides.',
+      keywords:
+        'destinations, travel destinations, Egypt destinations, places to visit, travel locations, tourist destinations',
       url: 'https://egygo-travel.com/destination',
       type: 'website',
     });
@@ -56,7 +67,10 @@ export class DestinationComponent implements OnInit, AfterViewInit {
   }
 
   initializeSwiper() {
-    if (this.destinationCarousel?.nativeElement && this.allDestinations.length > 0) {
+    if (
+      this.destinationCarousel?.nativeElement &&
+      this.allDestinations.length > 0
+    ) {
       const el = this.destinationCarousel.nativeElement;
       el.slidesPerView = 4.5;
       el.spaceBetween = 20;
@@ -66,7 +80,9 @@ export class DestinationComponent implements OnInit, AfterViewInit {
       el.navigation = true;
       el.speed = 500;
       el.breakpoints = {
-        767: { slidesPerView: 1.5 },
+        0: { slidesPerView: 1 },
+        586: { slidesPerView: 1.5 },
+        767: { slidesPerView: 2 },
         992: { slidesPerView: 2.5 },
         1200: { slidesPerView: 3.5 },
         1400: { slidesPerView: 4.5 },

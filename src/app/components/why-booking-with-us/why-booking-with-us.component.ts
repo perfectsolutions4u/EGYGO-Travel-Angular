@@ -1,4 +1,12 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, PLATFORM_ID, Inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  PLATFORM_ID,
+  Inject,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
 import { register } from 'swiper/element/bundle';
@@ -34,7 +42,8 @@ export class WhyBookingWithUsComponent implements AfterViewInit {
       el.autoplay = { delay: 2500, disableOnInteraction: false };
       el.speed = 500;
       el.breakpoints = {
-        400: { slidesPerView: 1.5 },
+        0: { slidesPerView: 1.5 },
+        586: { slidesPerView: 2 },
         768: { slidesPerView: 2.5 },
         992: { slidesPerView: 3.5 },
         1200: { slidesPerView: 4.5 },
@@ -89,5 +98,4 @@ export class WhyBookingWithUsComponent implements AfterViewInit {
       descriptionIsTranslation: false,
     },
   ];
-
 }
