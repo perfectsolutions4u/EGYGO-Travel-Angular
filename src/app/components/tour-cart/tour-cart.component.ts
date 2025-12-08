@@ -86,7 +86,7 @@ export class TourCartComponent implements OnInit {
       this._DataService.getReviews(this.tour.id).subscribe({
         next: (response) => {
           this.tourReviews = response.data.data || [];
-          console.log('reviews fetched:', this.tourReviews);
+          // console.log('reviews fetched:', this.tourReviews);
         },
         error: (err) => {
           console.error('Error fetching reviews:', err);

@@ -65,10 +65,10 @@ export class BlogCartComponent {
           const data = res?.data?.data ?? res ?? [];
           this.blogs = Array.isArray(data) ? data : [];
           this.blogsLoaded.emit(this.blogs); // Emit to parent
-          console.log('Blogs loaded:', this.blogs);
+          // console.log('Blogs loaded:', this.blogs);
         },
         error: (err) => {
-          console.log('Error loading blogs:', err);
+          // console.log('Error loading blogs:', err);
           this.blogs = []; // Ensure blogs is always an array even on error
         },
       });

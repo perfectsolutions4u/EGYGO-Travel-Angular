@@ -107,11 +107,11 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
             // console.log(this.destinationSlug);
             this.showTours(this.destinationSlug);
             this.bannerTitle = this.destinationDetails.title;
-            console.log(
-              'destination Details title:',
-              this.destinationDetails.title
-            );
-            console.log('destination Details:', this.destinationDetails);
+            // console.log(
+            //   'destination Details title:',
+            //   this.destinationDetails.title
+            // );
+            // console.log('destination Details:', this.destinationDetails);
 
             // Update SEO
             this.updateDestinationSEO(response.data);
@@ -147,7 +147,7 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
     this._DataService.getTours().subscribe({
       next: (response) => {
         this.tours = response.data.data;
-        console.log('Tours Data:', this.tours, this.tours.length);
+        // console.log('Tours Data:', this.tours, this.tours.length);
         for (let i = 0; i < this.tours.length; i++) {
           const tour = this.tours[i];
           const tourDestinationSlugs = (tour.destinations ?? []).map((x: any) =>
@@ -158,7 +158,7 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
           if (tourDestinationSlugs.includes(desSlug.toLowerCase())) {
             this.filteredTours.push(tour);
           }
-          console.log(tourDestinationSlugs, this.filteredTours, desSlug);
+          // console.log(tourDestinationSlugs, this.filteredTours, desSlug);
         }
       },
       error: (err) => {

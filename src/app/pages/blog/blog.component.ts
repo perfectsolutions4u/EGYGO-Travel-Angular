@@ -52,7 +52,9 @@ export class BlogComponent implements OnInit {
         this.allBlogs = res?.data?.data ?? res ?? [];
         this.totalItems = this.allBlogs.length; // client-side pagination
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        // console.log(err);
+      },
     });
   }
 

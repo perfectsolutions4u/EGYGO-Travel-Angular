@@ -92,8 +92,8 @@ export class MakeTripFormComponent implements OnInit {
   onMakeTripSubmit() {
     if (this.makeTripForm.invalid) return;
 
-    console.log('fire done onMakeTripSubmit');
-    console.log(this.makeTripForm.value);
+    // console.log('fire done onMakeTripSubmit');
+    // console.log(this.makeTripForm.value);
 
     const formValue = this.makeTripForm.value;
 

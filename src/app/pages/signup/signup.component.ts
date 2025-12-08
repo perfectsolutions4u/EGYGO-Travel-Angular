@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         const contactLogo = res.data.find(
           (item: any) => item.option_key === 'logo'
@@ -76,7 +76,7 @@ export class SignupComponent implements OnInit {
   getCountries() {
     this._DataService.getCountries().subscribe({
       next: (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.countryList = response.data;
       },
     });

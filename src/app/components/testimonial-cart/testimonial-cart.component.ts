@@ -68,7 +68,7 @@ export class TestimonialCartComponent implements AfterViewInit {
     this._DataService.getReviews().subscribe({
       next: (res) => {
         this.allReviews = res.data.data;
-        console.log(this.allReviews);
+        // console.log(this.allReviews);
         if (isPlatformBrowser(this.platformId)) {
           setTimeout(() => {
             this.initializeSwiper();
@@ -76,7 +76,7 @@ export class TestimonialCartComponent implements AfterViewInit {
         }
       },
       error: (err) => {
-        console.log(err);
+        // console.log(err);
       },
     });
   }

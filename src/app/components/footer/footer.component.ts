@@ -28,7 +28,7 @@ export class FooterComponent implements OnInit {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         const contactPhone = res.data.find(
           (item: any) => item.option_key === 'CONTACT_PHONE_NUMBER'

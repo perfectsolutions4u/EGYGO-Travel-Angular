@@ -210,7 +210,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     this._ProfileService.getProfile().subscribe({
       next: (response) => {
         this.profilemeData = response.data;
-        console.log(this.profilemeData);
+        // console.log(this.profilemeData);
         const url = response?.data?.image;
         this.profilemeData.image = url ? this.cacheBust(url) : null;
         // مفيش ملفات مختارة حالياً

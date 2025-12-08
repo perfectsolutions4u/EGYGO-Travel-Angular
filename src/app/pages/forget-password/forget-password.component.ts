@@ -47,7 +47,7 @@ export class ForgetPasswordComponent implements OnInit {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         const contactLogo = res.data.find(
           (item: any) => item.option_key === 'logo'
@@ -72,7 +72,7 @@ export class ForgetPasswordComponent implements OnInit {
   getCountries() {
     this._DataService.getCountries().subscribe({
       next: (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.countryList = response.data;
       },
     });
@@ -84,7 +84,7 @@ export class ForgetPasswordComponent implements OnInit {
       this._AuthService.setOTP(this.forgetPasswordForm.value).subscribe({
         next: (response) => {
           if (response.status == true) {
-            console.log(response);
+            // console.log(response);
             this.isLoading = false;
             this.toastr.success(response.message);
           }

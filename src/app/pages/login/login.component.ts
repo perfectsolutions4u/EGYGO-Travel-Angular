@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         const contactLogo = res.data.find(
           (item: any) => item.option_key === 'logo'
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
   getCountries() {
     this._DataService.getCountries().subscribe({
       next: (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.countryList = response.data;
       },
     });
@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
       this._AuthService.setlogin(this.loginForm.value).subscribe({
         next: (response) => {
           if (response.status === true) {
-            console.log(response);
+            // console.log(response);
 
             this._AuthService.saveToken(response.data.accessToken);
             this.toastr.success(response.message);
@@ -103,10 +103,10 @@ export class LoginComponent implements OnInit {
   }
 
   handleForgetPass(email: any): void {
-    console.log(email);
+    // console.log(email);
     this._AuthService.setForgetPass(email).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.toastr.success(res.message);
       },
     });

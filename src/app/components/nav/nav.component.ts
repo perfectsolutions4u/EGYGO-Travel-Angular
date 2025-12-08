@@ -80,7 +80,7 @@ export class NavComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('language', langCode);
       this.translate.use(langCode);
-      
+
       const htmlTag = document.documentElement;
       htmlTag.setAttribute('lang', langCode);
       htmlTag.setAttribute('dir', 'ltr'); // Both English and Spanish are LTR
@@ -123,7 +123,7 @@ export class NavComponent implements OnInit {
   getDestination() {
     this._DataService.getDestination().subscribe({
       next: (res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         this.allDestinations = res.data.data;
       },
       error: (err) => {
@@ -135,7 +135,7 @@ export class NavComponent implements OnInit {
   getCategories() {
     this._DataService.getCategories().subscribe({
       next: (res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         this.allCategories = res.data.data;
       },
       error: (err) => {
@@ -147,7 +147,7 @@ export class NavComponent implements OnInit {
   getSettings(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         const contactLogo = res.data.find(
           (item: any) => item.option_key === 'logo'
@@ -177,7 +177,7 @@ export class NavComponent implements OnInit {
   getEgyptCategory(): void {
     this._DataService.getTours({ destination_title: 'egypt' }).subscribe({
       next: (res) => {
-        console.log(res.data.categories);
+        // console.log(res.data.categories);
         this.egyptCategories = res.data.categories;
       },
       error: (err) => {

@@ -186,10 +186,10 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
             this.initializeSwiper();
           }, 100);
         }
-        console.log(this.tourData);
+        // console.log(this.tourData);
 
         this.bannerTitle = this.tourData?.title || '?';
-        console.log(this.bannerTitle);
+        // console.log(this.bannerTitle);
 
         this.tourIncluded = this.tourData?.included
           ? this.tourData.included.split(',')
@@ -326,7 +326,7 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
 
   getWriteReview() {
     if (this.writeReview.valid) {
-      console.log(this.writeReview.value);
+      // console.log(this.writeReview.value);
       this.isLoading = true;
       this._DataService
         .postReviews(this.writeReview.value, this.tourData!.id)

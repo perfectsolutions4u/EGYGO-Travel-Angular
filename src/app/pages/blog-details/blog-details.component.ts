@@ -59,17 +59,17 @@ export class BlogDetailsComponent implements OnInit {
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe({
       next: (param) => {
-        console.log(param);
+        // console.log(param);
         this.blogParam = param.get('slug');
         // console.log('blog param:', this.blogParam);
 
         if (!isNaN(Number(this.blogParam))) {
           this._DataService.getCategoriesBlog(this.blogParam).subscribe({
             next: (response) => {
-              console.log(response.data);
+              // console.log(response.data);
               this.blogListById = response.data;
               this.bannerTitle = this.blogListById.title;
-              console.log(this.bannerTitle);
+              // console.log(this.bannerTitle);
               this.isListId = true;
               response.data.created_at = this.formatDate(
                 response.data.created_at
@@ -79,10 +79,10 @@ export class BlogDetailsComponent implements OnInit {
         } else {
           this._DataService.getBlogs(this.blogParam).subscribe({
             next: (response) => {
-              console.log(response.data);
+              // console.log(response.data);
               this.blogDetails = response.data;
               this.bannerTitle = this.blogDetails.title;
-              console.log(this.bannerTitle);
+              // console.log(this.bannerTitle);
 
               this.isListId = false;
               response.data.created_at = this.formatDate(
@@ -118,7 +118,7 @@ export class BlogDetailsComponent implements OnInit {
 
   getWriteReview() {
     if (this.writeReview.valid) {
-      console.log(this.writeReview.value);
+      // console.log(this.writeReview.value);
       this.isLoading = true;
 
       //untill api is not ready and mos3an confirm it

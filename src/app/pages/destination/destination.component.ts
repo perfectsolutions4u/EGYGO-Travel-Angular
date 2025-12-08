@@ -97,7 +97,7 @@ export class DestinationComponent implements OnInit, AfterViewInit {
     this._DataService.getDestination().subscribe({
       next: (res) => {
         this.allDestinations = res.data.data;
-        console.log('all destinations', res);
+        // console.log('all destinations', res);
         if (isPlatformBrowser(this.platformId)) {
           setTimeout(() => {
             this.initializeSwiper();
@@ -105,7 +105,7 @@ export class DestinationComponent implements OnInit, AfterViewInit {
         }
       },
       error: (err) => {
-        console.log(err);
+        // console.log(err);
       },
     });
   }

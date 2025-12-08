@@ -129,8 +129,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
       // We may need to manually trigger change detection
       this.cdr.detectChanges();
-      console.log(this.el.nativeElement);
-      console.log(this.tourstest);
+      // console.log(this.el.nativeElement);
+      // console.log(this.tourstest);
     });
   }
 
@@ -485,7 +485,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getCategory() {
     this._DataService.getCategories().subscribe({
       next: (res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
 
         this.allCategories = res.data.data;
         this.categoriesWithTours = res.data.data;
@@ -521,7 +521,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         });
 
         const pricesMap = this.categoryPrices; // مثل { Multi Days Tours: 80, Egypt Classic Tours: 100, Nile Cruises: 150 , Adventure Tours: 80,Culture Tours: 80 }
-        console.log(pricesMap);
+        // console.log(pricesMap);
 
         this.allCategories = this.allCategories.map((cat: any) => {
           const categoryTitle = cat.title.trim().toLowerCase();
@@ -540,16 +540,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
           if (!matched) {
             cat.start_price = pricesMap['Nile Cruises']; // fallback to Nile Cruises price
-            console.log('not matched');
+            // console.log('not matched');
           }
 
           return cat;
         });
 
-        console.log('all categories with start price', this.allCategories);
-        console.log('All tours from categories:', this.allToursFromCategories);
-        console.log('Categories with tours:', this.categoriesWithTours);
-        console.log('Tour category mapping:', tourCategoryMap);
+        // console.log('all categories with start price', this.allCategories);
+        // console.log('All tours from categories:', this.allToursFromCategories);
+        // console.log('Categories with tours:', this.categoriesWithTours);
+        // console.log('Tour category mapping:', tourCategoryMap);
 
         // Prepare master list and initialize default views
         if (this.allToursFromCategories.length > 0) {
@@ -566,7 +566,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           }
         } else {
           // If no tours found in categories, get all tours as fallback
-          console.log('No tours found in categories, fetching all tours...');
+          // console.log('No tours found in categories, fetching all tours...');
           this.getAllToursFallback();
         }
       },
@@ -590,9 +590,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
             this.initializeSwipers();
           }, 100);
         }
-        console.log('Fallback: All tours loaded:', this.allToursFromCategories);
+        // console.log('Fallback: All tours loaded:', this.allToursFromCategories);
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        // console.log(err);
+      },
     });
   }
 
@@ -603,7 +605,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         takeUntil(this.$destory), // close , clear suscripe memory on destroy
         tap((res) => {
           this.allDurations = res.data;
-          console.log(this.allDurations);
+          // console.log(this.allDurations);
         })
       )
       .subscribe({
@@ -621,10 +623,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this._DataService.getReviews().subscribe({
       next: (res) => {
         this.allReviews = res.data.data;
-        console.log(this.allReviews);
+        // console.log(this.allReviews);
       },
       error: (err) => {
-        console.log(err);
+        // console.log(err);
       },
     });
   }

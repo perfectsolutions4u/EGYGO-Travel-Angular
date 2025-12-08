@@ -66,7 +66,7 @@ export class ContactComponent implements OnInit {
 
     this._DataService.contactData(this.contactForm.value).subscribe({
       next: (response) => {
-        console.log(response);
+        // console.log(response);
         this.toaster.success(response.message);
       },
       error: (err) => {
@@ -80,7 +80,7 @@ export class ContactComponent implements OnInit {
   getCountries() {
     this._DataService.getCountries().subscribe({
       next: (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.countryList = response.data;
       },
     });

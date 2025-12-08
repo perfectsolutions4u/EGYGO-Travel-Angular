@@ -84,7 +84,7 @@ export class TourComponent implements OnInit {
     this.getCategories(); // This now includes tours data
     this.getDurations();
     this._ActivatedRoute.queryParams.subscribe((param) => {
-      console.log('params', param);
+      // console.log('params', param);
 
       this.selectedDestination = param['location'] ? [param['location']] : [];
       this.selectedTripType = param['type'] ? [param['type']] : [];
@@ -146,7 +146,7 @@ export class TourComponent implements OnInit {
 
         // If no tours found in categories, get all tours as fallback
         if (this.allTours.length === 0) {
-          console.log('No tours found in categories, fetching all tours...');
+          // console.log('No tours found in categories, fetching all tours...');
           this.getAllTours();
         }
       },
@@ -157,7 +157,7 @@ export class TourComponent implements OnInit {
     this._DataService.getToursDuration().subscribe({
       next: (res) => {
         this.allDurations = res.data;
-        console.log(this.allDurations);
+        // console.log(this.allDurations);
       },
       // error: (err) => console.log(err),
     });
@@ -169,9 +169,11 @@ export class TourComponent implements OnInit {
       next: (res) => {
         this.allTours = res.data.data;
         this.filteredTours = [...this.allTours];
-        console.log('Fallback: All tours loaded:', this.allTours);
+        // console.log('Fallback: All tours loaded:', this.allTours);
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        // console.log(err);
+      },
     });
   }
 
@@ -256,15 +258,15 @@ export class TourComponent implements OnInit {
     });
 
     this.filteredTours = filtered;
-    console.log('=== FILTERING RESULTS ===');
-    console.log('Selected categories:', this.selectedTripType);
-    console.log('Selected destinations:', this.selectedDestination);
-    console.log('Selected durations:', this.selectedDuration);
-    console.log('Price range:', this.minBudget, '-', this.maxBudget);
-    console.log('Total tours before filtering:', this.allTours.length);
-    console.log('Total tours after filtering:', filtered.length);
-    console.log('Filtered tours:', this.filteredTours);
-    console.log('========================');
+    // console.log('=== FILTERING RESULTS ===');
+    // console.log('Selected categories:', this.selectedTripType);
+    // console.log('Selected destinations:', this.selectedDestination);
+    // console.log('Selected durations:', this.selectedDuration);
+    // console.log('Price range:', this.minBudget, '-', this.maxBudget);
+    // console.log('Total tours before filtering:', this.allTours.length);
+    // console.log('Total tours after filtering:', filtered.length);
+    // console.log('Filtered tours:', this.filteredTours);
+    // console.log('========================');
   }
 
   // Utility methods for filtering
@@ -287,14 +289,14 @@ export class TourComponent implements OnInit {
     id: number,
     checked: boolean
   ) {
-    console.log(`Toggle called: ${key}, id: ${id}, checked: ${checked}`);
+    // console.log(`Toggle called: ${key}, id: ${id}, checked: ${checked}`);
     const current = this.getList(key);
-    console.log(`Current ${key}:`, current);
+    // console.log(`Current ${key}:`, current);
 
     if (checked) {
       if (!current.includes(id)) {
         this[key] = [...current, id];
-        console.log(`Added ${id} to ${key}:`, this[key]);
+        // console.log(`Added ${id} to ${key}:`, this[key]);
       }
 
       // If this is a category and no tours are found, try to get tours for this category
@@ -303,16 +305,16 @@ export class TourComponent implements OnInit {
           (tour) => tour.category_ids && tour.category_ids.includes(id)
         );
         if (!categoryHasTours) {
-          console.log(`No tours found for category ${id}, fetching...`);
+          // console.log(`No tours found for category ${id}, fetching...`);
           this.getToursForCategory(id);
         }
       }
     } else {
       this[key] = current.filter((x) => x !== id);
-      console.log(`Removed ${id} from ${key}:`, this[key]);
+      // console.log(`Removed ${id} from ${key}:`, this[key]);
     }
 
-    console.log(`Final ${key}:`, this[key]);
+    // console.log(`Final ${key}:`, this[key]);
     this.filterTours();
   }
 
@@ -332,7 +334,7 @@ export class TourComponent implements OnInit {
     this.minBudget = 0;
     this.maxBudget = 5000;
     this.filterTours();
-    console.log('All filters cleared');
+    // console.log('All filters cleared');
   }
 
   // Method to get tours for a specific category if not found in included data
@@ -355,9 +357,11 @@ export class TourComponent implements OnInit {
           }
         });
         this.filterTours();
-        console.log(`Tours loaded for category ${categoryId}:`, categoryTours);
+        // console.log(`Tours loaded for category ${categoryId}:`, categoryTours);
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        // console.log(err);
+      },
     });
   }
 
