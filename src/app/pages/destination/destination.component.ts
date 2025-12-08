@@ -16,6 +16,7 @@ import { SeoService } from '../../core/services/seo.service';
 import { PartnerSliderComponent } from '../../components/partner-slider/partner-slider.component';
 import { BannerComponent } from '../../components/banner/banner.component';
 import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip-form.component';
+import { TranslateModule } from '@ngx-translate/core';
 import { register } from 'swiper/element/bundle';
 register();
 
@@ -28,6 +29,7 @@ register();
     PartnerSliderComponent,
     BannerComponent,
     MakeTripFormComponent,
+    TranslateModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './destination.component.html',
@@ -78,7 +80,7 @@ export class DestinationComponent implements OnInit, AfterViewInit {
       el.autoplay = { delay: 1500, disableOnInteraction: false };
       el.pagination = { clickable: true };
       el.navigation = true;
-      el.speed = 500;
+      el.speed = 1500;
       el.breakpoints = {
         0: { slidesPerView: 1 },
         586: { slidesPerView: 1.5 },

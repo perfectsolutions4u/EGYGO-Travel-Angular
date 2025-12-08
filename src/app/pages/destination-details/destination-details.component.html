@@ -4,10 +4,7 @@
 
 <section class="my-5">
   <div class="container">
-    <swiper-container
-      #galleryCarousel
-      init="false"
-    >
+    <swiper-container #galleryCarousel init="false">
       <ng-container *ngFor="let slide of destinationDetails.gallery">
         <swiper-slide>
           <figure class="rounded-3 overflow-hidden imgHover">
@@ -75,7 +72,7 @@
     <div class="row g-3 mb-5">
       <ng-container *ngIf="filteredTours.length != 0; else elseTemplate">
         <div
-          class="col-xl-4 col-lg-6 px-3"
+          class="col-lg-4 col-md-6"
           *ngFor="let tour of filteredTours.slice(0, 9); let i = index"
         >
           <app-tour-cart [tour]="tour"></app-tour-cart>

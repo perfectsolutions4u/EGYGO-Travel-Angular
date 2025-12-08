@@ -13,7 +13,9 @@
           [alt]="siteTitle"
           [title]="siteTitle"
           class="me-2 w-100 h-100"
-          (error)="($any($event.target)).src='../../../assets/image/logo-egygo.webp'"
+          (error)="
+            $any($event.target).src = '../../../assets/image/logo-egygo.webp'
+          "
         />
       </div>
 
@@ -181,6 +183,9 @@
                 <option class="text-dark" value="es">
                   {{ "common.spanish" | translate }}
                 </option>
+                <option class="text-dark" value="it">
+                  {{ "common.italian" | translate }}
+                </option>
               </select>
             </li>
           </ul>
@@ -221,14 +226,15 @@
   >
     <div class="offcanvas-header border-bottom flexBetween">
       <div class="d-flex align-items-center">
-     
         <img
           [src]="logo || '../../../assets/image/logo-egygo.webp'"
           [alt]="siteTitle"
           [title]="siteTitle"
           class="me-2"
           style="width: 140px; height: 40px; object-fit: contain"
-          (error)="($any($event.target)).src='../../../assets/image/logo-egygo.webp'"
+          (error)="
+            $any($event.target).src = '../../../assets/image/logo-egygo.webp'
+          "
         />
       </div>
       <button
@@ -359,8 +365,10 @@
         </option>
         <option value="en">{{ "common.english" | translate }}</option>
         <option value="es">{{ "common.spanish" | translate }}</option>
+        <option value="it">{{ "common.italian" | translate }}</option>
       </select>
       <button
+        routerLink="/makeTrip"
         class="mainBtn Btn w-100 d-flex align-items-center justify-content-center gap-2"
       >
         {{ "common.makeTrip" | translate }}

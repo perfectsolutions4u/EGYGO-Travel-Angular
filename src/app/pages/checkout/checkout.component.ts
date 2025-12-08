@@ -203,7 +203,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
       el.loop = true;
       el.autoplay = { delay: 1500, disableOnInteraction: false };
       el.pagination = { clickable: true };
-      el.speed = 500;
+      el.speed = 1500;
       el.initialize();
     }
   }

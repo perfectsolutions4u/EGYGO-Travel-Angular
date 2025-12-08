@@ -154,8 +154,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
         el.loop = true;
         el.autoplay = { delay: 2500, disableOnInteraction: false };
         el.pagination = { clickable: true };
+        el.speed = 1500;
         el.breakpoints = {
-          0: { slidesPerView: 1 },
+          0: { slidesPerView: 1.5 },
           586: { slidesPerView: 1.5 },
           767: { slidesPerView: 2.5 },
           992: { slidesPerView: 3 },
@@ -173,10 +174,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         };
-        el.speed = 500;
+        el.speed = 1500;
         el.breakpoints = {
           0: { slidesPerView: 1 },
-          586: { slidesPerView: 1 },
+          586: { slidesPerView: 1.5 },
           767: { slidesPerView: 2 },
           992: { slidesPerView: 2.5 },
           1200: { slidesPerView: 3.5 },

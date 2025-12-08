@@ -286,6 +286,10 @@
     }
 }
 
+::ng-deep .swiper-pagination-bullet-active{
+  background-color: $primary-color !important;
+}
+
 // .video{
 //     .videoBox{
 //         background: url('../../../assets/image/blog2.jpg') center no-repeat;

@@ -21,7 +21,9 @@
               } @else {
               <!-- اعرض بريفيهات الملفات اللي اختارها المستخدم (File) -->
               @for (file of files(); track file) {
-              <ngx-dropzone-label>Upload Your Image</ngx-dropzone-label>
+              <ngx-dropzone-label>{{
+                "profile.uploadYourImage" | translate
+              }}</ngx-dropzone-label>
 
               <ngx-dropzone-image-preview
                 [file]="file"
@@ -58,8 +60,10 @@
           </div> -->
           <!-- user name and email -->
           <div class="textSecondColor text-center mt-2 pb-3 bs-popover-bottom">
-            <h5 class="text-capitalize mb-0 fw-bold">Antoni Jonson</h5>
-            <p class="">jonsonexample.com</p>
+            <h5 class="text-capitalize mb-0 fw-bold">
+              {{ profilemeData.name }}
+            </h5>
+            <p class="">{{ profilemeData.email }}</p>
           </div>
 
           <ul class="list-unstyled text-capitalize">
@@ -78,7 +82,7 @@
               <span
                 [class.textSecondColor]="selectedTab !== 'dashboard'"
                 [class.text-white]="selectedTab === 'dashboard'"
-                >dashboard</span
+                >{{ "profile.dashboard" | translate }}</span
               >
             </li>
             <li
@@ -96,7 +100,7 @@
               <span
                 [class.textSecondColor]="selectedTab !== 'myProfile'"
                 [class.text-white]="selectedTab === 'myProfile'"
-                >my profile</span
+                >{{ "profile.myProfile" | translate }}</span
               >
             </li>
             <li
@@ -114,7 +118,7 @@
               <span
                 [class.textSecondColor]="selectedTab !== 'myBooking'"
                 [class.text-white]="selectedTab === 'myBooking'"
-                >my booking</span
+                >{{ "profile.myBooking" | translate }}</span
               >
             </li>
             <li
@@ -132,7 +136,7 @@
               <span
                 [class.textSecondColor]="selectedTab !== 'myWishlist'"
                 [class.text-white]="selectedTab === 'myWishlist'"
-                >my wishlist</span
+                >{{ "profile.myWishlist" | translate }}</span
               >
             </li>
             <li
@@ -150,7 +154,7 @@
               <span
                 [class.textSecondColor]="selectedTab !== 'setting'"
                 [class.text-white]="selectedTab === 'setting'"
-                >settings</span
+                >{{ "profile.settings" | translate }}</span
               >
             </li>
             <li
@@ -169,7 +173,7 @@
               <span
                 [class.textSecondColor]="selectedTab !== 'logout'"
                 [class.text-white]="selectedTab === 'logout'"
-                >logout</span
+                >{{ "profile.logout" | translate }}</span
               >
             </li>
           </ul>
@@ -183,7 +187,9 @@
               <div class="p-3 specialBorder border flexBetween">
                 <div class="textSecondColor">
                   <b class="fs-3">{{ tourCart.length }}</b>
-                  <p class="mb-1 text-capitalize">total booking</p>
+                  <p class="mb-1 text-capitalize">
+                    {{ "profile.totalBooking" | translate }}
+                  </p>
                 </div>
                 <div class="iconBox m-0 bg-transparent text-danger">
                   <i class="fa fa-shopping-cart"></i>
@@ -194,7 +200,9 @@
               <div class="p-3 specialBorder border flexBetween">
                 <div class="textSecondColor">
                   <b class="fs-3">{{ favList.length }}</b>
-                  <p class="mb-1 text-capitalize">favorite tour</p>
+                  <p class="mb-1 text-capitalize">
+                    {{ "profile.favoriteTour" | translate }}
+                  </p>
                 </div>
                 <div class="iconBox m-0 bg-white text-danger">
                   <i class="fa fa-heart-circle-plus"></i>
@@ -207,55 +215,69 @@
           <div
             class="p-4 border sideBar rounded-3 textSecondColor text-capitalize"
           >
-            <h5 class="fw-bold mb-3 pb-3 border-bottom">profile info</h5>
+            <h5 class="fw-bold mb-3 pb-3 border-bottom">
+              {{ "profile.profileInfo" | translate }}
+            </h5>
 
-            <p><b class="me-5">Full Name:</b> Antoni Jonson</p>
-            <p><b class="me-5">Email:</b> jonsonexample.com</p>
-            <p><b class="me-5">Phone:</b>+2 134 562 458</p>
-            <p><b class="me-5">Address:</b>New York, USA</p>
-            <p><b class="me-5">Join Date:</b>21 August, 2025</p>
+            <p>
+              <b class="me-5">{{ "profile.fullName" | translate }}:</b>
+              {{ profilemeData.name }}
+            </p>
+            <p>
+              <b class="me-5">{{ "profile.email" | translate }}:</b>
+              {{ profilemeData.email }}
+            </p>
+            <p>
+              <b class="me-5">{{ "profile.phone" | translate }}:</b>
+              {{ profilemeData.phone }}
+            </p>
+            <p>
+              <b class="me-5">{{ "profile.address" | translate }}:</b
+              >{{ profilemeData.nationality }}
+            </p>
+            <p>
+              <b class="me-5">{{ "profile.joinDate" | translate }}:</b
+              >{{ profilemeData.created_at | date }}
+            </p>
           </div>
           } @if (selectedTab==='myBooking') { @if (haveData) {
-          <swiper-container
-            #bookingCarousel
-            init="false"
-          >
+          <swiper-container #bookingCarousel init="false">
             @for (cart of tourCart; track $index) {
             <swiper-slide>
               <app-tour-cart [tour]="cart.tour"></app-tour-cart>
               <div class="text-capitalize textSecondColor mt-4">
                 <h6>
-                  guest:
+                  {{ "profile.guest" | translate }}:
                   <b *ngIf="cart.adults" class="textMainColor"
-                    >{{ cart.adults }} adults</b
+                    >{{ cart.adults }} {{ "profile.adults" | translate }}</b
                   >
                   ,<b *ngIf="cart.children" class="textMainColor"
-                    >{{ cart.children }} children</b
+                    >{{ cart.children }} {{ "profile.children" | translate }}</b
                   >
                   ,<b *ngIf="cart.infants" class="textMainColor"
-                    >{{ cart.infants }} infants</b
+                    >{{ cart.infants }} {{ "profile.infants" | translate }}</b
                   >
                 </h6>
                 <h6>
-                  total price :
+                  {{ "profile.totalPrice" | translate }} :
                   <b class="textMainColor">{{ cart.totalPrice | currency }}</b>
                 </h6>
                 <h6>
-                  booking date :<b class="textMainColor">{{
-                    cart.start_date | date
-                  }}</b>
+                  {{ "profile.bookingDate" | translate }} :<b
+                    class="textMainColor"
+                    >{{ cart.start_date | date }}</b
+                  >
                 </h6>
               </div>
             </swiper-slide>
             }
           </swiper-container>
           }@else {
-          <h2 class="text-danger text-capitalize">no tour in booking cart</h2>
+          <h2 class="text-danger text-capitalize">
+            {{ "profile.noTourInBookingCart" | translate }}
+          </h2>
           } } @if (selectedTab==='myWishlist') { @if (haveData) {
-          <swiper-container
-            #wishlistCarousel
-            init="false"
-          >
+          <swiper-container #wishlistCarousel init="false">
             @for (cart of favList; track $index) {
             <swiper-slide>
               <app-tour-cart [tour]="cart.tour"></app-tour-cart>
@@ -263,7 +285,9 @@
             }
           </swiper-container>
           }@else {
-          <h2 class="text-danger text-capitalize">no tour in wishlist</h2>
+          <h2 class="text-danger text-capitalize">
+            {{ "profile.noTourInWishlist" | translate }}
+          </h2>
           } } @if (selectedTab==='setting') {
           <form
             [formGroup]="updateProfile"
@@ -275,14 +299,14 @@
                 <label
                   for="name"
                   class="textSecondColor text-capitalize fw-bold mb-2"
-                  >full name</label
+                  >{{ "profile.fullName" | translate }}</label
                 >
                 <div class="item position-relative">
                   <input
                     type="text"
                     id="name"
                     formControlName="name"
-                    placeholder="Your Full Name "
+                    [placeholder]="'profile.yourFullName' | translate"
                     class="form-control p-2 ps-5 rounded-3"
                   />
                   <i class="fa fa-file-signature textMainColor"></i>
@@ -295,14 +319,14 @@
                   for="phone"
                   class="textSecondColor text-capitalize fw-bold mb-2"
                 >
-                  phone</label
+                  {{ "profile.phone" | translate }}</label
                 >
                 <div class="item position-relative">
                   <input
                     type="tel"
                     id="phone"
                     formControlName="phone"
-                    placeholder="Your phone "
+                    [placeholder]="'profile.yourPhone' | translate"
                     class="form-control p-2 ps-5 rounded-3"
                   />
                   <i class="fa fa-phone-volume textMainColor"></i>
@@ -314,14 +338,14 @@
                 <label
                   for="password"
                   class="textSecondColor text-capitalize fw-bold mb-2"
-                  >password</label
+                  >{{ "profile.password" | translate }}</label
                 >
                 <div class="item position-relative">
                   <input
                     type="password"
                     id="password"
                     formControlName="password"
-                    placeholder="Your Password "
+                    [placeholder]="'profile.yourPassword' | translate"
                     class="form-control p-2 ps-5 rounded-3"
                   />
                   <i class="fa fa-lock textMainColor"></i>
@@ -333,14 +357,16 @@
                 <label
                   for="password_confirmation"
                   class="textSecondColor text-capitalize fw-bold mb-2"
-                  >password_confirmation</label
+                  >{{ "profile.passwordConfirmation" | translate }}</label
                 >
                 <div class="item position-relative">
                   <input
                     type="password"
                     id="password_confirmation"
                     formControlName="password_confirmation"
-                    placeholder="Your Password Confirmation "
+                    [placeholder]="
+                      'profile.yourPasswordConfirmation' | translate
+                    "
                     class="form-control p-2 ps-5 rounded-3"
                   />
                   <i class="fa fa-lock textMainColor"></i>
@@ -352,7 +378,7 @@
                 <label
                   for="nationality"
                   class="textSecondColor text-capitalize fw-bold mb-2"
-                  >nationality</label
+                  >{{ "profile.nationality" | translate }}</label
                 >
                 <div class="item position-relative">
                   <select
@@ -360,7 +386,9 @@
                     formControlName="nationality"
                     class="form-control p-2 ps-5 rounded-3"
                   >
-                    <option selected disabled>select your nationality</option>
+                    <option value="" selected disabled>
+                      {{ "profile.selectYourNationality" | translate }}
+                    </option>
                     @for (item of countriesList; track $index) {
 
                     <option [value]="item.name">{{ item.name }}</option>
@@ -373,7 +401,7 @@
 
             <div>
               <button type="submit" class="Btn mainBtn">
-                update profile info
+                {{ "profile.updateProfileInfo" | translate }}
               </button>
             </div>
           </form>

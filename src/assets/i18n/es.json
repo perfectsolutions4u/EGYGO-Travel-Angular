@@ -40,11 +40,15 @@
     "selectLanguage": "Seleccionar Idioma",
     "english": "Inglés",
     "spanish": "Español",
+    "italian": "Italiano",
     "makeTrip": "Hacer Viaje"
   },
   "home": {
     "findNextPlace": "Encuentra Tu Próximo Lugar Para Visitar",
     "discoverAmazing": "Descubre lugares increíbles con ofertas exclusivas y disfruta de tus vacaciones",
+    "discoverNatureNewTravel": "Descubre la naturaleza del nuevo viaje",
+    "expeditionsAcrossGlobe": "Expediciones de Egygo Travel por Todo el Mundo",
+    "heroDescription": "Egygo Travel, donde cada aventura comienza con un sueño y termina con recuerdos para toda la vida. Desde las bulliciosas calles de ciudades vibrantes.",
     "tour": "Tour",
     "destination": "Destino",
     "search": "Buscar",
@@ -55,7 +59,13 @@
     "allDestinations": "Todos los Destinos",
     "allCategories": "Todas las Categorías",
     "whereWouldYouLikeToGo": "¿A dónde te gustaría ir?",
-    "tripType": "Tipo de Viaje"
+    "tripType": "Tipo de Viaje",
+    "whenYouGoTo": "¿Cuándo vas a ir?",
+    "makeYourTrip": "Haz tu viaje",
+    "tourExperience": "Experiencia de Tour",
+    "ultimateTravelExperience": "Experiencia de Viaje Definitiva",
+    "ourLatestBlogAndNews": "Nuestro Último Blog y Noticias",
+    "travelAgencyIntro": "La agencia de viajes Egygo ofrece una gran cantidad de características diseñadas para elevar tu experiencia de viaje a nuevas alturas. Nuestros paquetes de viaje personalizados se adaptan a tus preferencias únicas y presupuesto, asegurando que cada viaje esté diseñado a la perfección."
   },
   "tour": {
     "tours": "Tours",
@@ -170,7 +180,8 @@
     "author": "Autor",
     "categories": "Categorías",
     "tags": "Etiquetas",
-    "relatedPosts": "Publicaciones Relacionadas"
+    "relatedPosts": "Publicaciones Relacionadas",
+    "ourLatestBlogAndNews": "Nuestro Último Blog y Noticias"
   },
   "contact": {
     "contactUs": "Contáctanos",
@@ -252,7 +263,7 @@
     "officeAddress": "Dirección de la Oficina",
     "callUs": "Llámanos",
     "emailUs": "Envíanos un Correo",
-    "copyright": "© Copyright 2025",
+    "copyright": "© Copyright 2026",
     "perfectSolution": "perfect solution 4u",
     "description": "Es un hecho establecido desde hace mucho tiempo que un lector se distraerá con el contenido legible de una página al mirar su diseño"
   },
@@ -262,15 +273,22 @@
     "tourSuccess": "Tours Exitosos",
     "yearInService": "Años de Servicio",
     "makeTrip": "Hacer un Viaje",
-    "description": "Ya sea que busques una escapada romántica, una aventura familiar o un viaje en solitario para explorar el mundo, una agencia de viajes puede brindarte un itinerario personalizado que supere tus expectativas."
+    "description": "EgyGo es una agencia de viajes familiar que se especializa en vacaciones privadas y de lujo en Egipto, con oficinas en los Estados Unidos, Europa y un centro de operaciones en Egipto. Esto significa que no solo reservarán tus vacaciones, sino que también organizarán y ejecutarán su operación en el terreno!"
   },
   "whyBooking": {
     "whyBookingWithUs": "¿Por Qué Reservar Con Nosotros?",
-    "easyWaysToPay": "Formas Fáciles de Pagar",
-    "freedomToChange": "Libertad de Cambiar",
-    "refundGuarantee": "Garantía de Reembolso",
-    "bestPriceGuarantee": "Garantía de Mejor Precio",
-    "description": "Es un hecho establecido desde hace mucho tiempo que un lector se distraerá"
+    "qualityTrustedPartner": "Calidad y Socio de Confianza",
+    "qualityTrustedPartnerDesc": "Ya sea que reserves un paquete o un itinerario hecho a medida, siempre recibirás el mejor servicio de calidad y un enfoque personalizado, así como un consultor de viajes dedicado para apoyarte de principio a fin.",
+    "bookWithConfidence": "Reserva con Confianza",
+    "bookWithConfidenceDesc": "Planifica tus vacaciones sin riesgo con nuestros términos flexibles, dándote la flexibilidad de adaptarte a circunstancias inesperadas. Nuestro compromiso con tu tranquilidad va más allá de solo reservar - estamos aquí para apoyarte en cada paso del camino, asegurando una experiencia de viaje sin preocupaciones.",
+    "personalisedTravelServices": "Servicios de Viaje Personalizados",
+    "personalisedTravelServicesDesc": "Juntos, podemos hacer realidad el viaje perfecto, sin importar cuáles sean tus sueños de vacaciones. Nuestros consultores de viajes tienen amplia experiencia y conocimientos para crear tu viaje y resolver cualquier situación imprevista.",
+    "safetySecurity": "Seguridad y Protección",
+    "safetySecurityDesc": "La seguridad de nuestros viajeros es nuestra máxima prioridad. Trabajamos diligentemente para asegurar que nuestros huéspedes siempre estén bien atendidos. Nos mantenemos informados de cualquier evento que pueda afectar la seguridad de los clientes.",
+    "securePayments": "Pagos Seguros",
+    "securePaymentsDesc": "Nos esforzamos por hacer tu viaje libre de estrés. Para garantizar la seguridad de tus transferencias, confiamos únicamente en sistemas de pago en línea confiables. Una vez que se llegue a un acuerdo, puedes realizar convenientemente un pago en línea mediante transferencia bancaria.",
+    "sustainableEthicalApproach": "Enfoque Sostenible y Ético",
+    "sustainableEthicalApproachDesc": "Considerando el impacto que el turismo tiene en la economía local y el medio ambiente, estamos comprometidos a operar de manera eficiente y apoyar la economía egipcia a través de una estrecha colaboración con empresas locales."
   },
   "banner": {
     "home": "Inicio"
@@ -298,5 +316,76 @@
     "login": "Iniciar Sesión",
     "dontHaveAccount": "¿No tienes una cuenta?",
     "signUp": "Registrarse"
+  },
+  "aboutCategory": {
+    "personalisedTravelServices": "Servicios de Viaje Personalizados",
+    "highQualityService": "Servicio de Alta Calidad",
+    "experiencedTravelConsultants": "Consultores de Viaje Experimentados",
+    "flexibleToChange": "Flexible para cambiar",
+    "advocateEcotourism": "Promover ecoturismo",
+    "safetyFirst": "La seguridad primero"
+  },
+  "counter": {
+    "tripsOrganised": "Viajes Organizados",
+    "combinedYearsOfService": "Años Combinados de Servicio",
+    "historicalCulturalLandmarks": "Monumentos Históricos y Culturales",
+    "unescoWorldHeritageSites": "Sitios Patrimonio Mundial de la UNESCO"
+  },
+  "visitEgypt": {
+    "subtitle": "La Cuna de la Civilización",
+    "title": "Visita Egipto con EgyGo",
+    "paragraph1": "Déjate encantar por las maravillas del mundo antiguo y experimenta la vibrante cultura del Egipto moderno con nuestros tours personalizados cuidadosamente diseñados e itinerarios personalizados.",
+    "paragraph2": "Cada itinerario está diseñado personalmente para maximizar tu experiencia y brindarte una comprensión más profunda del país y sus costumbres y cultura. Visitarás algunos de los monumentos más renombrados de Egipto, pero también explorarás pueblos y paisajes menos transitados.",
+    "paragraph3": "Un equipo de expertos en viajes experimentados y egiptólogos conocedores está a tu servicio, quienes darán vida a la vasta historia, cuentos y piedras de Egipto y te brindarán experiencias auténticas. La participación de la comunidad local también es importante para nosotros, ya que es una parte clave de nuestra misión: conectar a Egipto con el mundo y el mundo con Egipto. Al involucrarlos, su situación socioeconómica mejorará, mientras tú tendrás la oportunidad de ver el mundo a través de sus ojos.",
+    "paragraph4": "¿Buscas un tour privado clásico pero inspirador en Egipto con tu familia o más bien interesado en unas vacaciones fuera de lo común? ¿O estás soñando con una luna de miel romántica en un entorno lujoso? ¿O tal vez buscas una escapada aventurera en el desierto? Dondequiera que desees ir, EgyGo te ayudará a descubrir el encanto cultural y las tradiciones auténticas del Egipto antiguo y moderno."
+  },
+  "profile": {
+    "uploadYourImage": "Sube Tu Imagen",
+    "dashboard": "Panel de Control",
+    "myProfile": "Mi Perfil",
+    "myBooking": "Mi Reserva",
+    "myWishlist": "Mi Lista de Deseos",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión",
+    "totalBooking": "Reservas Totales",
+    "favoriteTour": "Tour Favorito",
+    "profileInfo": "Información del Perfil",
+    "fullName": "Nombre Completo",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "joinDate": "Fecha de Registro",
+    "guest": "Huésped",
+    "adults": "Adultos",
+    "children": "Niños",
+    "infants": "Bebés",
+    "totalPrice": "Precio Total",
+    "bookingDate": "Fecha de Reserva",
+    "noTourInBookingCart": "No hay tour en el carrito de reservas",
+    "noTourInWishlist": "No hay tour en la lista de deseos",
+    "yourFullName": "Tu Nombre Completo",
+    "yourPhone": "Tu Teléfono",
+    "password": "Contraseña",
+    "yourPassword": "Tu Contraseña",
+    "passwordConfirmation": "Confirmar Contraseña",
+    "yourPasswordConfirmation": "Tu Confirmación de Contraseña",
+    "nationality": "Nacionalidad",
+    "selectYourNationality": "Selecciona tu nacionalidad",
+    "updateProfileInfo": "Actualizar Información del Perfil"
+  },
+  "destination": {
+    "tour": "Tour",
+    "get10PercentOff": "Obtén 10% de Descuento",
+    "viewAllDestinations": "Ver Todas las Destinaciones",
+    "travelDeal": "Oferta de Viaje",
+    "ourMostPopularTravelDeals": "Nuestras Ofertas de Viaje Más Populares"
+  },
+  "pagination": {
+    "pagination": "Paginación",
+    "page": "Página",
+    "youreOnPage": "Estás en la página"
+  },
+  "testimonial": {
+    "ourClients": "Nuestros Clientes"
   }
 }

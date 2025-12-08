@@ -6,16 +6,14 @@
           class="col-xl-6 offset-xl-0 col-lg-6 offset-lg-0 col-md-8 offset-md-2"
         >
           <div class="mainContentText text-center text-capitalize">
-            <span class="textSecondColor fw-bold fs-5"
-              >Discover the nature new travel</span
-            >
+            <span class="textSecondColor fw-bold fs-5">{{
+              "home.discoverNatureNewTravel" | translate
+            }}</span>
             <h1 class="h2 fw-bold">
-              Egygo Travel's Expeditions Across The Globe
+              {{ "home.expeditionsAcrossGlobe" | translate }}
             </h1>
             <p class="text-muted">
-              Egygo Travel, where every adventure begins with a dream and ends
-              with memories to last a lifetime. From the bustling streets of
-              vibrant cities.
+              {{ "home.heroDescription" | translate }}
             </p>
           </div>
         </div>
@@ -130,7 +128,7 @@
                     selected
                     class="bg-secondary text-white"
                   >
-                    when you go to?
+                    {{ "home.whenYouGoTo" | translate }}
                   </option>
                   @for (time of allDurations; track $index) {
 
@@ -155,7 +153,7 @@
             </div>
           </form>
         </mat-tab>
-        <mat-tab label="Make your trip">
+        <mat-tab [label]="'home.makeYourTrip' | translate">
           <form
             [formGroup]="makeTripForm"
             (ngSubmit)="onMakeTripSubmit()"
@@ -167,24 +165,24 @@
                 (change)="onChangeTime($event.value)"
                 class="d-flex flex-wrap gap-1"
               >
-                <mat-radio-button value="exact"
-                  >have an exact time</mat-radio-button
-                >
-                <mat-radio-button value="approximate"
-                  >have an approximate time</mat-radio-button
-                >
+                <mat-radio-button value="exact">{{
+                  "makeTrip.haveExactTime" | translate
+                }}</mat-radio-button>
+                <mat-radio-button value="approximate">{{
+                  "makeTrip.haveApproximateTime" | translate
+                }}</mat-radio-button>
               </mat-radio-group>
             </div>
             <div class="col-xl-3 col-lg-4">
               <div class="text-capitalize">
                 <label class="textSecondColor"
                   ><i class="fa fa-map-marker-alt me-2 mb-2"></i
-                  >destinations</label
+                  >{{ "makeTrip.destinations" | translate }}</label
                 >
                 <mat-form-field class="w-100">
                   <mat-select formControlName="city">
                     <mat-option value="" disabled selected>
-                      My Destination...
+                      {{ "makeTrip.myDestination" | translate }}
                     </mat-option>
                     <mat-option
                       *ngFor="let des of allDestinations"
@@ -203,10 +201,10 @@
               <div class="text-capitalize">
                 <label class="textSecondColor"
                   ><i class="fa fa-calendar-days me-2 mb-2"></i>
-                  check in date
+                  {{ "makeTrip.checkInDate" | translate }}
                 </label>
                 <mat-form-field class="w-100">
-                  <mat-label>Start date</mat-label>
+                  <mat-label>{{ "makeTrip.startDate" | translate }}</mat-label>
                   <input
                     formControlName="start_date"
                     matInput
@@ -224,10 +222,10 @@
               <div class="text-capitalize">
                 <label class="textSecondColor"
                   ><i class="fa fa-calendar-days me-2 mb-2"></i>
-                  check out date
+                  {{ "makeTrip.checkOutDate" | translate }}
                 </label>
                 <mat-form-field class="w-100">
-                  <mat-label>End date</mat-label>
+                  <mat-label>{{ "makeTrip.endDate" | translate }}</mat-label>
                   <input
                     formControlName="end_date"
                     matInput
@@ -249,10 +247,12 @@
               <div>
                 <label class="textSecondColor"
                   ><i class="fa fa-calendar-days me-2 mb-2"></i>
-                  check out date
+                  {{ "makeTrip.checkOutDate" | translate }}
                 </label>
                 <mat-form-field class="w-100">
-                  <mat-label>Select Month</mat-label>
+                  <mat-label>{{
+                    "makeTrip.selectMonth" | translate
+                  }}</mat-label>
                   <mat-select formControlName="approximate_time">
                     <mat-option
                       *ngFor="let month of monthList; let i = index"
@@ -271,7 +271,8 @@
                   type="submit"
                   class="mainBtn Btn flexBetween gap-2 w-100"
                 >
-                  make trip<i
+                  {{ "common.makeTrip" | translate
+                  }}<i
                     class="fa fa-plane-circle-check bgPrimaryWhiteColor textMainColor rounded-circle"
                   ></i>
                 </button>
@@ -311,22 +312,34 @@
 <section class="travel-agency-intro py-5">
   <div class="container">
     <h2 class="title text-center fw-bold">
-      Egygo Travel agency
-      <img
-        src="../../../assets/image/mg/title-thumb-1.webp"
-        loading="lazy"
-        alt="title thumb"
-      />
-      offers a plethora of features designed to elevate your travel experience
-      to new heights. Our personalized travel packages cater to your unique
-      preferences and
-      <img
-        src="../../../assets/image/mg/title-thumb-2.webp"
-        loading="lazy"
-        alt="title thumb"
-      />
-      budget, ensuring every journey is tailored to perfection.
+      {{ "home.travelAgencyIntro" | translate }}
     </h2>
+  </div>
+</section>
+
+<section class="aboutContent my-5">
+  <div class="container text-center">
+    <div class="secTitle text-capitalize mb-4">
+      <span class="textSecondColor fw-bold fs-6@sm fs-5@md">{{
+        "visitEgypt.subtitle" | translate
+      }}</span>
+      <h2 class="text-black fw-bold">{{ "visitEgypt.title" | translate }}</h2>
+    </div>
+
+    <div class="text-muted fs-6@sm fs-5@md">
+      <p class="">
+        {{ "visitEgypt.paragraph1" | translate }}
+      </p>
+      <p class="">
+        {{ "visitEgypt.paragraph2" | translate }}
+      </p>
+      <p class="">
+        {{ "visitEgypt.paragraph3" | translate }}
+      </p>
+      <p class="">
+        {{ "visitEgypt.paragraph4" | translate }}
+      </p>
+    </div>
   </div>
 </section>
 
@@ -354,8 +367,12 @@
   <div class="container position-relative pt-5">
     <div class="title-box position-relative flexBetween flex-wrap mb-4">
       <div class="secTitle text-capitalize">
-        <span class="textSecondColor fw-bold fs-5">Tour Experience</span>
-        <h2 class="text-black fw-bold">Ultimate Travel Experience</h2>
+        <span class="textSecondColor fw-bold fs-5">{{
+          "home.tourExperience" | translate
+        }}</span>
+        <h2 class="text-black fw-bold">
+          {{ "home.ultimateTravelExperience" | translate }}
+        </h2>
       </div>
       @if (isBrowser && toursLoaded && tourstest.length > 0) {
       <div class="carousel-nav-buttons title-nav-buttons">
@@ -384,7 +401,11 @@
         [slidesPerView]="4"
         [spaceBetween]="20"
         [loop]="true"
-        [autoplay]="{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }"
+        [autoplay]="{
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        }"
         [speed]="500"
         init="false"
       >
@@ -463,9 +484,11 @@
           ><i class="fa fa-plane me-2 ps-1"></i
         ></span>
 
-        our blog
+        {{ "footer.ourBlog" | translate }}
       </span>
-      <h2 class="my-3 textSecondColor fw-bold">Our Latest Blog & News</h2>
+      <h2 class="my-3 textSecondColor fw-bold">
+        {{ "home.ourLatestBlogAndNews" | translate }}
+      </h2>
     </div>
 
     <!-- This fetches blogs and stores them -->

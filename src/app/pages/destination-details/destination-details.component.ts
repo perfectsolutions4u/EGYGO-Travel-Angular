@@ -69,7 +69,7 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
       el.loop = true;
       el.autoplay = { delay: 1500, disableOnInteraction: false };
       el.pagination = { clickable: true };
-      el.speed = 500;
+      el.speed = 1500;
       el.breakpoints = {
         0: { slidesPerView: 1 },
         400: { slidesPerView: 1 },

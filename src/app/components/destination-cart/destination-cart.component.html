@@ -12,12 +12,14 @@
     />
     <span
       class="bgMainColor text-white text-capitalize position-absolute top-0 start-0 mt-4 rounded-end-pill py-1 px-3"
-      >{{ destination.tours_count }} tour</span
+      >{{ destination.tours_count }} {{ "destination.tour" | translate }}</span
     >
     <div
       class="layer position-absolute flexCenter flex-column z-20 text-capitalize"
     >
-      <span class="text-white fs-5">get 10% off</span>
+      <span class="text-white fs-5">{{
+        "destination.get10PercentOff" | translate
+      }}</span>
       <div class="rounded-circle overflow-hidden my-3">
         <img
           [src]="destination.featured_image"
@@ -31,7 +33,7 @@
         [routerLink]="['/destination', destination.slug]"
         class="secBtn Btn py-1"
       >
-        view all destinations
+        {{ "destination.viewAllDestinations" | translate }}
       </button>
     </div>
   </figure>

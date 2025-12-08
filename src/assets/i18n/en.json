@@ -40,11 +40,15 @@
     "selectLanguage": "Select Language",
     "english": "English",
     "spanish": "Spanish",
+    "italian": "Italian",
     "makeTrip": "Make Trip"
   },
   "home": {
     "findNextPlace": "Find Your Next Place to Visit",
     "discoverAmazing": "Discover amazing places at exclusive deals and enjoy your holiday",
+    "discoverNatureNewTravel": "Discover the nature new travel",
+    "expeditionsAcrossGlobe": "Egygo Travel's Expeditions Across The Globe",
+    "heroDescription": "Egygo Travel, where every adventure begins with a dream and ends with memories to last a lifetime. From the bustling streets of vibrant cities.",
     "tour": "Tour",
     "destination": "Destination",
     "search": "Search",
@@ -55,7 +59,13 @@
     "allDestinations": "All Destinations",
     "allCategories": "All Categories",
     "whereWouldYouLikeToGo": "Where would you like to go?",
-    "tripType": "Trip Type"
+    "tripType": "Trip Type",
+    "whenYouGoTo": "When you go to?",
+    "makeYourTrip": "Make your trip",
+    "tourExperience": "Tour Experience",
+    "ultimateTravelExperience": "Ultimate Travel Experience",
+    "ourLatestBlogAndNews": "Our Latest Blog & News",
+    "travelAgencyIntro": "Egygo Travel agency offers a plethora of features designed to elevate your travel experience to new heights. Our personalized travel packages cater to your unique preferences and budget, ensuring every journey is tailored to perfection."
   },
   "tour": {
     "tours": "Tours",
@@ -170,7 +180,8 @@
     "author": "Author",
     "categories": "Categories",
     "tags": "Tags",
-    "relatedPosts": "Related Posts"
+    "relatedPosts": "Related Posts",
+    "ourLatestBlogAndNews": "Our Latest Blog & News"
   },
   "contact": {
     "contactUs": "Contact Us",
@@ -252,7 +263,7 @@
     "officeAddress": "Office Address",
     "callUs": "Call Us",
     "emailUs": "Email Us",
-    "copyright": "© Copyright 2025",
+    "copyright": "© Copyright 2026",
     "perfectSolution": "perfect solution 4u",
     "description": "It is a long established fact thatder will be distracted by the readable content of a page when looking at its layoutpoint"
   },
@@ -262,15 +273,22 @@
     "tourSuccess": "Tour Success",
     "yearInService": "Year in Service",
     "makeTrip": "Make a Trip",
-    "description": "Whether you're looking for a romantic getaway, a family-friendly adventure, or a solo journey to explore the world, a travel agency can provide you with a custom-tailored itinerary that exceeds your expectations."
+    "description": "EgyGo is a family-run travel company specialised in tailor-made and luxury private vacations in Egypt, with offices in the USA, Europe and an operations office in Egypt. This means that we will not only book your holidays, but also organise and run it on the ground!"
   },
   "whyBooking": {
     "whyBookingWithUs": "Why Booking With Us",
-    "easyWaysToPay": "Easy Ways To Pay",
-    "freedomToChange": "Freedom To Change",
-    "refundGuarantee": "Refund Guarantee",
-    "bestPriceGuarantee": "Best Price Guarantee",
-    "description": "It is a long established fact that a reader will be distracted"
+    "qualityTrustedPartner": "Quality & Trusted Partner",
+    "qualityTrustedPartnerDesc": "Whether you book a package or a tailor-made itinerary, you will always receive the best quality service and a personalised approach as well as a dedicated travel consultant to support you from start to finish.",
+    "bookWithConfidence": "Book with Confidence",
+    "bookWithConfidenceDesc": "Plan your holiday without risk with our flexible terms, giving you flexibility to adapt to unexpected circumstances. Our commitment to your peace of mind extends beyond just booking - we're here to support you every step of the way, ensuring a worry-free travel experience.",
+    "personalisedTravelServices": "Personalised Travel Services",
+    "personalisedTravelServicesDesc": "Together, we can make the perfect trip happen, no matter what your holiday dreams are. Our travel consultants have extensive expertise and experience to create your trip as well as solve any unforeseen situations.",
+    "safetySecurity": "Safety & Security",
+    "safetySecurityDesc": "The safety of our travellers is our top priority. We work diligently to ensure that our guests are always well taken care of. We stay apprised of any events that could affect clients' security.",
+    "securePayments": "Secure Payments",
+    "securePaymentsDesc": "We strive to make your trip stress-free. To guarantee the security of your transfers, we rely solely on dependable online payment systems. Once an agreement is reached, you can conveniently make an online payment through bank transfer.",
+    "sustainableEthicalApproach": "Sustainable and Ethical Approach",
+    "sustainableEthicalApproachDesc": "Considering the impact that tourism has on the local economy and environment, we are committed to operating efficiently and supporting the Egyptian economy through close collaboration with local businesses."
   },
   "banner": {
     "home": "Home"
@@ -298,5 +316,76 @@
     "login": "Log In",
     "dontHaveAccount": "Don't have an account?",
     "signUp": "Sign Up"
+  },
+  "aboutCategory": {
+    "personalisedTravelServices": "Personalised Travel Services",
+    "highQualityService": "High Quality Service",
+    "experiencedTravelConsultants": "Experienced Travel Consultants",
+    "flexibleToChange": "Flexible to change",
+    "advocateEcotourism": "Advocate ecotourism",
+    "safetyFirst": "Safety first"
+  },
+  "counter": {
+    "tripsOrganised": "Trips Organised",
+    "combinedYearsOfService": "Combined Years of Service",
+    "historicalCulturalLandmarks": "Historical & Cultural Landmarks",
+    "unescoWorldHeritageSites": "UNESCO World Heritage Sites"
+  },
+  "visitEgypt": {
+    "subtitle": "The Cradle of Civilization",
+    "title": "Visit Egypt with EgyGo",
+    "paragraph1": "Get enchanted by the wonders of the ancient world and experience the lively culture of modern-day Egypt with our carefully designed custom tours and personalized itineraries.",
+    "paragraph2": "Every itinerary is personally designed to maximize your experience and give you a deeper understanding of the country and its customs and culture. You will visit some of Egypt's most renowned landmarks but also explore less-travelled towns and landscapes.",
+    "paragraph3": "A team of experienced travel experts and knowledgeable Egyptologists is at your service, who will bring the vast history, tales and stones of Egypt to life and provide you with authentic experiences. The involvement of the local community is also important to us since it is a key part of our mission: connecting Egypt to the world and the world to Egypt. By involving them their socioeconomic situation will improve, while you get the opportunity to see the world through their eyes.",
+    "paragraph4": "Looking for a classic but inspiring private tour in Egypt with your family or rather interested in an off-the-beaten-track holiday? Or are you dreaming of a romantic honeymoon in a luxurious setting? Or perhaps on the lookout for an adventurous escape in the desert? Wherever you wish to go, EgyGo will help you discover the cultural charm and authentic traditions of ancient and modern Egypt."
+  },
+  "profile": {
+    "uploadYourImage": "Upload Your Image",
+    "dashboard": "Dashboard",
+    "myProfile": "My Profile",
+    "myBooking": "My Booking",
+    "myWishlist": "My Wishlist",
+    "settings": "Settings",
+    "logout": "Logout",
+    "totalBooking": "Total Booking",
+    "favoriteTour": "Favorite Tour",
+    "profileInfo": "Profile Info",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "joinDate": "Join Date",
+    "guest": "Guest",
+    "adults": "Adults",
+    "children": "Children",
+    "infants": "Infants",
+    "totalPrice": "Total Price",
+    "bookingDate": "Booking Date",
+    "noTourInBookingCart": "No tour in booking cart",
+    "noTourInWishlist": "No tour in wishlist",
+    "yourFullName": "Your Full Name",
+    "yourPhone": "Your Phone",
+    "password": "Password",
+    "yourPassword": "Your Password",
+    "passwordConfirmation": "Password Confirmation",
+    "yourPasswordConfirmation": "Your Password Confirmation",
+    "nationality": "Nationality",
+    "selectYourNationality": "Select your nationality",
+    "updateProfileInfo": "Update Profile Info"
+  },
+  "destination": {
+    "tour": "Tour",
+    "get10PercentOff": "Get 10% Off",
+    "viewAllDestinations": "View All Destinations",
+    "travelDeal": "Travel Deal",
+    "ourMostPopularTravelDeals": "Our Most Popular Travel Deals"
+  },
+  "pagination": {
+    "pagination": "Pagination",
+    "page": "Page",
+    "youreOnPage": "You're on page"
+  },
+  "testimonial": {
+    "ourClients": "Our Clients"
   }
 }

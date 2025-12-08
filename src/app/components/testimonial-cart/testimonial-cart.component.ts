@@ -1,13 +1,14 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, ViewChild, AfterViewInit, PLATFORM_ID, Inject, ElementRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
+import { TranslateModule } from '@ngx-translate/core';
 import { register } from 'swiper/element/bundle';
 register();
 
 @Component({
   selector: 'app-testimonial-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './testimonial-cart.component.html',
   styleUrl: './testimonial-cart.component.scss',
@@ -42,7 +43,7 @@ export class TestimonialCartComponent implements AfterViewInit {
       el.spaceBetween = 30;
       el.loop = true;
       el.autoplay = { delay: 1500, disableOnInteraction: false };
-      el.speed = 500;
+      el.speed = 1500;
       el.effect = 'fade';
       el.fadeEffect = { crossFade: true };
       el.initialize();

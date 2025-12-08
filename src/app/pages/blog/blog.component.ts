@@ -7,6 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { CommonModule } from '@angular/common';
 import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip-form.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-blog',
@@ -18,6 +19,7 @@ import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip
     PaginationComponent,
     NgxPaginationModule,
     MakeTripFormComponent,
+    TranslateModule,
   ],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss',

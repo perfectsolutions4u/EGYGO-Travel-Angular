@@ -36,66 +36,64 @@ export class WhyBookingWithUsComponent implements AfterViewInit {
   initializeSwiper() {
     if (this.bookingCarousel?.nativeElement) {
       const el = this.bookingCarousel.nativeElement;
-      el.slidesPerView = 6;
+      el.slidesPerView = 1.5;
       el.spaceBetween = 20;
       el.loop = true;
       el.autoplay = { delay: 2500, disableOnInteraction: false };
-      el.speed = 500;
+      el.speed = 1500;
       el.breakpoints = {
         0: { slidesPerView: 1.5 },
         586: { slidesPerView: 2 },
         768: { slidesPerView: 2.5 },
-        992: { slidesPerView: 3.5 },
-        1200: { slidesPerView: 4.5 },
-        1400: { slidesPerView: 6 },
+        992: { slidesPerView: 3 },
+        1200: { slidesPerView: 4 },
+        // 1400: { slidesPerView: 6 },
       };
       el.initialize();
     }
   }
   bookingItems = [
     {
-      icon: 'fa-comment-dollar',
-      title: 'whyBooking.easyWaysToPay',
+      icon: 'fa-regular fa-gem',
+      title: 'whyBooking.qualityTrustedPartner',
       titleIsTranslation: true,
-      description: 'whyBooking.description',
+      description: 'whyBooking.qualityTrustedPartnerDesc',
       descriptionIsTranslation: true,
     },
     {
-      icon: 'fa-hexagon-nodes',
-      title: 'whyBooking.freedomToChange',
+      icon: 'fa fa-shield-halved',
+      title: 'whyBooking.bookWithConfidence',
       titleIsTranslation: true,
-      description: 'whyBooking.description',
+      description: 'whyBooking.bookWithConfidenceDesc',
       descriptionIsTranslation: true,
     },
     {
-      icon: 'fa-ship',
-      title: 'whyBooking.refundGuarantee',
+      icon: 'fa-regular fa-star',
+      title: 'whyBooking.personalisedTravelServices',
       titleIsTranslation: true,
-      description: 'whyBooking.description',
+      description: 'whyBooking.personalisedTravelServicesDesc',
       descriptionIsTranslation: true,
     },
     {
-      icon: 'fa-suitcase',
-      title: 'whyBooking.bestPriceGuarantee',
+      icon: 'fa fa-user-shield',
+      title: 'whyBooking.safetySecurity',
       titleIsTranslation: true,
-      description: 'whyBooking.description',
+      description: 'whyBooking.safetySecurityDesc',
       descriptionIsTranslation: true,
     },
     {
-      icon: 'fa-anchor',
-      title: 'ATOL Protected',
-      titleIsTranslation: false,
-      description:
-        'It is a long established fact that a reader will be distracted',
-      descriptionIsTranslation: false,
+      icon: 'fa fa-building-shield',
+      title: 'whyBooking.securePayments',
+      titleIsTranslation: true,
+      description: 'whyBooking.securePaymentsDesc',
+      descriptionIsTranslation: true,
     },
     {
-      icon: 'fa-passport',
-      title: 'Maldivian Islands Trip',
-      titleIsTranslation: false,
-      description:
-        'It is a long established fact that a reader will be distracted',
-      descriptionIsTranslation: false,
+      icon: 'fa fa-leaf',
+      title: 'whyBooking.sustainableEthicalApproach',
+      titleIsTranslation: true,
+      description: 'whyBooking.sustainableEthicalApproachDesc',
+      descriptionIsTranslation: true,
     },
   ];
 }

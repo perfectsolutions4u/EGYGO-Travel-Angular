@@ -1,5 +1,14 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, PLATFORM_ID, Inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  PLATFORM_ID,
+  Inject,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { register } from 'swiper/element/bundle';
 register();
@@ -69,14 +78,18 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
   }
 
   initializeSwiper() {
-    if (this.tourGalleryCarousel?.nativeElement && this.tourGallery.length > 0) {
+    if (
+      this.tourGalleryCarousel?.nativeElement &&
+      this.tourGallery.length > 0
+    ) {
       const el = this.tourGalleryCarousel.nativeElement;
       el.slidesPerView = 1;
       el.spaceBetween = 0;
       el.loop = true;
       el.autoplay = { delay: 1500, disableOnInteraction: false };
-      el.speed = 500;
-      el.navigation = true;
+      el.speed = 1500;
+      el.navigation = false;
+
       el.initialize();
     }
   }
@@ -154,7 +167,10 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
         // Keep itinerary in the same order as from dashboard
         this.tourItenary = response.data?.days ? [...response.data.days] : [];
         // Sort by display_order if it exists in reverse order, otherwise keep original order
-        if (this.tourItenary.length > 0 && this.tourItenary[0].display_order !== undefined) {
+        if (
+          this.tourItenary.length > 0 &&
+          this.tourItenary[0].display_order !== undefined
+        ) {
           this.tourItenary.sort((a: any, b: any) => {
             const orderA = a.display_order ?? 0;
             const orderB = b.display_order ?? 0;
@@ -198,7 +214,7 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
         this.bookingFormData.patchValue({ tour_id: response.data.id });
         this.getTourPricing(1);
         this.getReview(); // Fetch reviews for this specific tour
-        
+
         // Update SEO
         this.updateTourSEO(response.data);
       },
@@ -211,9 +227,14 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
   updateTourSEO(tour: any): void {
     const baseUrl = 'https://egygo-travel.com';
     const tourImage = tour.image || tour.gallery?.[0]?.image || '';
-    const tourDescription = tour.short_description || tour.description || `Book ${tour.title} tour with EGYGO Travel. Experience amazing destinations and create unforgettable memories.`;
-    const destinations = tour.destinations?.map((d: any) => d.title).join(', ') || '';
-    const keywords = `${tour.title}, tour, travel, ${destinations}, Egypt tours, booking`.toLowerCase();
+    const tourDescription =
+      tour.short_description ||
+      tour.description ||
+      `Book ${tour.title} tour with EGYGO Travel. Experience amazing destinations and create unforgettable memories.`;
+    const destinations =
+      tour.destinations?.map((d: any) => d.title).join(', ') || '';
+    const keywords =
+      `${tour.title}, tour, travel, ${destinations}, Egypt tours, booking`.toLowerCase();
 
     this._SeoService.updateSEO({
       title: `${tour.title} - Book Now | EGYGO Travel`,
@@ -225,7 +246,10 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
     });
 
     // Add structured data
-    const structuredData = this._SeoService.generateTourStructuredData(tour, baseUrl);
+    const structuredData = this._SeoService.generateTourStructuredData(
+      tour,
+      baseUrl
+    );
     this._SeoService.updateSEO({ structuredData });
   }
 
@@ -438,5 +462,4 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
     );
     return totalRating / this.tourReviews.length;
   }
-
 }

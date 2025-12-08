@@ -24,21 +24,38 @@ export class PartnerSliderComponent implements AfterViewInit {
   @ViewChild('partnerCarousel') partnerCarousel!: ElementRef;
 
   partnerImg: any[] = [
-    { src: '../../../assets/image/partner/civitatis.webp' },
-    { src: '../../../assets/image/partner/partner.webp' },
-    { src: '../../../assets/image/partner/partner1.webp' },
-    { src: '../../../assets/image/partner/partner12.webp' },
-    { src: '../../../assets/image/partner/partner2.webp' },
-    { src: '../../../assets/image/partner/partner3.webp' },
-    { src: '../../../assets/image/partner/partner4.webp' },
-    { src: '../../../assets/image/partner/partner5.webp' },
-    { src: '../../../assets/image/partner/partner6.webp' },
-    { src: '../../../assets/image/partner/partner7.webp' },
-    { src: '../../../assets/image/partner/partner8.webp' },
-    { src: '../../../assets/image/partner/partner9.webp' },
-    { src: '../../../assets/image/partner/partner99.webp' },
-    { src: '../../../assets/image/partner/tourradar.webp' },
-    { src: '../../../assets/image/partner/viator.webp' },
+    {
+      src: '../../../assets/image/new partners/EgyGo-Travels-tours-Four-Seasons.png',
+    },
+    {
+      src: '../../../assets/image/new partners/EgyGo-Travels-tours-Hilton.png',
+    },
+    {
+      src: '../../../assets/image/new partners/EgyGo-Travels-tours-Mayfair-cruises.png',
+    },
+    {
+      src: '../../../assets/image/new partners/EgyGo-Travels-tours-Old-Cataract-Aswan.png',
+    },
+    {
+      src: '../../../assets/image/new partners/EgyGo-Travels-tours-Sheraton-1.png',
+    },
+    {
+      src: '../../../assets/image/new partners/EgyGo-Travels-tours-The-Ritz-Carlton.png',
+    },
+    // { src: '../../../assets/image/partner/partner.webp' },
+    // { src: '../../../assets/image/partner/partner1.webp' },
+    // { src: '../../../assets/image/partner/partner12.webp' },
+    // { src: '../../../assets/image/partner/partner2.webp' },
+    // { src: '../../../assets/image/partner/partner3.webp' },
+    // { src: '../../../assets/image/partner/partner4.webp' },
+    // { src: '../../../assets/image/partner/partner5.webp' },
+    // { src: '../../../assets/image/partner/partner6.webp' },
+    // { src: '../../../assets/image/partner/partner7.webp' },
+    // { src: '../../../assets/image/partner/partner8.webp' },
+    // { src: '../../../assets/image/partner/partner9.webp' },
+    // { src: '../../../assets/image/partner/partner99.webp' },
+    // { src: '../../../assets/image/partner/tourradar.webp' },
+    // { src: '../../../assets/image/partner/viator.webp' },
   ];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
@@ -54,14 +71,15 @@ export class PartnerSliderComponent implements AfterViewInit {
   initializeSwiper() {
     if (this.partnerCarousel?.nativeElement) {
       const el = this.partnerCarousel.nativeElement;
-      el.slidesPerView = 6;
+      el.slidesPerView = 2;
       el.spaceBetween = 20;
       el.loop = true;
       el.centeredSlides = true;
       el.autoplay = { delay: 1500, disableOnInteraction: false };
-      el.speed = 500;
+      el.speed = 1500;
       el.breakpoints = {
-        0: { slidesPerView: 2 },
+        0: { slidesPerView: 1.5 },
+        400: { slidesPerView: 2 },
         500: { slidesPerView: 2.5 },
         767: { slidesPerView: 3.5 },
         992: { slidesPerView: 4 },

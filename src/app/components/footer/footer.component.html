@@ -4,10 +4,13 @@
       <!-- Logo Section -->
       <div class="footer-logo mb-5">
         <img
-          [src]="logo || '../../../assets/image/logo-egygo.webp'"
+          [src]="'../../../assets/image/EgyGo-logo-white.png'"
           [alt]="projectTitle"
           class="logo-img"
-          (error)="($any($event.target)).src='../../../assets/image/logo-egygo.webp'"
+          (error)="
+            $any($event.target).src =
+              '../../../assets/image/EgyGo-logo-white.png'
+          "
         />
       </div>
 

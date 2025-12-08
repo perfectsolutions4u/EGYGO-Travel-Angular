@@ -29,6 +29,7 @@ import { TourCartComponent } from '../../components/tour-cart/tour-cart.componen
 import { BannerComponent } from '../../components/banner/banner.component';
 import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip-form.component';
 import { AuthService } from '../../core/services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -42,6 +43,7 @@ import { AuthService } from '../../core/services/auth.service';
     TourCartComponent,
     BannerComponent,
     MakeTripFormComponent,
+    TranslateModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -75,7 +77,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     if (this._AuthService.getToken()) {
-      console.log('done', this._AuthService.getToken());
+      // console.log('done', this._AuthService.getToken());
 
       this.showCountries();
       this.profileMe();
@@ -208,6 +210,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     this._ProfileService.getProfile().subscribe({
       next: (response) => {
         this.profilemeData = response.data;
+        console.log(this.profilemeData);
         const url = response?.data?.image;
         this.profilemeData.image = url ? this.cacheBust(url) : null;
         // مفيش ملفات مختارة حالياً
@@ -255,7 +258,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         el.loop = true;
         el.autoplay = { delay: 1500, disableOnInteraction: false };
         el.pagination = { clickable: true };
-        el.speed = 500;
+        el.speed = 1500;
         el.breakpoints = {
           0: { slidesPerView: 1 },
           586: { slidesPerView: 1 },
@@ -270,7 +273,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         el.loop = true;
         el.autoplay = { delay: 1500, disableOnInteraction: false };
         el.pagination = { clickable: true };
-        el.speed = 500;
+        el.speed = 1500;
         el.breakpoints = {
           0: { slidesPerView: 1 },
           586: { slidesPerView: 1 },
