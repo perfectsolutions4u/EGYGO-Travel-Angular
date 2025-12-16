@@ -41,13 +41,12 @@ export class ContactComponent implements OnInit {
   userLocation: any;
 
   ngOnInit(): void {
-    this._SeoService.updateSEO({
-      title: 'Contact Us - EGYGO Travel',
-      description: 'Get in touch with EGYGO Travel. Contact us for bookings, inquiries, or travel assistance. We\'re here to help you plan your perfect trip.',
-      keywords: 'contact, contact us, travel booking, customer service, EGYGO Travel',
-      url: 'https://egygo-travel.com/contact',
-      type: 'website',
-    });
+    this._SeoService.updateSeoData(
+      {},
+      'EgyGo - Contact',
+      'Get in touch with EGYGO Travel. Contact us for bookings, inquiries, or travel assistance. We\'re here to help you plan your perfect trip.',
+      '/assets/image/logo-egygo.webp'
+    );
     this.getCountries();
     this.getSettings();
   }

@@ -37,7 +37,7 @@ export class WhyBookingWithUsComponent implements AfterViewInit {
     if (this.bookingCarousel?.nativeElement) {
       const el = this.bookingCarousel.nativeElement;
       el.slidesPerView = 1.5;
-      el.spaceBetween = 20;
+      el.spaceBetween = 10;
       el.loop = true;
       el.autoplay = { delay: 2500, disableOnInteraction: false };
       el.speed = 1500;

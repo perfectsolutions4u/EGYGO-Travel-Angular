@@ -5,7 +5,7 @@
     [class.whiteNav]="scrolled"
     [class.sidebar-open]="isSidebarOpen"
   >
-    <div class="container-fluid">
+    <div class="container flex-nowrap">
       <!-- Logo Section -->
       <div routerLink="/" class="navbar-brand cPointer">
         <img
@@ -20,13 +20,13 @@
       </div>
 
       <!-- Navigation Links (Desktop) -->
-      <div class="navbar-nav mx-auto d-none d-lg-flex bg-white rounded-pill">
+      <div class="navbar-nav me-auto d-none d-lg-flex gap-2 align-items-center">
         <ng-container *ngFor="let link of navigationLinks">
           <a
             [routerLink]="link.path"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: link.path === '/' }"
-            class="nav-link px-3 fw-bold text-dark position-relative"
+            class="nav-link fw-bold text-dark position-relative"
           >
             {{ link.label | translate }}
           </a>
@@ -34,7 +34,7 @@
           <!-- Dropdown categories -->
           <ng-container *ngIf="link.path === '/' && allCategories?.length">
             <div
-              class="nav-link px-3 fw-bold text-dark position-relative dropdown custom-dropdown"
+              class="nav-link fw-bold text-dark position-relative dropdown custom-dropdown"
             >
               <span
                 role="button"
@@ -49,7 +49,7 @@
                     class="dropdown-item"
                     [routerLink]="['/tour']"
                     routerLinkActive="active"
-                    [queryParams]="{ type: cat.id }"
+                    [queryParams]="{ type: cat.slug }"
                   >
                     {{ cat.title }}
                   </a>
@@ -60,7 +60,7 @@
 
           <ng-container *ngIf="link.path === '/' && allDestinations?.length">
             <div
-              class="nav-link px-3 fw-bold text-dark position-relative dropdown custom-dropdown"
+              class="nav-link fw-bold text-dark position-relative dropdown custom-dropdown"
             >
               <span
                 role="button"
@@ -98,7 +98,7 @@
                           class="dropdown-item"
                           [routerLink]="['/tour']"
                           routerLinkActive="active"
-                          [queryParams]="{ type: cat.id }"
+                          [queryParams]="{ type: cat.slug }"
                         >
                           {{ cat.title }}
                         </a>
@@ -132,9 +132,9 @@
       </div>
 
       <!-- Right Section -->
-      <div class="d-flex align-items-center g-1">
+      <div class="d-flex align-items-center flex-shrink-0 g-1">
         <div
-          class="dropdown position-relative custom-dropdown d-none d-lg-block pb-0 pt-1 px-1 rounded-2"
+          class="dropdown position-relative custom-dropdown pb-0 pt-1 px-1 rounded-2"
         >
           <span
             role="button"
@@ -143,50 +143,71 @@
 
           <ul class="dropdown-menu border-0 shadow">
             <li class="dropdown-item">
-              <div>
-                <i
-                  routerLink="/signup"
-                  routerLinkActive="textMainColor"
-                  class="fa fa-circle-user textSecondColor me-2 fw-bold cPointer"
-                  title="Sign up now"
-                ></i>
-
-                <i
-                  routerLink="/cart"
-                  routerLinkActive=" textMainColor "
-                  class="fa fa-cart-plus textSecondColor me-2 fw-bold cPointer"
-                  title="Tours cart"
-                ></i>
-
-                <i
-                  routerLink="/profile"
-                  routerLinkActive=" textMainColor "
-                  class="fa fa-address-book textSecondColor me-2 fw-bold cPointer"
-                  title="My profile"
-                ></i>
-              </div>
+              <i
+                routerLink="/signup"
+                routerLinkActive="textMainColor"
+                class="fa fa-circle-user textSecondColor me-2 fw-bold cPointer"
+                title="Sign up now"
+              ></i>
+              <span>{{ "common.signup" | translate }}</span>
             </li>
             <li class="dropdown-item">
-              <!-- select language -->
-              <select
-                name="language"
-                id="language"
-                (change)="onLangChange($event)"
-                class="p-1 py-2 rounded-2 text-capitalize border-0 textMainColor cPointer bg-transparent"
-              >
-                <option value="" selected disabled>
-                  {{ "common.selectLanguage" | translate }}
-                </option>
-                <option class="text-dark" value="en">
-                  {{ "common.english" | translate }}
-                </option>
-                <option class="text-dark" value="es">
-                  {{ "common.spanish" | translate }}
-                </option>
-                <option class="text-dark" value="it">
-                  {{ "common.italian" | translate }}
-                </option>
-              </select>
+              <i
+                routerLink="/cart"
+                routerLinkActive=" textMainColor "
+                class="fa fa-cart-plus textSecondColor me-2 fw-bold cPointer"
+                title="Tours cart"
+              ></i>
+              <span>{{ "common.cart" | translate }}</span>
+            </li>
+            <li class="dropdown-item">
+              <i
+                routerLink="/profile"
+                routerLinkActive=" textMainColor "
+                class="fa fa-address-book textSecondColor me-2 fw-bold cPointer"
+                title="My profile"
+              ></i>
+              <span>{{ "common.profile" | translate }}</span>
+            </li>
+            <li class="dropdown-item">
+              <i
+                routerLink="/logout"
+                routerLinkActive=" textMainColor "
+                class="fa fa-sign-out textSecondColor me-2 fw-bold cPointer"
+                title="Logout"
+              ></i>
+              <span>{{ "common.logout" | translate }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- select language -->
+        <div
+          class="dropdown position-relative custom-dropdown language-dropdown"
+        >
+          <i class="fa fa-globe textSecondColor" title="Select language"></i>
+          <span
+            role="button"
+            class="language-selector cPointer d-inline-block"
+            (click)="toggleLanguageDropdown()"
+          >
+            <span class="language-text">{{
+              getCurrentLanguageName() | translate
+            }}</span>
+          </span>
+
+          <ul
+            class="dropdown-menu border-0 shadow language-menu"
+            [class.show]="isLanguageDropdownOpen"
+          >
+            <li class="dropdown-item cPointer" (click)="selectLanguage('en')">
+              <span>{{ "common.english" | translate }}</span>
+            </li>
+            <li class="dropdown-item cPointer" (click)="selectLanguage('es')">
+              <span>{{ "common.spanish" | translate }}</span>
+            </li>
+            <li class="dropdown-item cPointer" (click)="selectLanguage('it')">
+              <span>{{ "common.italian" | translate }}</span>
             </li>
           </ul>
         </div>
@@ -194,12 +215,9 @@
         <!-- make trip Button -->
         <button
           routerLink="/makeTrip"
-          class="mainBtn Btn d-none d-lg-flex align-items-center gap-2 mx-2"
+          class="mainBtn Btn d-none d-lg-flex align-items-center gap-2 py-1 mx-2"
         >
           {{ "common.makeTrip" | translate }}
-          <i
-            class="fas fa-plane-up fa-rotate-by bgPrimaryWhiteColor rounded-circle overflow-hidden"
-          ></i>
         </button>
 
         <!-- Toggle Button -->
@@ -269,7 +287,7 @@
                     class="dropdown-item"
                     [routerLink]="['/tour']"
                     routerLinkActive="active"
-                    [queryParams]="{ type: cat.id }"
+                    [queryParams]="{ type: cat.slug }"
                   >
                     {{ cat.title }}
                   </a>
@@ -314,7 +332,7 @@
                           class="dropdown-item"
                           [routerLink]="['/tour']"
                           routerLinkActive="active"
-                          [queryParams]="{ type: cat.id }"
+                          [queryParams]="{ type: cat.slug }"
                         >
                           {{ cat.title }}
                         </a>
@@ -353,28 +371,11 @@
         ></i>
       </div>
 
-      <!-- select language -->
-      <select
-        name="language"
-        id="language"
-        (change)="onLangChange($event)"
-        class="p-2 m-2 rounded-2 text-capitalize border cPointer w-100"
-      >
-        <option value="" selected disabled>
-          {{ "common.selectLanguage" | translate }}
-        </option>
-        <option value="en">{{ "common.english" | translate }}</option>
-        <option value="es">{{ "common.spanish" | translate }}</option>
-        <option value="it">{{ "common.italian" | translate }}</option>
-      </select>
       <button
         routerLink="/makeTrip"
         class="mainBtn Btn w-100 d-flex align-items-center justify-content-center gap-2"
       >
         {{ "common.makeTrip" | translate }}
-        <i
-          class="fas fa-map-marker-alt fa-rotate-by textMainColor bgPrimaryWhiteColor rounded-circle overflow-hidden"
-        ></i>
       </button>
     </div>
   </div>

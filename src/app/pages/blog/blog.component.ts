@@ -40,13 +40,12 @@ export class BlogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._SeoService.updateSEO({
-      title: 'Travel Blog - Tips, Guides & Stories | EGYGO Travel',
-      description: 'Read our travel blog for tips, guides, and stories about amazing destinations. Get inspired for your next adventure with EGYGO Travel.',
-      keywords: 'travel blog, travel tips, travel guides, travel stories, destination guides, travel advice',
-      url: 'https://egygo-travel.com/blog',
-      type: 'website',
-    });
+    this._SeoService.updateSeoData(
+      {},
+      'EgyGo - Blog',
+      'Read our travel blog for tips, guides, and stories about amazing destinations. Get inspired for your next adventure with EGYGO Travel.',
+      '/assets/image/logo-egygo.webp'
+    );
     this._DataService.getBlogs().subscribe({
       next: (res) => {
         this.allBlogs = res?.data?.data ?? res ?? [];

@@ -48,15 +48,12 @@ export class DestinationComponent implements OnInit, AfterViewInit {
   bannerTitle: string = 'destination';
 
   ngOnInit(): void {
-    this._SeoService.updateSEO({
-      title: 'Destinations - Explore Amazing Places | EGYGO Travel',
-      description:
-        'Discover amazing travel destinations with EGYGO Travel. Explore Egypt and other beautiful places around the world. Find tours and travel guides.',
-      keywords:
-        'destinations, travel destinations, Egypt destinations, places to visit, travel locations, tourist destinations',
-      url: 'https://egygo-travel.com/destination',
-      type: 'website',
-    });
+    this._SeoService.updateSeoData(
+      {},
+      'EgyGo - Destinations',
+      'Discover amazing travel destinations with EGYGO Travel. Explore Egypt and other beautiful places around the world. Find tours and travel guides.',
+      '/assets/image/logo-egygo.webp'
+    );
     this.getDestination();
   }
 

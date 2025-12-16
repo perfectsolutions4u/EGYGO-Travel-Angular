@@ -1,6 +1,42 @@
 @import '../../../styles/#language';
 
+@keyframes shine {
+  0% {
+    transform: skewX(-25deg) translateX(0);
+  }
+  100% {
+    transform: skewX(-25deg) translateX(350%);
+  }
+}
 .about{
+  figure{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.2);
+    &::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      display: block;
+      content: '';
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+      transform: skewX(-25deg);
+    }
+
+    &:hover{
+      &::before{
+        animation: shine 1s ease-in-out ;
+        -webkit-animation: shine 1s ease-in-out ;
+}
+    }
+  }
   .counterBox{
     width: 140px;
     height: 140px;

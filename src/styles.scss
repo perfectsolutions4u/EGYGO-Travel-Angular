@@ -496,6 +496,16 @@ a{text-decoration: none; color: $text-color;}
 }
 
 
-
+// Swiper pagination bullet active style for all swiper containers
+::ng-deep {
+  .swiper-pagination-bullet-active,
+  .swiper-container .swiper-pagination-bullet-active,
+  swiper-container .swiper-pagination-bullet-active,
+  .swiper-pagination .swiper-pagination-bullet-active,
+  swiper-container .swiper-pagination .swiper-pagination-bullet-active {
+    background: $primary-color !important;
+    width: 30px !important;
+  }
+}
 
 

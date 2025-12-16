@@ -38,9 +38,10 @@
     "logout": "Logout",
     "profile": "Profile",
     "selectLanguage": "Select Language",
-    "english": "English",
-    "spanish": "Spanish",
-    "italian": "Italian",
+    "english": "Eng",
+    "spanish": "Spa",
+    "italian": "Ita",
+    "cart": "Cart",
     "makeTrip": "Make Trip"
   },
   "home": {
@@ -376,7 +377,7 @@
   "destination": {
     "tour": "Tour",
     "get10PercentOff": "Get 10% Off",
-    "viewAllDestinations": "View All Destinations",
+    "viewAllDestinations": "View More",
     "travelDeal": "Travel Deal",
     "ourMostPopularTravelDeals": "Our Most Popular Travel Deals"
   },

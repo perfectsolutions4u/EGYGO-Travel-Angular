@@ -35,15 +35,14 @@ import { SeoService } from '../../core/services/seo.service';
 export class AboutComponent implements OnInit {
   bannerTitle = 'about us';
 
-  constructor(private _SeoService: SeoService) {}
+  constructor(private seoService: SeoService) {}
 
   ngOnInit(): void {
-    this._SeoService.updateSEO({
-      title: 'About Us - EGYGO Travel',
-      description: 'Learn about EGYGO Travel, your trusted travel partner. Discover our mission, values, and commitment to providing exceptional travel experiences.',
-      keywords: 'about us, travel agency, EGYGO Travel, company information, travel services',
-      url: 'https://egygo-travel.com/about',
-      type: 'website',
-    });
+    this.seoService.updateSeoData(
+      {},
+      'EgyGo - About us',
+      'Learn more about EgyGo Travel, your trusted travel partner for premium tours and exceptional travel experiences.',
+      '/assets/image/logo-egygo.webp'
+    );
   }
 }

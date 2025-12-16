@@ -38,9 +38,10 @@
     "logout": "Esci",
     "profile": "Profilo",
     "selectLanguage": "Seleziona Lingua",
-    "english": "Inglese",
-    "spanish": "Spagnolo",
-    "italian": "Italiano",
+    "english": "Eng",
+    "spanish": "Spa",
+    "italian": "Ita",
+    "cart": "Carrito",
     "makeTrip": "Fai un Viaggio"
   },
   "home": {
@@ -376,7 +377,7 @@
   "destination": {
     "tour": "Tour",
     "get10PercentOff": "Ottieni 10% di Sconto",
-    "viewAllDestinations": "Vedi Tutte le Destinazioni",
+    "viewAllDestinations": "Vedi Más",
     "travelDeal": "Offerta di Viaggio",
     "ourMostPopularTravelDeals": "Le Nostre Offerte di Viaggio Più Popolari"
   },
@@ -389,4 +390,3 @@
     "ourClients": "I Nostri Clienti"
   }
 }
-

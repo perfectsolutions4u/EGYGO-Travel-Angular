@@ -93,7 +93,7 @@ export class BlogDetailsComponent implements OnInit {
                 .map((name: any) => name.trim());
 
               // this.writeReview.patchValue({ tour_id: response.data.id });
-              
+
               // Update SEO
               this.updateBlogSEO(response.data);
             },
@@ -169,26 +169,49 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   updateBlogSEO(blog: any): void {
-    const baseUrl = 'https://egygo-travel.com';
-    const blogImage = blog.image || '';
-    const blogDescription = blog.short_description || blog.description || `Read ${blog.title} on EGYGO Travel blog. Travel tips, guides, and insights.`;
-    const tags = blog.tags ? blog.tags.split(',').map((t: string) => t.trim()).join(', ') : '';
-    const keywords = `${blog.title}, travel blog, ${tags}, travel tips, Egypt travel`.toLowerCase();
+    // Extract SEO data from API if available
+    const seoData: any = {};
+    if (blog.seo) {
+      if (blog.seo.meta_title) seoData.meta_title = blog.seo.meta_title;
+      if (blog.seo.meta_description)
+        seoData.meta_description = blog.seo.meta_description;
+      if (blog.seo.meta_keywords)
+        seoData.meta_keywords = blog.seo.meta_keywords;
+      if (blog.seo.og_title) seoData.og_title = blog.seo.og_title;
+      if (blog.seo.og_description)
+        seoData.og_description = blog.seo.og_description;
+      if (blog.seo.og_image) seoData.og_image = blog.seo.og_image;
+      if (blog.seo.og_type) seoData.og_type = blog.seo.og_type;
+      if (blog.seo.twitter_title)
+        seoData.twitter_title = blog.seo.twitter_title;
+      if (blog.seo.twitter_description)
+        seoData.twitter_description = blog.seo.twitter_description;
+      if (blog.seo.twitter_card) seoData.twitter_card = blog.seo.twitter_card;
+      if (blog.seo.twitter_image)
+        seoData.twitter_image = blog.seo.twitter_image;
+      if (blog.seo.canonical) seoData.canonical = blog.seo.canonical;
+      if (blog.seo.robots) seoData.robots = blog.seo.robots;
+      if (blog.seo.structure_schema)
+        seoData.structure_schema = blog.seo.structure_schema;
+    }
 
-    this._SeoService.updateSEO({
-      title: `${blog.title} | EGYGO Travel Blog`,
-      description: blogDescription.substring(0, 160),
-      keywords: keywords,
-      image: blogImage,
-      url: `${baseUrl}/blog/${blog.slug}`,
-      type: 'article',
-      author: 'EGYGO Travel',
-      publishedTime: blog.created_at || new Date().toISOString(),
-      modifiedTime: blog.updated_at || blog.created_at || new Date().toISOString(),
-    });
+    const blogImage =
+      blog.seo?.og_image || blog.image || '/assets/image/logo-egygo.webp';
+    const blogDescription =
+      blog.seo?.meta_description ||
+      blog.seo?.og_description ||
+      blog.short_description ||
+      blog.description ||
+      `Read ${blog.title} on EGYGO Travel blog. Travel tips, guides, and insights.`;
 
-    // Add structured data
-    const structuredData = this._SeoService.generateBlogStructuredData(blog, baseUrl);
-    this._SeoService.updateSEO({ structuredData });
+    const fallbackTitle =
+      blog.seo?.meta_title || blog.seo?.og_title || `EgyGo - ${blog.title}`;
+
+    this._SeoService.updateSeoData(
+      seoData,
+      fallbackTitle,
+      blogDescription.substring(0, 160),
+      blogImage
+    );
   }
 }

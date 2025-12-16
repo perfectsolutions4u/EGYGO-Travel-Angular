@@ -40,6 +40,7 @@ export class NavComponent implements OnInit {
   ];
 
   isSidebarOpen = false;
+  isLanguageDropdownOpen = false;
   allDestinations: any[] = [];
   allCategories: any[] = [];
   egyptCategories: any[] = [];
@@ -48,6 +49,7 @@ export class NavComponent implements OnInit {
   logo: any;
   phoneNunmber: any;
   siteTitle: any;
+  currentLanguage: string = 'en';
 
   // -------- start scroll code
   scrolled = false;
@@ -55,7 +57,16 @@ export class NavComponent implements OnInit {
   @HostListener('window:scroll', [])
   onScroll() {
     const y = window.scrollY || document.documentElement.scrollTop || 0;
-    this.scrolled = y > 50;
+    this.scrolled = y > 10;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const languageDropdown = target.closest('.language-dropdown');
+    if (!languageDropdown && this.isLanguageDropdownOpen) {
+      this.isLanguageDropdownOpen = false;
+    }
   }
 
   // -------- end scroll code
@@ -97,13 +108,39 @@ export class NavComponent implements OnInit {
     }
 
     const langCode = localStorage.getItem('language') || 'en';
+    this.currentLanguage = langCode;
     const dir = langCode === 'ar' ? 'rtl' : 'ltr';
 
     document.documentElement.setAttribute('lang', langCode);
     document.documentElement.setAttribute('dir', dir);
+    this.translate.use(langCode);
+  }
 
-    const select = document.getElementById('language') as HTMLSelectElement;
-    if (select) select.value = langCode;
+  toggleLanguageDropdown(): void {
+    this.isLanguageDropdownOpen = !this.isLanguageDropdownOpen;
+  }
+
+  selectLanguage(langCode: string): void {
+    this.currentLanguage = langCode;
+    this.isLanguageDropdownOpen = false;
+
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('language', langCode);
+      this.translate.use(langCode);
+
+      const htmlTag = document.documentElement;
+      htmlTag.setAttribute('lang', langCode);
+      htmlTag.setAttribute('dir', 'ltr');
+    }
+  }
+
+  getCurrentLanguageName(): string {
+    const names: { [key: string]: string } = {
+      en: 'common.english',
+      es: 'common.spanish',
+      it: 'common.italian',
+    };
+    return names[this.currentLanguage] || 'common.english';
   }
 
   toggleSidebar() {

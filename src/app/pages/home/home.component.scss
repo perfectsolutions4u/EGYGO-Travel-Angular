@@ -1,13 +1,14 @@
 @import '../../../styles/variables.scss';
 
 .topsec{
-    margin-top: -70px;
+    margin-top: 25px;
 
     .mainContentImg{
       background: url('../../../assets/image/mg/hero-bg-1.webp') center no-repeat;
       background-size: cover;
-      height: 100vh;
-      padding: 194px 0 210px;
+      height: 70vh;
+      // padding: 194px 0 210px;
+      padding: 130px 0 160px;
       img {
           max-width: 100% ;
           height: auto ;
@@ -44,7 +45,7 @@
       }
     }
     .formBox{
-      transform: translateY(-44%);
+      transform: translateY(-55%);
       position: relative;
       z-index: 994;
       margin-bottom: -150px;
@@ -120,6 +121,12 @@
 
      }
 
+    }
+
+    @media screen and (max-width:767px) {
+      .formBox{
+        transform: translateY(-35%);
+}
     }
 }
 

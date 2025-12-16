@@ -168,29 +168,40 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
   }
 
   updateDestinationSEO(destination: any): void {
-    const baseUrl = 'https://egygo-travel.com';
-    const destImage = destination.image || '';
+    // Extract SEO data from API if available
+    const seoData: any = {};
+    if (destination.seo) {
+      if (destination.seo.meta_title) seoData.meta_title = destination.seo.meta_title;
+      if (destination.seo.meta_description) seoData.meta_description = destination.seo.meta_description;
+      if (destination.seo.meta_keywords) seoData.meta_keywords = destination.seo.meta_keywords;
+      if (destination.seo.og_title) seoData.og_title = destination.seo.og_title;
+      if (destination.seo.og_description) seoData.og_description = destination.seo.og_description;
+      if (destination.seo.og_image) seoData.og_image = destination.seo.og_image;
+      if (destination.seo.og_type) seoData.og_type = destination.seo.og_type;
+      if (destination.seo.twitter_title) seoData.twitter_title = destination.seo.twitter_title;
+      if (destination.seo.twitter_description) seoData.twitter_description = destination.seo.twitter_description;
+      if (destination.seo.twitter_card) seoData.twitter_card = destination.seo.twitter_card;
+      if (destination.seo.twitter_image) seoData.twitter_image = destination.seo.twitter_image;
+      if (destination.seo.canonical) seoData.canonical = destination.seo.canonical;
+      if (destination.seo.robots) seoData.robots = destination.seo.robots;
+      if (destination.seo.structure_schema) seoData.structure_schema = destination.seo.structure_schema;
+    }
+
+    const destImage = destination.seo?.og_image || destination.image || '/assets/image/logo-egygo.webp';
     const destDescription =
+      destination.seo?.meta_description ||
+      destination.seo?.og_description ||
       destination.description ||
       destination.short_description ||
       `Explore ${destination.title} with EGYGO Travel. Discover amazing tours and experiences.`;
-    const keywords =
-      `${destination.title}, destination, travel, tours, ${destination.title} tours, Egypt travel`.toLowerCase();
 
-    this._SeoService.updateSEO({
-      title: `${destination.title} - Tours & Travel Guide | EGYGO Travel`,
-      description: destDescription.substring(0, 160),
-      keywords: keywords,
-      image: destImage,
-      url: `${baseUrl}/destination/${destination.slug}`,
-      type: 'website',
-    });
+    const fallbackTitle = destination.seo?.meta_title || destination.seo?.og_title || `EgyGo - ${destination.title}`;
 
-    // Add structured data
-    const structuredData = this._SeoService.generateDestinationStructuredData(
-      destination,
-      baseUrl
+    this._SeoService.updateSeoData(
+      seoData,
+      fallbackTitle,
+      destDescription.substring(0, 160),
+      destImage
     );
-    this._SeoService.updateSEO({ structuredData });
   }
 }

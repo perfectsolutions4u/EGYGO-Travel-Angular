@@ -128,7 +128,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private _Router: Router,
     private _MaketripService: MaketripService,
     private sanitizer: DomSanitizer,
-    private _SeoService: SeoService,
+    private seoService: SeoService,
     private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object,
     private el: ElementRef
@@ -162,14 +162,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (this.isBrowser) {
       if (this.destinationCarousel?.nativeElement) {
         const el = this.destinationCarousel.nativeElement;
-        el.slidesPerView = 3.5;
-        el.spaceBetween = 20;
+        el.slidesPerView = 1;
+        el.spaceBetween = 10;
         el.loop = true;
-        el.autoplay = { delay: 2500, disableOnInteraction: false };
-        el.pagination = { clickable: true };
+        el.autoplay = {
+          delay: 2500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        };
+        el.pagination = false;
         el.speed = 1500;
         el.breakpoints = {
-          0: { slidesPerView: 1.5 },
+          0: { slidesPerView: 1 },
           586: { slidesPerView: 1.5 },
           767: { slidesPerView: 2.5 },
           992: { slidesPerView: 3 },
@@ -179,8 +183,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
       if (this.tourCarousel?.nativeElement && this.toursLoaded) {
         const el = this.tourCarousel.nativeElement;
-        el.slidesPerView = 4;
-        el.spaceBetween = 20;
+        el.slidesPerView = 1;
+        el.spaceBetween = 10;
         el.loop = true;
         el.autoplay = {
           delay: 3000,
@@ -200,10 +204,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
       if (this.popularTourCarousel?.nativeElement && this.toursLoaded) {
         const el = this.popularTourCarousel.nativeElement;
-        el.slidesPerView = 4;
-        el.spaceBetween = 20;
+        el.slidesPerView = 1;
+        el.spaceBetween = 10;
         el.loop = true;
-        el.autoplay = { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true };
+        el.autoplay = {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        };
         el.speed = 500;
         el.breakpoints = {
           586: { slidesPerView: 1 },
@@ -268,7 +276,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
 
   ngOnInit(): void {
-    this.setupSEO();
+    // Get settings and update SEO from API, with fallback to defaults
+    this.getSettingsAndUpdateSeo();
+    // this.seoService.updateSeoData(
+    //   {},
+    //   'Home - EgyGo Travel',
+    //   'Discover amazing tours and travel experiences with EgyGo Travel. Book your dream vacation today.',
+    //   '/assets/image/logo-egygo.webp'
+    // );
     this.getDestination();
     this.getCategory();
     this.getDurations();
@@ -286,51 +301,60 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  setupSEO(): void {
+  getSettingsAndUpdateSeo(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        const siteTitle =
-          res.data.find((item: any) => item.option_key === 'site_title')
-            ?.option_value[0] || 'EGYGO Travel';
-        const siteDescription =
-          res.data.find((item: any) => item.option_key === 'site_description')
-            ?.option_value[0] ||
-          "Discover amazing tours and destinations with EGYGO Travel. Book your perfect trip to Egypt and explore the world's most beautiful places.";
-        const logoPath =
-          res.data.find((item: any) => item.option_key === 'logo')
-            ?.option_value[0] || '';
-        const logo = logoPath ? this._DataService.getImageUrl(logoPath) : '';
+        if (res.data && Array.isArray(res.data)) {
+          // Get current language or default to 'en'
+          const currentLang = isPlatformBrowser(this.platformId)
+            ? localStorage.getItem('language') || 'en'
+            : 'en';
+          console.log(res.data);
 
-        this._SeoService.updateSEO({
-          title: `${siteTitle} - Your Trusted Travel Partner`,
-          description: siteDescription,
-          keywords:
-            'travel, tours, Egypt, destinations, vacation, booking, travel agency, Nile cruises, pyramids, Luxor, Aswan',
-          image: logo,
-          url: 'https://egygo-travel.com',
-          type: 'website',
-        });
+          // Extract SEO data from settings
+          const seoData = this.seoService.extractSeoFromSettings(
+            res.data,
+            currentLang
+          );
 
-        // Add organization structured data
-        const orgData = this._SeoService.generateOrganizationStructuredData(
+          // Always add "test" to title in home page
+          const baseTitle =
+            seoData.meta_title || seoData.og_title || 'EgyGo - Home';
+          const titleWithTest = ` ${baseTitle}`;
+
+          // Update SEO with test in title
+          this.seoService.updateSeoData(
+            { ...seoData, meta_title: titleWithTest, og_title: titleWithTest },
+            titleWithTest,
+            seoData.meta_description ||
+              seoData.og_description ||
+              'Discover amazing tours and travel experiences with EgyGo Travel. Book your dream vacation today.',
+            seoData.og_image || '/assets/image/logo-egygo.webp'
+          );
+        } else {
+          // If settings API fails, use defaults with test
+          this.seoService.updateSeoData(
+            {
+              meta_title: 'EgyGo - Home',
+              og_title: 'EgyGo - Home',
+            },
+            'EgyGo - Home',
+            'Discover amazing tours and travel experiences with EgyGo Travel. Book your dream vacation today.',
+            '/assets/image/logo-egygo.webp'
+          );
+        }
+      },
+      error: (err) => {
+        // If settings API fails, use defaults with test
+        this.seoService.updateSeoData(
           {
-            site_title: siteTitle,
-            site_description: siteDescription,
-            logo: logo,
-            phone:
-              res.data.find(
-                (item: any) => item.option_key === 'CONTACT_PHONE_NUMBER'
-              )?.option_value[0] || '',
-            email:
-              res.data.find((item: any) => item.option_key === 'email_address')
-                ?.option_value[0] || '',
-            address:
-              res.data.find((item: any) => item.option_key === 'address')
-                ?.option_value[0] || '',
+            meta_title: 'test - EgyGo - Home',
+            og_title: 'test - EgyGo - Home',
           },
-          'https://egygo-travel.com'
+          'test - EgyGo - Home',
+          'Discover amazing tours and travel experiences with EgyGo Travel. Book your dream vacation today.',
+          '/assets/image/logo-egygo.webp'
         );
-        this._SeoService.updateSEO({ structuredData: orgData });
       },
     });
   }

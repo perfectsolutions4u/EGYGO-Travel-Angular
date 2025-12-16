@@ -1,14 +1,14 @@
-<div class="topsec">
-  <div class="mainContentImg position-relative z-1 overflow-hidden">
-    <div class="container-fluid">
+<div class="topsec container">
+  <div class="mainContentImg position-relative z-1 overflow-hidden rounded-3">
+    <div class="">
       <div class="row">
         <div
           class="col-xl-6 offset-xl-0 col-lg-6 offset-lg-0 col-md-8 offset-md-2"
         >
-          <div class="mainContentText text-center text-capitalize">
-            <span class="textSecondColor fw-bold fs-5">{{
+          <div class="mainContentText text-center text-lowercase">
+            <!-- <span class="textSecondColor fw-bold fs-5">{{
               "home.discoverNatureNewTravel" | translate
-            }}</span>
+            }}</span> -->
             <h1 class="h2 fw-bold">
               {{ "home.expeditionsAcrossGlobe" | translate }}
             </h1>
@@ -296,7 +296,6 @@
         [spaceBetween]="20"
         [loop]="true"
         [autoplay]="{ delay: 2500, disableOnInteraction: false }"
-        [pagination]="{ clickable: true }"
         init="false"
       >
         @for (des of allDestinations; track $index) {
@@ -309,13 +308,13 @@
   </div>
 </section>
 
-<section class="travel-agency-intro py-5">
+<!-- <section class="travel-agency-intro py-5">
   <div class="container">
     <h2 class="title text-center fw-bold">
       {{ "home.travelAgencyIntro" | translate }}
     </h2>
   </div>
-</section>
+</section> -->
 
 <section class="aboutContent my-5">
   <div class="container text-center">
@@ -343,7 +342,7 @@
   </div>
 </section>
 
-<section class="travel-agency-intro-content my-5 py-5">
+<!-- <section class="travel-agency-intro-content my-5 py-5">
   <div class="container-fluid">
     <div class="row g-3">
       <div class="col-xl-6">
@@ -361,7 +360,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="popTours py-5 my-5 bgPrimaryWhiteColor">
   <div class="container position-relative pt-5">
@@ -458,10 +457,7 @@
 
     <div class="">
       @if (isBrowser && toursLoaded && tourstest.length > 0) {
-      <swiper-container
-        #popularTourCarousel
-        init="false"
-      >
+      <swiper-container #popularTourCarousel init="false">
         @for (tour of tourstest.slice().reverse(); track $index) {
         <swiper-slide>
           <app-tour-cart [tour]="tour"></app-tour-cart>

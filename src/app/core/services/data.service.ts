@@ -9,7 +9,7 @@ import { BaseService } from './base.service';
 export class DataService extends BaseService {
   getTours(searchObj?: any, page: number = 1): Observable<any> {
     const params = {
-      includes: 'destinations,categories,days',
+      includes: 'destinations,categories,days,seo',
       ...searchObj,
       page: page,
     };
@@ -18,13 +18,13 @@ export class DataService extends BaseService {
 
   getTourPagination(page: number): Observable<any> {
     return this.HttpClient.get(
-      `${this.baseUrl}/tours?includes=destinations,categories,days&page=${page}`
+      `${this.baseUrl}/tours?includes=destinations,categories,days,seo&page=${page}`
     );
   }
 
   getToursSlug(slug: any): Observable<any> {
     return this.HttpClient.get(
-      `${this.baseUrl}/tours/${slug}?includes=destinations,categories,days`
+      `${this.baseUrl}/tours/${slug}?includes=destinations,categories,days,seo`
     );
   }
 
@@ -34,17 +34,19 @@ export class DataService extends BaseService {
       paramsId = paramsId.set('parent_id', parent_id);
     }
 
-    return this.HttpClient.get(`${this.baseUrl}/destinations`, {
+    return this.HttpClient.get(`${this.baseUrl}/destinations?includes=seo`, {
       params: paramsId,
     });
   }
 
   getDestinationBySlug(slug: string): Observable<any> {
-    return this.HttpClient.get(`${this.baseUrl}/destinations/${slug}`);
+    return this.HttpClient.get(
+      `${this.baseUrl}/destinations/${slug}?includes=seo`
+    );
   }
 
   getCategories(): Observable<any> {
-    return this.HttpClient.get(`${this.baseUrl}/categories`, {
+    return this.HttpClient.get(`${this.baseUrl}/categories?includes=seo`, {
       params: { page_limit: 100 },
     });
   }
