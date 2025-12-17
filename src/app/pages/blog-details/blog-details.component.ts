@@ -32,6 +32,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class BlogDetailsComponent implements OnInit {
   bannerTitle: string = '';
+  bannerImage = '../../../assets/image/new/1.webp';
 
   constructor(
     private _DataService: DataService,
@@ -74,6 +75,13 @@ export class BlogDetailsComponent implements OnInit {
               response.data.created_at = this.formatDate(
                 response.data.created_at
               );
+
+              // Set banner image from featured_image or use default
+              if (response.data?.featured_image) {
+                this.bannerImage = response.data.featured_image;
+              } else {
+                this.bannerImage = '../../../assets/image/new/1.webp';
+              }
             },
           });
         } else {
@@ -82,7 +90,14 @@ export class BlogDetailsComponent implements OnInit {
               // console.log(response.data);
               this.blogDetails = response.data;
               this.bannerTitle = this.blogDetails.title;
-              // console.log(this.bannerTitle);
+              // console.log('blog details:', this.blogDetails);
+              // Set banner image from featured_image or use default
+              if (this.blogDetails?.featured_image) {
+                this.bannerImage = this.blogDetails.featured_image;
+              } else {
+                this.bannerImage = '../../../assets/image/new/1.webp';
+              }
+              // console.log('banner image:', this.bannerImage);
 
               this.isListId = false;
               response.data.created_at = this.formatDate(
@@ -91,6 +106,12 @@ export class BlogDetailsComponent implements OnInit {
               this.tags = this.blogDetails.tags
                 .split(',')
                 .map((name: any) => name.trim());
+
+              // if (response.data?.featured_image) {
+              //   this.bannerImage = response.data.featured_image;
+              // } else {
+              //   this.bannerImage = '../../../assets/image/new/1.webp';
+              // }
 
               // this.writeReview.patchValue({ tour_id: response.data.id });
 

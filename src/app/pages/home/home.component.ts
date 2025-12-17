@@ -84,7 +84,6 @@ declare var $: any;
     // CounterComponent,
     TranslateModule,
     DestinationCartComponent,
-    AboutCategoryComponent,
     CounterComponent,
   ],
   templateUrl: './home.component.html',
@@ -309,7 +308,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           const currentLang = isPlatformBrowser(this.platformId)
             ? localStorage.getItem('language') || 'en'
             : 'en';
-          console.log(res.data);
+          // console.log(res.data);
 
           // Extract SEO data from settings
           const seoData = this.seoService.extractSeoFromSettings(
@@ -327,8 +326,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
             { ...seoData, meta_title: titleWithTest, og_title: titleWithTest },
             titleWithTest,
             seoData.meta_description ||
-            seoData.og_description ||
-            'Discover amazing tours and travel experiences with EgyGo Travel. Book your dream vacation today.',
+              seoData.og_description ||
+              'Discover amazing tours and travel experiences with EgyGo Travel. Book your dream vacation today.',
             seoData.og_image || '/assets/image/logo-egygo.webp'
           );
         } else {

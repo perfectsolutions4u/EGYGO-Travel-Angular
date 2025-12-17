@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
   bannerTitle: string = 'my profile';
+  bannerImage = '../../../assets/image/new/1.webp';
   updateProfile!: FormGroup;
   updateImage!: FormGroup;
   countriesList: any[] = [];

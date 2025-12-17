@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   bannerTitle = 'login';
+  bannerImage = '../../../assets/image/new/1.webp';
   logo!: any;
   siteTitle!: any;
   isLoading = false;

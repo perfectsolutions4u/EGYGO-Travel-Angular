@@ -33,6 +33,7 @@ export class ContactComponent implements OnInit {
   ) {}
 
   bannerTitle: string = 'contact';
+  bannerImage = '../../../assets/image/new/1.webp';
 
   countryList: any[] = [];
   phoneNumber: any;

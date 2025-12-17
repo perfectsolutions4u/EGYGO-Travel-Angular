@@ -41,6 +41,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   ) {}
 
   bannerTitle: string = 'checkout';
+  bannerImage = '../../../assets/image/new/1.webp';
 
   checkoutData: object = {};
   countries: any[] = [];

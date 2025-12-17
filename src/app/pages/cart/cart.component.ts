@@ -20,6 +20,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   bannerTitle: string = 'cart';
+  bannerImage = '../../../assets/image/new/1.webp';
 
   tourCart: any[] = [];
   haveData: boolean = false;

@@ -1,5 +1,8 @@
 <div class="mb-5">
-  <app-banner [bannerTitle]="bannerTitle"></app-banner>
+  <app-banner
+    [bannerTitle]="bannerTitle"
+    [backgroundImage]="bannerImage"
+  ></app-banner>
 </div>
 
 <section class="blogs my-5 py-5">
@@ -15,7 +18,9 @@
 
         {{ "footer.ourBlog" | translate }}
       </span>
-      <h2 class="my-3 textSecondColor fw-bold">{{ "blog.ourLatestBlogAndNews" | translate }}</h2>
+      <h2 class="my-3 textSecondColor fw-bold">
+        {{ "blog.ourLatestBlogAndNews" | translate }}
+      </h2>
     </div>
 
     <div *ngIf="totalItems; else noData">

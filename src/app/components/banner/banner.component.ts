@@ -11,4 +11,5 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class BannerComponent {
   @Input() bannerTitle: string = '';
+  @Input() backgroundImage: string = '../../../assets/image/new/1.webp';
 }

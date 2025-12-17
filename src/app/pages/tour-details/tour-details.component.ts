@@ -49,7 +49,6 @@ import { MakeTripFormComponent } from '../../components/make-trip-form/make-trip
     MatInputModule,
     BannerComponent,
     MakeTripFormComponent,
-    RouterLink,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './tour-details.component.html',
@@ -67,7 +66,7 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
     private sanitizer: DomSanitizer,
     private _SeoService: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {}
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -99,6 +98,7 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
   }
 
   bannerTitle: string = '';
+  bannerImage = '../../../assets/image/new/1.webp';
   panelOpenState = false;
 
   tourData: Itour | null = null;
@@ -150,7 +150,6 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
     this._ActivatedRoute.paramMap.subscribe({
       next: (param) => {
         this.tourDetailsSlug = param.get('slug') ?? '';
-        // console.log(this.tourDetailsSlug);
         this.getTour(this.tourDetailsSlug);
       },
     });
@@ -164,6 +163,14 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
       next: (response) => {
         // console.log(response.data);
         this.tourData = response.data;
+        if (this.tourData?.featured_image) {
+          this.bannerImage = this.tourData.featured_image;
+        } else {
+          this.bannerImage = '../../../assets/image/new/1.webp';
+        }
+        // console.log('tour data:', this.tourData);
+
+        // console.log('banner image:', this.bannerImage);
         // Keep itinerary in the same order as from dashboard
         this.tourItenary = response.data?.days ? [...response.data.days] : [];
         // Sort by display_order if it exists in reverse order, otherwise keep original order
@@ -488,7 +495,10 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       const bookingFormElement = document.getElementById('bookingForm');
       if (bookingFormElement) {
-        bookingFormElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        bookingFormElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
       }
     }
   }

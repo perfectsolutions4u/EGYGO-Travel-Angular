@@ -29,6 +29,7 @@ export class ForgetPasswordComponent implements OnInit {
   ) {}
 
   bannerTitle = 'forget password';
+  bannerImage = '../../../assets/image/new/1.webp';
   logo!: any;
   siteTitle!: any;
   isLoading = false;

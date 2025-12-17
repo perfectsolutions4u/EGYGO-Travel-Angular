@@ -1,5 +1,8 @@
 <div class="mb-5">
-  <app-banner [bannerTitle]="bannerTitle"></app-banner>
+  <app-banner
+    [bannerTitle]="bannerTitle"
+    [backgroundImage]="bannerImage"
+  ></app-banner>
 </div>
 
 <section class="my-5 py-5 tourSearchBox">
@@ -11,33 +14,57 @@
         >
           <!-- category -->
           <div class="mb-4">
-            <h4 class="h5 fw-bold pb-3 border-bottom mb-3">
-              {{ "tour.tourCategory" | translate }}
-            </h4>
-            <mat-radio-group
-              [value]="selectedTripType"
-              (change)="onRadioChange('selectedTripType', $event.value)"
+            <div
+              class="d-flex justify-content-between align-items-center pb-3 border-bottom mb-3 cPointer"
+              (click)="toggleCollapse('category')"
             >
-              <div
-                *ngFor="let type of allCategories"
-                class="flexBetween listFilter p-1 rounded-2"
+              <h4 class="h5 fw-bold mb-0">
+                {{ "tour.tourCategory" | translate }}
+              </h4>
+              <i
+                class="fa"
+                [ngClass]="
+                  isCategoryCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'
+                "
+              ></i>
+            </div>
+            <div *ngIf="!isCategoryCollapsed">
+              <mat-radio-group
+                [value]="selectedTripType"
+                (change)="onRadioChange('selectedTripType', $event.value)"
               >
-                <mat-radio-button class="cPointer" [value]="type.id">
-                  {{ type.title }}
-                </mat-radio-button>
-                <span class="flexCenter rounded-circle">{{
-                  getCategoryToursCount(type.id)
-                }}</span>
-              </div>
-            </mat-radio-group>
+                <div
+                  *ngFor="let type of allCategories"
+                  class="flexBetween listFilter p-1 rounded-2"
+                >
+                  <mat-radio-button class="cPointer" [value]="type.id">
+                    {{ type.title }}
+                  </mat-radio-button>
+                  <span class="flexCenter rounded-circle">{{
+                    getCategoryToursCount(type.id)
+                  }}</span>
+                </div>
+              </mat-radio-group>
+            </div>
           </div>
 
           <!-- price -->
           <div class="mb-4">
-            <h4 class="h5 fw-bold pb-3 border-bottom mb-3">
-              {{ "tour.tourPrice" | translate }}
-            </h4>
-            <div>
+            <div
+              class="d-flex justify-content-between align-items-center pb-3 border-bottom mb-3 cPointer"
+              (click)="toggleCollapse('price')"
+            >
+              <h4 class="h5 fw-bold mb-0">
+                {{ "tour.tourPrice" | translate }}
+              </h4>
+              <i
+                class="fa"
+                [ngClass]="
+                  isPriceCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'
+                "
+              ></i>
+            </div>
+            <div *ngIf="!isPriceCollapsed">
               <p class="mb-0 text-capitalize">
                 {{ "tour.priceFrom" | translate }}:
                 <span class="textMainColor"> {{ minBudget | currency }} </span>
@@ -64,49 +91,75 @@
 
           <!-- duartion -->
           <div class="mb-4">
-            <h4 class="h5 fw-bold pb-3 border-bottom mb-3">
-              {{ "tour.tourDuration" | translate }}
-            </h4>
-            <mat-radio-group
-              [value]="selectedDuration"
-              (change)="onRadioChange('selectedDuration', $event.value)"
+            <div
+              class="d-flex justify-content-between align-items-center pb-3 border-bottom mb-3 cPointer"
+              (click)="toggleCollapse('duration')"
             >
-              <div
-                *ngFor="let d of allDurations"
-                class="flexBetween listFilter p-1 rounded-2"
+              <h4 class="h5 fw-bold mb-0">
+                {{ "tour.tourDuration" | translate }}
+              </h4>
+              <i
+                class="fa"
+                [ngClass]="
+                  isDurationCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'
+                "
+              ></i>
+            </div>
+            <div *ngIf="!isDurationCollapsed">
+              <mat-radio-group
+                [value]="selectedDuration"
+                (change)="onRadioChange('selectedDuration', $event.value)"
               >
-                <mat-radio-button class="cPointer" [value]="d.id">
-                  {{ d.title }}
-                </mat-radio-button>
+                <div
+                  *ngFor="let d of allDurations"
+                  class="flexBetween listFilter p-1 rounded-2"
+                >
+                  <mat-radio-button class="cPointer" [value]="d.id">
+                    {{ d.title }}
+                  </mat-radio-button>
 
-                <span class="flexCenter rounded-circle">{{
-                  getDurationToursCount(d.id)
-                }}</span>
-              </div>
-            </mat-radio-group>
+                  <span class="flexCenter rounded-circle">{{
+                    getDurationToursCount(d.id)
+                  }}</span>
+                </div>
+              </mat-radio-group>
+            </div>
           </div>
 
           <!-- destination -->
           <div class="mb-4">
-            <h4 class="h5 fw-bold pb-3 border-bottom mb-3">
-              {{ "tour.tourDestination" | translate }}
-            </h4>
-            <mat-radio-group
-              [value]="selectedDestination"
-              (change)="onRadioChange('selectedDestination', $event.value)"
+            <div
+              class="d-flex justify-content-between align-items-center pb-3 border-bottom mb-3 cPointer"
+              (click)="toggleCollapse('destination')"
             >
-              <div
-                *ngFor="let dest of allDestinations"
-                class="flexBetween listFilter p-2 rounded-2"
+              <h4 class="h5 fw-bold mb-0">
+                {{ "tour.tourDestination" | translate }}
+              </h4>
+              <i
+                class="fa"
+                [ngClass]="
+                  isDestinationCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'
+                "
+              ></i>
+            </div>
+            <div *ngIf="!isDestinationCollapsed">
+              <mat-radio-group
+                [value]="selectedDestination"
+                (change)="onRadioChange('selectedDestination', $event.value)"
               >
-                <mat-radio-button class="cPointer" [value]="dest.id">
-                  {{ dest.title }}
-                </mat-radio-button>
-                <span class="flexCenter textMainColor rounded-circle">{{
-                  getDestinationToursCount(dest.id)
-                }}</span>
-              </div>
-            </mat-radio-group>
+                <div
+                  *ngFor="let dest of allDestinations"
+                  class="flexBetween listFilter p-2 rounded-2"
+                >
+                  <mat-radio-button class="cPointer" [value]="dest.id">
+                    {{ dest.title }}
+                  </mat-radio-button>
+                  <span class="flexCenter textMainColor rounded-circle">{{
+                    getDestinationToursCount(dest.id)
+                  }}</span>
+                </div>
+              </mat-radio-group>
+            </div>
           </div>
         </div>
       </div>
@@ -119,19 +172,14 @@
               <h6 class="textSecondColor fw-bold mb-0">
                 {{ filteredTours.length }} {{ "tour.resultsFound" | translate }}
               </h6>
-              <button
-                class="btn btn-sm btn-outline-secondary"
+              @if (selectedTripType !== null || selectedDestination !== null ||
+              selectedDuration !== null || minBudget > 0 || maxBudget < 5000) {
+
+              <i
+                class="fa fa-trash cPointer text-danger fs-5"
                 (click)="clearAllFilters()"
-                *ngIf="
-                  selectedTripType !== null ||
-                  selectedDestination !== null ||
-                  selectedDuration !== null ||
-                  minBudget > 0 ||
-                  maxBudget < 5000
-                "
-              >
-                {{ "tour.clearFilters" | translate }}
-              </button>
+              ></i>
+              }
             </div>
             <!-- style toggle -->
             <div>

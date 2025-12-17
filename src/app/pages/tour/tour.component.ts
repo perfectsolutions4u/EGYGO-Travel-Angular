@@ -47,6 +47,7 @@ export class TourComponent implements OnInit {
   ) {}
 
   bannerTitle: string = 'tour search';
+  bannerImage = '../../../assets/image/new/1.webp';
 
   // pagination
   itemsPerPage: number = 0;
@@ -72,6 +73,12 @@ export class TourComponent implements OnInit {
   categoriesWithTours: any[] = []; // Store categories with included tours
 
   allToursRaw: any[] = []; // النسخة الخام من API بدون فلاتر
+
+  // Collapse states for filter sections (first one open by default)
+  isCategoryCollapsed: boolean = false; // First section open
+  isPriceCollapsed: boolean = true;
+  isDurationCollapsed: boolean = true;
+  isDestinationCollapsed: boolean = true;
 
   ngOnInit(): void {
     this.seoService.updateSeoData(
@@ -769,6 +776,31 @@ export class TourComponent implements OnInit {
       (a, b) => b.start_from - a.start_from
     );
     // console.log(this.filteredTours);
+  }
+
+  // Toggle collapse state for filter sections (accordion behavior)
+  toggleCollapse(section: 'category' | 'price' | 'duration' | 'destination') {
+    // Close all sections first
+    this.isCategoryCollapsed = true;
+    this.isPriceCollapsed = true;
+    this.isDurationCollapsed = true;
+    this.isDestinationCollapsed = true;
+
+    // Then toggle the clicked section
+    switch (section) {
+      case 'category':
+        this.isCategoryCollapsed = !this.isCategoryCollapsed;
+        break;
+      case 'price':
+        this.isPriceCollapsed = !this.isPriceCollapsed;
+        break;
+      case 'duration':
+        this.isDurationCollapsed = !this.isDurationCollapsed;
+        break;
+      case 'destination':
+        this.isDestinationCollapsed = !this.isDestinationCollapsed;
+        break;
+    }
   }
 }
 

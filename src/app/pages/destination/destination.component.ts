@@ -46,6 +46,7 @@ export class DestinationComponent implements OnInit, AfterViewInit {
   allDestinations: any[] = [];
 
   bannerTitle: string = 'destination';
+  bannerImage = '../../../assets/image/new/1.webp';
 
   ngOnInit(): void {
     this._SeoService.updateSeoData(

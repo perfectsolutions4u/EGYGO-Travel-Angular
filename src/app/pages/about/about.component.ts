@@ -19,7 +19,6 @@ import { SeoService } from '../../core/services/seo.service';
   imports: [
     BannerComponent,
     AboutsectionComponent,
-    TeamCartComponent,
     TestimonialCartComponent,
     PartnerSliderComponent,
     CommonModule,
@@ -34,6 +33,7 @@ import { SeoService } from '../../core/services/seo.service';
 })
 export class AboutComponent implements OnInit {
   bannerTitle = 'about us';
+  bannerImage = '../../../assets/image/new/1.webp'; // يمكنك تغيير الصورة هنا
 
   constructor(private seoService: SeoService) {}
 
