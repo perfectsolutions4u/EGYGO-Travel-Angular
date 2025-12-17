@@ -164,7 +164,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         const el = this.destinationCarousel.nativeElement;
         el.slidesPerView = 1;
         el.spaceBetween = 10;
-        el.loop = true;
+        el.loop = this.allDestinations.length > 4;
         el.autoplay = {
           delay: 2500,
           disableOnInteraction: false,
@@ -185,7 +185,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         const el = this.tourCarousel.nativeElement;
         el.slidesPerView = 1;
         el.spaceBetween = 10;
-        el.loop = true;
+        el.loop = this.tourstest.length > 4;
         el.autoplay = {
           delay: 3000,
           disableOnInteraction: false,
@@ -206,7 +206,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         const el = this.popularTourCarousel.nativeElement;
         el.slidesPerView = 1;
         el.spaceBetween = 10;
-        el.loop = true;
+        el.loop = this.tourstest.length > 4;
         el.autoplay = {
           delay: 3000,
           disableOnInteraction: false,
@@ -327,8 +327,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
             { ...seoData, meta_title: titleWithTest, og_title: titleWithTest },
             titleWithTest,
             seoData.meta_description ||
-              seoData.og_description ||
-              'Discover amazing tours and travel experiences with EgyGo Travel. Book your dream vacation today.',
+            seoData.og_description ||
+            'Discover amazing tours and travel experiences with EgyGo Travel. Book your dream vacation today.',
             seoData.og_image || '/assets/image/logo-egygo.webp'
           );
         } else {

@@ -1,10 +1,6 @@
 <section class="testimonial my-5">
   <div class="container pt-5">
-    <swiper-container
-      *ngIf="allReviews.length > 0"
-      #testimonialCarousel
-      init="false"
-    >
+    <swiper-container *ngIf="allReviews.length > 0" #testimonialCarousel init="false">
       @for (testimonial of allReviews; track $index) {
       <swiper-slide>
         <div class="row g-3 item">
@@ -13,17 +9,22 @@
               <figcaption class="text-center shadow-lg p-3 rounded-4">
                 <div>
                   <span *ngFor="let filled of getStars(testimonial.rate)">
-                    <i
-                      [ngClass]="
+                    <i [ngClass]="
                         filled
                           ? 'fa fa-star text-warning'
                           : 'fa-regular fa-star text-warning'
-                      "
-                    ></i>
+                      "></i>
                   </span>
                 </div>
 
-                <p class="my-3 mb-2 fs-5">" {{ testimonial.content }} "</p>
+                <p class="my-3 mb-2 fs-5">
+                  " {{ isExpanded($index) ? testimonial.content : (testimonial.content | slice:0:MAX_REVIEW_LENGTH) }}{{
+                  !isExpanded($index) && shouldShowReadMore(testimonial.content) ? '...' : '' }} "
+                </p>
+                <button *ngIf="shouldShowReadMore(testimonial.content)" (click)="toggleReview($index)"
+                  class="btn btn-link textMainColor fw-bold text-decoration-none mb-2">
+                  {{ isExpanded($index) ? 'Read Less' : 'Read More' }}
+                </button>
                 <div>
                   <h4 class="textSecondColor mb-1 fw-bold">
                     {{ testimonial.reviewer_name }}
@@ -34,15 +35,9 @@
                 </div>
               </figcaption>
 
-              <figure
-                class="mb-0 mx-auto shadow overflow-hidden rounded-circle"
-              >
-                <img
-                  [src]="testimonial.reviewer_image"
-                  class="w-100 h-100"
-                  [alt]="testimonial.reviewer_name"
-                  [title]="testimonial.reviewer_name"
-                />
+              <figure class="mb-0 mx-auto shadow overflow-hidden rounded-circle">
+                <img [src]="testimonial.reviewer_image" class="w-100 h-100" [alt]="testimonial.reviewer_name"
+                  [title]="testimonial.reviewer_name" />
               </figure>
             </div>
           </div>
@@ -53,18 +48,10 @@
 
     @if (allReviews.length > 0) {
     <div class="carousel-nav-buttons testimonial-nav-buttons">
-      <button
-        type="button"
-        class="nav-btn prev-btn"
-        (click)="prevTestimonial()"
-      >
+      <button type="button" class="nav-btn prev-btn" (click)="prevTestimonial()">
         <i class="fa fa-angle-double-left"></i>
       </button>
-      <button
-        type="button"
-        class="nav-btn next-btn"
-        (click)="nextTestimonial()"
-      >
+      <button type="button" class="nav-btn next-btn" (click)="nextTestimonial()">
         <i class="fa fa-angle-double-right"></i>
       </button>
     </div>

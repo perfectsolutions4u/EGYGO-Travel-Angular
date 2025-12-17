@@ -3,10 +3,26 @@
 .testimonial{
 
 
-.item{
+    swiper-slide {
+        height: auto;
+        display: flex;
+    }
+
+    .item {
+        height: 100%;
+        
+        > div {
+            height: 100%;
+            > div {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
         // padding: 20px 20px 20px 10px;
         // gap: 15px;
-        figure{
+        figure {
             width: 80px;
             height: 80px;
             border: 3px solid #fff;
@@ -16,12 +32,17 @@
             -moz-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
             -o-transform: translateY(-50%);
-}
+        }
 
 
-        figcaption{
-          padding-bottom: 50px !important;
-            p{
+        figcaption {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 50px !important;
+
+            p {
                 font-size: 2rem;
             }
         }

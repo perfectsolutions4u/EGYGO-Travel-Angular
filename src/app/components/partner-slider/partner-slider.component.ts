@@ -58,7 +58,7 @@ export class PartnerSliderComponent implements AfterViewInit {
     // { src: '../../../assets/image/partner/viator.webp' },
   ];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -73,7 +73,7 @@ export class PartnerSliderComponent implements AfterViewInit {
       const el = this.partnerCarousel.nativeElement;
       el.slidesPerView = 2;
       el.spaceBetween = 20;
-      el.loop = true;
+      el.loop = this.partnerImg.length > 6;
       el.centeredSlides = true;
       el.autoplay = { delay: 1500, disableOnInteraction: false };
       el.speed = 1500;

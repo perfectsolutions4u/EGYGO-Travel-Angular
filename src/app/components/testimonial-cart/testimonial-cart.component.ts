@@ -28,7 +28,7 @@ export class TestimonialCartComponent implements AfterViewInit {
   constructor(
     private _DataService: DataService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
   allReviews: any[] = [];
 
@@ -113,7 +113,7 @@ export class TestimonialCartComponent implements AfterViewInit {
       const el = this.testimonialCarousel.nativeElement;
       el.slidesPerView = 1;
       el.spaceBetween = 10;
-      el.loop = true;
+      el.loop = this.allReviews.length > 1;
       el.autoplay = { delay: 3500, disableOnInteraction: false };
       el.speed = 3500;
       // el.effect = 'fade';
@@ -151,6 +151,25 @@ export class TestimonialCartComponent implements AfterViewInit {
         // console.log(err);
       },
     });
+  }
+
+  expandedReviews: Set<number> = new Set();
+  readonly MAX_REVIEW_LENGTH = 150;
+
+  toggleReview(index: number) {
+    if (this.expandedReviews.has(index)) {
+      this.expandedReviews.delete(index);
+    } else {
+      this.expandedReviews.add(index);
+    }
+  }
+
+  isExpanded(index: number): boolean {
+    return this.expandedReviews.has(index);
+  }
+
+  shouldShowReadMore(content: string): boolean {
+    return content.length > this.MAX_REVIEW_LENGTH;
   }
 
   getStars(rate: number): boolean[] {

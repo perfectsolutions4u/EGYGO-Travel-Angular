@@ -67,7 +67,7 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
     private sanitizer: DomSanitizer,
     private _SeoService: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -85,7 +85,7 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
       const el = this.tourGalleryCarousel.nativeElement;
       el.slidesPerView = 1;
       el.spaceBetween = 0;
-      el.loop = true;
+      el.loop = this.tourGallery.length > 1;
       el.autoplay = { delay: 1500, disableOnInteraction: false };
       el.speed = 1500;
       el.navigation = false;
@@ -482,5 +482,14 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
       0
     );
     return totalRating / this.tourReviews.length;
+  }
+
+  scrollToBookingForm(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const bookingFormElement = document.getElementById('bookingForm');
+      if (bookingFormElement) {
+        bookingFormElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   }
 }
