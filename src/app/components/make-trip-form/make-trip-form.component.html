@@ -1,10 +1,10 @@
-<section class="py-5 position-relative bgPrimaryWhiteColor">
+<section class="py-5 mb-3">
   <div class="container">
-    <div class="text-black mb-5">
+    <!-- <div class="text-black mb-5">
       <h2 class="text-capitalize fw-bold text-center h1">
         {{ "makeTrip.makeYourTrip" | translate }}
       </h2>
-    </div>
+    </div> -->
     <form
       [formGroup]="makeTripForm"
       (ngSubmit)="onMakeTripSubmit()"
@@ -24,7 +24,7 @@
           }}</mat-radio-button>
         </mat-radio-group>
       </div>
-      <div class="col-xl-3 col-lg-4">
+      <div class="col-xl-3 col-lg-4 col-md-6">
         <div class="text-capitalize">
           <label class="textSecondColor"
             ><i class="fa fa-map-marker-alt me-2 mb-2"></i
@@ -48,7 +48,7 @@
 
       <!-- if have exact time -->
       @if (MarkTime==='exact') {
-      <div class="col-xl-3 col-lg-4">
+      <div class="col-xl-3 col-lg-4 col-md-6">
         <div class="text-capitalize">
           <label class="textSecondColor"
             ><i class="fa fa-calendar-days me-2 mb-2"></i>
@@ -69,7 +69,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="col-xl-3 col-lg-4">
+      <div class="col-xl-3 col-lg-4 col-md-6">
         <div class="text-capitalize">
           <label class="textSecondColor"
             ><i class="fa fa-calendar-days me-2 mb-2"></i>
@@ -94,7 +94,7 @@
 
       <!-- if have aproximate time -->
       @if (MarkTime==='approximate') {
-      <div class="col-xl-7 col-lg-8">
+      <div class="col-xl-7 col-lg-8 col-md-6">
         <div>
           <label class="textSecondColor"
             ><i class="fa fa-calendar-days me-2 mb-2"></i>
@@ -114,7 +114,7 @@
       </div>
       }
 
-      <div class="col-xl-2 col-lg-12">
+      <div class="col-xl-2 col-lg-12 col-md-6">
         <div class="text-capitalize flexCenter">
           <button
             type="submit"
@@ -129,11 +129,11 @@
       </div>
     </form>
   </div>
-  <figure class="position-absolute top-0 end-0">
+  <!-- <figure class="position-absolute top-0 end-0">
     <img
       src="../../../assets/image/mg/hero-img-1.webp"
       class="w-100 h-100"
       alt="egygo image"
     />
-  </figure>
+  </figure> -->
 </section>

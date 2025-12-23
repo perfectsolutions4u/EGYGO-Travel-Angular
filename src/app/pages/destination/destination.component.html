@@ -24,11 +24,7 @@
     </div>
 
     <div class="mt-5">
-      <swiper-container
-        *ngIf="allDestinations.length > 0"
-        #destinationCarousel
-        init="false"
-      >
+      <swiper-container *ngIf="allDestinations.length > 0" #destinationCarousel>
         @for (des of allDestinations; track $index) {
         <swiper-slide>
           <app-destination-cart [destination]="des"></app-destination-cart>

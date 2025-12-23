@@ -17,7 +17,13 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule, BannerComponent, TranslateModule],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    CommonModule,
+    BannerComponent,
+    TranslateModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -30,7 +36,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   bannerTitle = 'login';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
   logo!: any;
   siteTitle!: any;
   isLoading = false;

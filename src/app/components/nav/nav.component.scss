@@ -36,14 +36,11 @@ transition: $transition;
   &.active , &.dropdown-item.active , & span.active {
     border: 1px solid $secondary-color !important;
     color: $secondary-color !important;
-    border-radius: 50rem;
+    border-radius: $border-radius;
     background-color: transparent !important;
   }
-  &.active {
-    padding-inline: 30px !important;
-    padding-block: 6px !important;
-  }
-  &.dropdown-item.active , & span.active{
+
+  &.active,&.dropdown-item.active , & span.active{
     padding-inline: 15px !important;
     padding-block: 6px !important;
   }
@@ -130,7 +127,7 @@ transition: $transition;
   background-color: white;
   min-width: 180px;
   padding: 0.5rem 0;
-  border-radius: 0.5rem;
+  border-radius: $border-radius;
 }
 
 
@@ -167,7 +164,7 @@ transition: $transition;
     background-color: white;
     min-width: 130px;
     padding: 0.5rem 0;
-    border-radius: 0.5rem;
+    border-radius: $border-radius;
     top: 100%;
     left: 0;
     // margin-top: 0.25rem;

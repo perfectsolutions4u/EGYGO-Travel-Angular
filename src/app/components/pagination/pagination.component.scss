@@ -6,13 +6,13 @@
   text-decoration: none !important;
   font-weight: bold !important;
   margin-inline: 5px !important;
-  border-radius: 10px !important;
+  border-radius: $border-radius !important;
 
 
 }
 
 ::ng-deep .ngx-pagination .current {
   background: $primary-color !important;
-    border-radius: 10px !important;
+    border-radius: $border-radius !important;
 
 }

@@ -114,7 +114,7 @@
    }
     .mat-mdc-tab.mdc-tab--active{
           background-color: $secondary-color;
-          border-radius: 5px;
+          border-radius: $border-radius;
           .mdc-tab__text-label{color: #fff;}
           .mdc-tab-indicator__content--underline{border-color: #fff; padding-bottom: 3px;}
     }
@@ -224,7 +224,7 @@
         content: "";
         width: 70%;
         height: 100%;
-        border-radius: 42px;
+        border-radius: $border-radius;
         background-color: rgba($secondary-color, 0.26);
         z-index: -1;
 
@@ -274,7 +274,7 @@
 
 .carts{
     .iconBox{
-        border-radius:50px 50px 50px 0px ;
+        border-radius: $border-radius;
         img{
             width: 35px;
             filter: brightness(0) invert(1);
@@ -409,10 +409,10 @@
 
 .blogs{
     .sideBar{
-        border-radius: 50px 50px 50px 0px;
+        border-radius: $border-radius;
         figure{
             span{transform: translate(-50%, -50%); }
-            img{border-radius: 40px 40px 40px 0px;}
+            img{border-radius: $border-radius;}
         }
 
         figcaption h5{

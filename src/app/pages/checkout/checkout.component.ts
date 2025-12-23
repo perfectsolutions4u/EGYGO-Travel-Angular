@@ -1,4 +1,14 @@
-import { Component, OnInit, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef, PLATFORM_ID, Inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  PLATFORM_ID,
+  Inject,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -41,7 +51,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   ) {}
 
   bannerTitle: string = 'checkout';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   checkoutData: object = {};
   countries: any[] = [];

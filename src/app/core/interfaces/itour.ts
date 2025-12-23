@@ -16,6 +16,7 @@ export interface Itour {
   enabled: boolean;
   display_order: number;
   featured_image: string;
+  banner: string;
   gallery: string[];
   overview: string;
   overview_text: string;

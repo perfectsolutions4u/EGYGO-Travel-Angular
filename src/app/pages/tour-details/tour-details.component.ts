@@ -98,7 +98,7 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
   }
 
   bannerTitle: string = '';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
   panelOpenState = false;
 
   tourData: Itour | null = null;
@@ -163,10 +163,13 @@ export class TourDetailsComponent implements OnInit, AfterViewInit {
       next: (response) => {
         // console.log(response.data);
         this.tourData = response.data;
-        if (this.tourData?.featured_image) {
+        // Set banner image from banner or featured_image, otherwise use default
+        if (this.tourData?.banner) {
+          this.bannerImage = this.tourData.banner;
+        } else if (this.tourData?.featured_image) {
           this.bannerImage = this.tourData.featured_image;
         } else {
-          this.bannerImage = '../../../assets/image/new/1.webp';
+          this.bannerImage = '/assets/image/EgyGo-banner.webp';
         }
         // console.log('tour data:', this.tourData);
 

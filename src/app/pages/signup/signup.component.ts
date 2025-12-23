@@ -16,7 +16,13 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule, BannerComponent, TranslateModule],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    CommonModule,
+    BannerComponent,
+    TranslateModule,
+  ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
 })
@@ -29,7 +35,7 @@ export class SignupComponent implements OnInit {
   ) {}
 
   bannerTitle = 'sign up';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
   logo!: any;
   siteTitle!: any;
   isLoading = false;

@@ -5,7 +5,7 @@
 //     }
 //   }
 // }
-
+@import '../../../styles/variables';
 .item{
     border-top-right-radius: 70px;
     background-color: #F9F6F1;
@@ -33,7 +33,7 @@
 
     &:hover{
         border-top-right-radius: 0px;
-        border-radius: 20px;
+        border-radius: $border-radius;
     }
 
     @media screen and (max-width:568px) {

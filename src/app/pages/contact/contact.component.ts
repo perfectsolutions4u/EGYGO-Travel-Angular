@@ -33,7 +33,7 @@ export class ContactComponent implements OnInit {
   ) {}
 
   bannerTitle: string = 'contact';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   countryList: any[] = [];
   phoneNumber: any;
@@ -45,7 +45,7 @@ export class ContactComponent implements OnInit {
     this._SeoService.updateSeoData(
       {},
       'EgyGo - Contact',
-      'Get in touch with EGYGO Travel. Contact us for bookings, inquiries, or travel assistance. We\'re here to help you plan your perfect trip.',
+      "Get in touch with EGYGO Travel. Contact us for bookings, inquiries, or travel assistance. We're here to help you plan your perfect trip.",
       '/assets/image/logo-egygo.webp'
     );
     this.getCountries();

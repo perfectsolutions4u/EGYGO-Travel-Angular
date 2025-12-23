@@ -47,7 +47,7 @@ export class TourComponent implements OnInit {
   ) {}
 
   bannerTitle: string = 'tour search';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   // pagination
   itemsPerPage: number = 0;

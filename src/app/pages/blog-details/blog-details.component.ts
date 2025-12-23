@@ -32,7 +32,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class BlogDetailsComponent implements OnInit {
   bannerTitle: string = '';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   constructor(
     private _DataService: DataService,
@@ -76,11 +76,13 @@ export class BlogDetailsComponent implements OnInit {
                 response.data.created_at
               );
 
-              // Set banner image from featured_image or use default
-              if (response.data?.featured_image) {
+              // Set banner image from banner or featured_image, otherwise use default
+              if (response.data?.banner) {
+                this.bannerImage = response.data.banner;
+              } else if (response.data?.featured_image) {
                 this.bannerImage = response.data.featured_image;
               } else {
-                this.bannerImage = '../../../assets/image/new/1.webp';
+                this.bannerImage = '/assets/image/EgyGo-banner.webp';
               }
             },
           });
@@ -91,11 +93,13 @@ export class BlogDetailsComponent implements OnInit {
               this.blogDetails = response.data;
               this.bannerTitle = this.blogDetails.title;
               // console.log('blog details:', this.blogDetails);
-              // Set banner image from featured_image or use default
-              if (this.blogDetails?.featured_image) {
+              // Set banner image from banner or featured_image, otherwise use default
+              if (this.blogDetails?.banner) {
+                this.bannerImage = this.blogDetails.banner;
+              } else if (this.blogDetails?.featured_image) {
                 this.bannerImage = this.blogDetails.featured_image;
               } else {
-                this.bannerImage = '../../../assets/image/new/1.webp';
+                this.bannerImage = '/assets/image/EgyGo-banner.webp';
               }
               // console.log('banner image:', this.bannerImage);
 
@@ -110,7 +114,7 @@ export class BlogDetailsComponent implements OnInit {
               // if (response.data?.featured_image) {
               //   this.bannerImage = response.data.featured_image;
               // } else {
-              //   this.bannerImage = '../../../assets/image/new/1.webp';
+              //   this.bannerImage = '../../../assets/image/Egy Go banner.png';
               // }
 
               // this.writeReview.patchValue({ tour_id: response.data.id });

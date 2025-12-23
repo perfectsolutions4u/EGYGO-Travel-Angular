@@ -11,7 +11,7 @@
       [title]="destination.title"
     />
     <span
-      class="bgMainColor text-white text-capitalize position-absolute top-0 start-0 mt-4 rounded-end-pill py-1 px-3"
+      class="bgSecondColor text-white text-capitalize position-absolute top-0 start-0 mt-4 rounded-end-2 py-1 px-3"
       >{{ destination.tours_count }} {{ "destination.tour" | translate }}</span
     >
     <div
@@ -40,7 +40,7 @@
   <figcaption class=" ">
     <h5
       [routerLink]="['/destination', destination.slug]"
-      class="h3 textMainColor text-capitalize fw-bold mb-0 transition"
+      class="h3 textSecondColor text-capitalize fw-bold mb-0 transition"
     >
       {{ destination.title }}
     </h5>

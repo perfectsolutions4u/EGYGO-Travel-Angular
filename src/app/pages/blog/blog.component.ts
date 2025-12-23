@@ -26,7 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class BlogComponent implements OnInit {
   bannerTitle: string = 'blog';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   allBlogs: any[] = [];
 

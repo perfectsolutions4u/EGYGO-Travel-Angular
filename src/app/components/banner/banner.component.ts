@@ -5,11 +5,11 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-banner',
   standalone: true,
-  imports: [RouterLink, TranslateModule],
+  imports: [TranslateModule],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.scss',
 })
 export class BannerComponent {
   @Input() bannerTitle: string = '';
-  @Input() backgroundImage: string = '../../../assets/image/new/1.webp';
+  @Input() backgroundImage: string = '/assets/image/EgyGo-banner.webp';
 }

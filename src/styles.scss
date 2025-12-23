@@ -86,7 +86,7 @@ body {
   height: 35px !important;
   background-color: #fff !important;
   border: none !important;
-  border-radius: 50% !important;
+  border-radius: $border-radius !important;
   color: #000 !important;
   opacity: 1 !important;
   display: flex !important;
@@ -138,7 +138,7 @@ body {
   .nav-btn {
     width: 35px;
     height: 35px;
-    border-radius: 50%;
+    border-radius: $border-radius;
     background-color: #fff;
     border: none;
     display: flex;
@@ -251,7 +251,7 @@ html{
   transition: all 1s;
   text-transform: capitalize;
   padding: 7px 14px;
-  border-radius: 45px;
+  border-radius: $border-radius;
   i{padding-top: 8px; width: 30px ; height: 30px; }
 
   &::before , &::after{
@@ -352,7 +352,7 @@ html{
 }
 .title{
   img{
-    border-radius: 50px;
+    border-radius: $border-radius;
     width: 55px;
 }
 }
@@ -393,7 +393,7 @@ html{
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+  border-radius: $border-radius;
   font-size: 30px;
   margin-right: 20px;
 }
@@ -434,7 +434,7 @@ figure.imgHover{
   .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled {
     background-color: transparent !important;
     border: 1px solid $border-color !important;
-    border-radius: 8px;
+    border-radius: $border-radius;
   }
   // Change label color on focus for matInput
   .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
@@ -448,7 +448,7 @@ figure.imgHover{
 
 }
 
-.specialBorder{border-radius: 50px 50px 50px 0px;}
+.specialBorder{border-radius: $border-radius;}
 
 // btn controls
 .controls{
@@ -461,7 +461,7 @@ figure.imgHover{
       background-color: $primary-color;
       border-color: $primary-color;
       color: #fff;
-      border-radius: 7px !important;
+      border-radius: $border-radius !important;
     }
 
   }
@@ -509,3 +509,6 @@ a{text-decoration: none; color: $text-color;}
 }
 
 
+.rounded, .rounded-circle, .rounded-pill, .rounded-1, .rounded-2, .rounded-3, .rounded-4, .rounded-5, .rounded-6, .rounded-7, .rounded-8, .rounded-9, .rounded-10 {
+  border-radius: $border-radius !important;
+}

@@ -16,7 +16,13 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-forget-password',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule, BannerComponent, TranslateModule],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    CommonModule,
+    BannerComponent,
+    TranslateModule,
+  ],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss',
 })
@@ -29,7 +35,7 @@ export class ForgetPasswordComponent implements OnInit {
   ) {}
 
   bannerTitle = 'forget password';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
   logo!: any;
   siteTitle!: any;
   isLoading = false;

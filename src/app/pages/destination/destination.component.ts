@@ -46,7 +46,7 @@ export class DestinationComponent implements OnInit, AfterViewInit {
   allDestinations: any[] = [];
 
   bannerTitle: string = 'destination';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   ngOnInit(): void {
     this._SeoService.updateSeoData(
@@ -72,7 +72,7 @@ export class DestinationComponent implements OnInit, AfterViewInit {
       this.allDestinations.length > 0
     ) {
       const el = this.destinationCarousel.nativeElement;
-      el.slidesPerView = 4.5;
+      el.slidesPerView = 1;
       el.spaceBetween = 20;
       el.loop = true;
       el.autoplay = { delay: 1500, disableOnInteraction: false };

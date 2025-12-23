@@ -33,7 +33,7 @@ import { SeoService } from '../../core/services/seo.service';
 })
 export class AboutComponent implements OnInit {
   bannerTitle = 'about us';
-  bannerImage = '../../../assets/image/new/1.webp'; // يمكنك تغيير الصورة هنا
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   constructor(private seoService: SeoService) {}
 

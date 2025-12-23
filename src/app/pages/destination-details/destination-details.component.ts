@@ -94,7 +94,7 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
 
   layoutType: 'grid' | 'list' = 'grid';
   bannerTitle: string = '';
-  bannerImage = '';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe({
@@ -109,11 +109,13 @@ export class DestinationDetailsComponent implements OnInit, AfterViewInit {
             this.showTours(this.destinationSlug);
             this.bannerTitle = this.destinationDetails.title;
 
-            // Set banner image from featured_image or use default
-            if (this.destinationDetails?.featured_image) {
+            // Set banner image from banner or featured_image, otherwise use default
+            if (this.destinationDetails?.banner) {
+              this.bannerImage = this.destinationDetails.banner;
+            } else if (this.destinationDetails?.featured_image) {
               this.bannerImage = this.destinationDetails.featured_image;
             } else {
-              this.bannerImage = '../../../assets/image/new/1.webp';
+              this.bannerImage = '/assets/image/EgyGo-banner.webp';
             }
             // console.log(
             //   'destination Details title:',

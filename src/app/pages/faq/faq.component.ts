@@ -19,7 +19,7 @@ import { SeoService } from '../../core/services/seo.service';
 })
 export class FaqComponent implements OnInit {
   bannerTitle: string = 'FAQ';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   constructor(private _SeoService: SeoService) {}
 

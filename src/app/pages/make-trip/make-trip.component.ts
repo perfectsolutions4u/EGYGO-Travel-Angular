@@ -63,7 +63,7 @@ export class MakeTripComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;
 
   bannerTitle: string = 'make Your trip';
-  bannerImage = '../../../assets/image/new/1.webp';
+  bannerImage = '/assets/image/EgyGo-banner.webp';
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
