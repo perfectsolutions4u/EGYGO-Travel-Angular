@@ -1,0 +1,142 @@
+<div class="mb-5">
+  <app-banner
+    [bannerTitle]="bannerTitle"
+    [backgroundImage]="bannerImage"
+  ></app-banner>
+</div>
+
+<section class="gallery-section my-5">
+  <div class="container">
+    @if (isLoading) {
+    <div class="loading-container flexCenter">
+      <div class="loading-spinner text-center">
+        <div class="spinner"></div>
+        <p>Loading gallery...</p>
+      </div>
+    </div>
+    } @else {
+    <div class="gallery-grid">
+      @for (image of displayedImages; track $index) {
+      <div
+        class="gallery-item cPointer overflow-hidden"
+        (click)="openLightbox($index)"
+      >
+        <div
+          class="image-wrapper position-relative w-100 h-100 overflow-hidden"
+        >
+          <img
+            [src]="image"
+            [alt]="'Gallery image ' + ($index + 1)"
+            loading="lazy"
+            class="w-100 h-100 object-fit-cover transition"
+          />
+          <div class="image-overlay flexCenter bg-dark bg-opacity-50">
+            <i class="fa fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+    @if (isLoadingMore) {
+    <div class="loading-more flexCenter flex-column">
+      <div class="spinner-small rounded-circle mb-3"></div>
+      <p>Loading more images...</p>
+    </div>
+    } @if (!hasMoreImages && displayedImages.length > 0) {
+    <div class="no-more-images text-center">
+      <p>All images loaded</p>
+    </div>
+    } }
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+@if (isLightboxOpen) {
+<div class="lightbox-overlay flexCenter" (click)="closeLightbox()">
+  <div class="lightbox-container flexCenter" (click)="$event.stopPropagation()">
+    <!-- Close Button -->
+    <button
+      class="lightbox-close rounded-circle flexCenter cPointer"
+      (click)="closeLightbox()"
+      aria-label="Close"
+    >
+      <i class="fa fa-times"></i>
+    </button>
+
+    <!-- Navigation Buttons -->
+    @if (currentImageIndex > 0) {
+    <button
+      class="lightbox-nav lightbox-prev rounded-circle flexCenter cPointer"
+      (click)="prevImage()"
+      aria-label="Previous"
+    >
+      <i class="fa fa-chevron-left"></i>
+    </button>
+    } @if (currentImageIndex < displayedImages.length - 1) {
+    <button
+      class="lightbox-nav lightbox-next rounded-circle flexCenter cPointer"
+      (click)="nextImage()"
+      aria-label="Next"
+    >
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    }
+
+    <!-- Zoom Controls -->
+    <div class="lightbox-controls d-flex">
+      <button
+        class="control-btn rounded-circle flexCenter cPointer"
+        (click)="zoomIn()"
+        aria-label="Zoom In"
+      >
+        <i class="fa fa-search-plus"></i>
+      </button>
+      <button
+        class="control-btn rounded-circle flexCenter cPointer"
+        (click)="zoomOut()"
+        aria-label="Zoom Out"
+      >
+        <i class="fa fa-search-minus"></i>
+      </button>
+      <button
+        class="control-btn rounded-circle flexCenter cPointer"
+        (click)="resetZoom()"
+        aria-label="Reset Zoom"
+      >
+        <i class="fa fa-undo"></i>
+      </button>
+    </div>
+
+    <!-- Image Container -->
+    <div
+      class="lightbox-image-container w-100 h-100 flexCenter overflow-hidden position-relative"
+    >
+      <img
+        [src]="currentImage"
+        [alt]="'Gallery image ' + (currentImageIndex + 1)"
+        class="lightbox-image"
+        [style.transform]="
+          'scale(' +
+          zoomLevel +
+          ') translate(' +
+          imagePositionX +
+          'px, ' +
+          imagePositionY +
+          'px)'
+        "
+        [style.cursor]="zoomLevel > 1 ? 'move' : 'default'"
+        (mousedown)="onImageMouseDown($event)"
+        (dragstart)="$event.preventDefault()"
+      />
+    </div>
+
+    <!-- Image Counter -->
+    <div class="lightbox-counter">
+      {{ currentImageIndex + 1 }} / {{ displayedImages.length }}
+    </div>
+  </div>
+</div>
+}
+
+<app-make-trip-form></app-make-trip-form>

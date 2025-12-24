@@ -1,11 +1,48 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { BaseService } from './base.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService extends BaseService {
+  private readonly CACHE_KEY_COUNTRIES = 'app_countries_cache';
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    protected override HttpClient: HttpClient
+  ) {
+    super(HttpClient);
+  }
+
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
+
+  private getFromCache<T>(key: string): T | null {
+    if (!this.isBrowser()) return null;
+    try {
+      const cached = localStorage.getItem(key);
+      if (cached) {
+        return JSON.parse(cached);
+      }
+    } catch (error) {
+      console.error(`Error reading cache for ${key}:`, error);
+    }
+    return null;
+  }
+
+  private setCache<T>(key: string, data: T): void {
+    if (!this.isBrowser()) return;
+    try {
+      localStorage.setItem(key, JSON.stringify(data));
+    } catch (error) {
+      console.error(`Error setting cache for ${key}:`, error);
+    }
+  }
   // tour details
   appendBookingData(bookingForm: object): Observable<any> {
     return this.HttpClient.post(
@@ -37,6 +74,17 @@ export class BookingService extends BaseService {
   }
 
   getCountries(): Observable<any> {
-    return this.HttpClient.get(`${this.baseUrl}/countries`);
+    const cached = this.getFromCache<any>(this.CACHE_KEY_COUNTRIES);
+    if (cached) {
+      return of(cached);
+    }
+
+    return this.HttpClient.get(`${this.baseUrl}/countries`).pipe(
+      tap((response: any) => {
+        if (response && response.data) {
+          this.setCache(this.CACHE_KEY_COUNTRIES, response);
+        }
+      })
+    );
   }
 }

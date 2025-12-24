@@ -2,6 +2,18 @@
 <router-outlet></router-outlet>
 <app-footer></app-footer>
 
+<!-- WhatsApp Floating Button -->
+<a
+  [href]="whatsappUrl"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whatsapp-float"
+  [attr.aria-label]="'Chat on WhatsApp'"
+  title="Chat on WhatsApp"
+>
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
 <ngx-spinner
   bdColor="#fff"
   size="medium"

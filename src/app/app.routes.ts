@@ -22,6 +22,14 @@ export const routes: Routes = [
     title: 'Contact',
   },
   {
+    path: 'gallery',
+    loadComponent: () =>
+      import('./pages/gallery/gallery.component').then(
+        (m) => m.GalleryComponent
+      ),
+    title: 'Gallery',
+  },
+  {
     path: 'blog',
     loadComponent: () =>
       import('./pages/blog/blog.component').then((m) => m.BlogComponent),
